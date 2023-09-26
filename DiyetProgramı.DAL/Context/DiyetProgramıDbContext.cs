@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 using DiyetProgramı.Entities.Concrete;
+using DiyetProgramı.Entities.Enum;
 
 namespace DiyetProgramı.DAL.Context
 {
@@ -13,11 +14,27 @@ namespace DiyetProgramı.DAL.Context
     {
         public DbSet<Yemek> Yemekler { get; set; }
         public DbSet<Ogun> Ogunler { get; set; }
-        public DbSet<YemekCesit> YemekCesitler { get; set; }
         public DbSet<Kullanici> Kullanicilar { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder
+                .Entity<Kullanici>()
+                .Property(x => x.KullaniciSifre)
+                .HasMaxLength(16);
+            modelBuilder
+                .Entity<Kullanici>()
+                .Property(x=>x.KullaniciMail)
+                .HasMaxLength(50);
+            modelBuilder
+                .Entity<Yemek>()
+                .Property(x => x.Kalori)
+                .HasPrecision(5, 2);
+
         }
     }
 }

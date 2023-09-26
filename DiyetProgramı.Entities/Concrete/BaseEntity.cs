@@ -7,13 +7,8 @@ using DiyetProgramı.Entities.Abstract;
 
 namespace DiyetProgramı.Entities.Concrete
 {
-    public class YemekCesit : IEntity
+    public abstract class BaseEntity : IEntity
     {
         public int Id { get; set; }
-        public decimal Kalori { get; set; }
-
-        //todo resim eklencek
-        //Nav Property
-        public List<Yemek> Yemekler { get; set; }
     }
 }

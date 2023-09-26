@@ -1,13 +1,12 @@
 ﻿using DiyetProgramı.Entities.Abstract;
+using DiyetProgramı.Entities.Enum;
 
 namespace DiyetProgramı.Entities.Concrete;
 
-public class Kullanici : IEntity
+public class Kullanici : BaseEntity
 {
-    public int Id { get; set; }
     public string KullaniciMail { get; set; }
     public string KullaniciSifre { get; set; }
-
 
     //Nav Property
     public List<Ogun> Ogunler { get; set; }

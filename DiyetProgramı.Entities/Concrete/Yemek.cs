@@ -4,18 +4,14 @@ using DiyetProgramı.Entities.Enum;
 
 namespace DiyetProgramı.Entities.Concrete;
 
-public class Yemek : IEntity
+public class Yemek : BaseEntity
 {
-    public int Id { get; set; }
-    public decimal YemekPorsiyon  { get; set; }
-    public decimal YemekKalori { get; set; }
+    public decimal Kalori { get; set; }
+    public decimal YemekPorsiyon { get; set; }
     public YemekKategorileri Kategorileri { get; set; }
-    public int YemekCesitId { get; set; }
-    public int OgunId { get; set; }
-    
+    public string YemekAdi { get; set; }
+    public string? ResimYolu { get; set; }
 
-    //Nav Property
-    public YemekCesit YemekCesit { get; set; }
-    public Ogun Ogun { get; set; }
+    public List<Ogun> Ogunler { get; set; }
 
 }

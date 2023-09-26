@@ -1,13 +1,12 @@
-﻿using DiyetProgramı.Entities.Abstract;
+﻿using DiyetProgramı.Entities.Concrete;
 
-namespace DiyetProgramı.Entities.Concrete;
+namespace DiyetProgramı.Entities.Enum;
 
-public class Ogun : IEntity
+public class Ogun : BaseEntity
 {
-    public int Id { get; set; }
     public int KullaniciId { get; set; }
+    public OgunIsmi OgunIsmi { get; set; }
     public DateTime OgunVakti { get; set; }
-
 
     //Nav Property
     public Kullanici Kullanici {get; set; }

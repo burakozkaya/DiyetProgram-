@@ -1,3 +1,8 @@
+using DiyetProgramı.DAL.Context;
+using DiyetProgramı.Entities.Concrete;
+using DiyetProgramı.Entities.Enum;
+using Microsoft.EntityFrameworkCore;
+
 namespace DiyetProgramı.PL
 {
     internal static class Program

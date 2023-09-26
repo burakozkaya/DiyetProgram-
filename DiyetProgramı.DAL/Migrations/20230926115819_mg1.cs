@@ -17,8 +17,8 @@ namespace DiyetProgramı.DAL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    KullaniciMail = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    KullaniciSifre = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    KullaniciMail = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    KullaniciSifre = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -26,16 +26,20 @@ namespace DiyetProgramı.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "YemekCesitler",
+                name: "Yemekler",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Kalori = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    Kalori = table.Column<decimal>(type: "decimal(5,2)", precision: 5, scale: 2, nullable: false),
+                    YemekPorsiyon = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Kategorileri = table.Column<int>(type: "int", nullable: false),
+                    YemekAdi = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ResimYolu = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_YemekCesitler", x => x.Id);
+                    table.PrimaryKey("PK_Yemekler", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -59,30 +63,25 @@ namespace DiyetProgramı.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Yemekler",
+                name: "OgunYemek",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    YemekPorsiyon = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    YemekKalori = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Kategorileri = table.Column<int>(type: "int", nullable: false),
-                    YemekCesitId = table.Column<int>(type: "int", nullable: false),
-                    OgunId = table.Column<int>(type: "int", nullable: false)
+                    OgunlerId = table.Column<int>(type: "int", nullable: false),
+                    YemeklerId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Yemekler", x => x.Id);
+                    table.PrimaryKey("PK_OgunYemek", x => new { x.OgunlerId, x.YemeklerId });
                     table.ForeignKey(
-                        name: "FK_Yemekler_Ogunler_OgunId",
-                        column: x => x.OgunId,
+                        name: "FK_OgunYemek_Ogunler_OgunlerId",
+                        column: x => x.OgunlerId,
                         principalTable: "Ogunler",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Yemekler_YemekCesitler_YemekCesitId",
-                        column: x => x.YemekCesitId,
-                        principalTable: "YemekCesitler",
+                        name: "FK_OgunYemek_Yemekler_YemeklerId",
+                        column: x => x.YemeklerId,
+                        principalTable: "Yemekler",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -93,27 +92,22 @@ namespace DiyetProgramı.DAL.Migrations
                 column: "KullaniciId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Yemekler_OgunId",
-                table: "Yemekler",
-                column: "OgunId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Yemekler_YemekCesitId",
-                table: "Yemekler",
-                column: "YemekCesitId");
+                name: "IX_OgunYemek_YemeklerId",
+                table: "OgunYemek",
+                column: "YemeklerId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Yemekler");
+                name: "OgunYemek");
 
             migrationBuilder.DropTable(
                 name: "Ogunler");
 
             migrationBuilder.DropTable(
-                name: "YemekCesitler");
+                name: "Yemekler");
 
             migrationBuilder.DropTable(
                 name: "Kullanicilar");

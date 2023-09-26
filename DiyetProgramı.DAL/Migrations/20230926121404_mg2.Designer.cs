@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DiyetProgramı.DAL.Migrations
 {
     [DbContext(typeof(DiyetProgramıDbContext))]
-    [Migration("20230926080152_mg1")]
-    partial class mg1
+    [Migration("20230926121404_mg2")]
+    partial class mg2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,11 +35,13 @@ namespace DiyetProgramı.DAL.Migrations
 
                     b.Property<string>("KullaniciMail")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("KullaniciSifre")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(16)
+                        .HasColumnType("nvarchar(16)");
 
                     b.HasKey("Id");
 
@@ -55,6 +57,9 @@ namespace DiyetProgramı.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("KullaniciId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OgunIsmi")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("OgunVakti")
@@ -75,44 +80,41 @@ namespace DiyetProgramı.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<decimal>("Kalori")
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)");
+
                     b.Property<int>("Kategorileri")
                         .HasColumnType("int");
 
-                    b.Property<int>("OgunId")
-                        .HasColumnType("int");
+                    b.Property<string>("ResimYolu")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("YemekCesitId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("YemekKalori")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("YemekAdi")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("YemekPorsiyon")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OgunId");
-
-                    b.HasIndex("YemekCesitId");
-
                     b.ToTable("Yemekler");
                 });
 
-            modelBuilder.Entity("DiyetProgramı.Entities.Concrete.YemekCesit", b =>
+            modelBuilder.Entity("OgunYemek", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("OgunlerId")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<int>("YemeklerId")
+                        .HasColumnType("int");
 
-                    b.Property<decimal>("Kalori")
-                        .HasColumnType("decimal(18,2)");
+                    b.HasKey("OgunlerId", "YemeklerId");
 
-                    b.HasKey("Id");
+                    b.HasIndex("YemeklerId");
 
-                    b.ToTable("YemekCesitler");
+                    b.ToTable("OgunYemek");
                 });
 
             modelBuilder.Entity("DiyetProgramı.Entities.Concrete.Ogun", b =>
@@ -126,38 +128,24 @@ namespace DiyetProgramı.DAL.Migrations
                     b.Navigation("Kullanici");
                 });
 
-            modelBuilder.Entity("DiyetProgramı.Entities.Concrete.Yemek", b =>
+            modelBuilder.Entity("OgunYemek", b =>
                 {
-                    b.HasOne("DiyetProgramı.Entities.Concrete.Ogun", "Ogun")
-                        .WithMany("Yemekler")
-                        .HasForeignKey("OgunId")
+                    b.HasOne("DiyetProgramı.Entities.Concrete.Ogun", null)
+                        .WithMany()
+                        .HasForeignKey("OgunlerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DiyetProgramı.Entities.Concrete.YemekCesit", "YemekCesit")
-                        .WithMany("Yemekler")
-                        .HasForeignKey("YemekCesitId")
+                    b.HasOne("DiyetProgramı.Entities.Concrete.Yemek", null)
+                        .WithMany()
+                        .HasForeignKey("YemeklerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Ogun");
-
-                    b.Navigation("YemekCesit");
                 });
 
             modelBuilder.Entity("DiyetProgramı.Entities.Concrete.Kullanici", b =>
                 {
                     b.Navigation("Ogunler");
-                });
-
-            modelBuilder.Entity("DiyetProgramı.Entities.Concrete.Ogun", b =>
-                {
-                    b.Navigation("Yemekler");
-                });
-
-            modelBuilder.Entity("DiyetProgramı.Entities.Concrete.YemekCesit", b =>
-                {
-                    b.Navigation("Yemekler");
                 });
 #pragma warning restore 612, 618
         }
