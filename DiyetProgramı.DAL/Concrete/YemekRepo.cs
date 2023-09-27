@@ -26,9 +26,11 @@ namespace DiyetProgramı.DAL.Concrete
 
         public IEnumerable<Yemek> EnCokYenenYemek()
         {
-            var yemekler = _dbSet
-                .Include(x => x.Ogunler)
-                .ThenInclude(x => x.Kullanici)
+            var yemeklerDb = _dbSet.
+                Include(x => x.Ogunler)
+                .ThenInclude(x => x.Kullanici).ToList();
+
+            var yemekler = yemeklerDb
                 .Where(x => x.Ogunler.Any(x => x.KullaniciId == _kullaniciId))
                 .GroupBy(x => x.YemekAdi)
                 .Select(x => new
@@ -41,7 +43,7 @@ namespace DiyetProgramı.DAL.Concrete
             var yemeklerx = new List<Yemek>();
             foreach (var yemek in yemeklerx)
             {
-                yemeklerx.Add(_dbSet.SingleOrDefault(x=>x.Id == yemek.Id));
+                yemeklerx.Add(yemeklerDb.SingleOrDefault(x=>x.Id == yemek.Id));
             }
             return yemeklerx;
         }

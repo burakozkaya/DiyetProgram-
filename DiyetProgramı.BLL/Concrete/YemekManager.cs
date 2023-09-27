@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DiyetProgramı.DAL.Concrete;
 using DiyetProgramı.Entities.Concrete;
+using DiyetProgramı.Entities.Enum;
 using Microsoft.EntityFrameworkCore;
 
 namespace DiyetProgramı.BLL.Concrete
@@ -37,9 +38,13 @@ namespace DiyetProgramı.BLL.Concrete
             return GünSonuRapor().Sum(x => x.Ogunler.Sum(x => x.YenilenKalori));
         }
 
-        public IEnumerable<Yemek> HaftalikAylikRapor(DateTime baslangicTarihi, DateTime bitisTarihi)
+        public IEnumerable<Yemek> HaftalikAylikRaporOgun(DateTime baslangicTarihi, DateTime bitisTarihi,OgunIsmi ogunIsmi)
         {
-            return _repo.HaftalikAylikRapor(baslangicTarihi,bitisTarihi);
+            return _repo.HaftalikAylikRapor(baslangicTarihi,bitisTarihi).Where(x=>x.Ogunler.Any(x=>x.OgunIsmi == ogunIsmi));
+        }
+        public IEnumerable<Yemek> HaftalikAylikRaporKategori(DateTime baslangicTarihi, DateTime bitisTarihi,YemekKategorileri yemekKategorileri)
+        {
+            return _repo.HaftalikAylikRapor(baslangicTarihi, bitisTarihi).Where(x=>x.Kategorileri == yemekKategorileri);
         }
     }
 }
