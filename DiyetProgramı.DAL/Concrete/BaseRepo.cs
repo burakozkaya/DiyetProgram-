@@ -23,6 +23,12 @@ namespace DiyetProgramı.DAL.Concrete
             _dbSet = _dbContext.Set<T>();
             _kullaniciId = kullaniciId;
         }
+
+        public BaseRepo()
+        {
+            _dbContext = new DiyetProgramıDbContext();
+            _dbSet = _dbContext.Set<T>();
+        }
         public virtual T GetById(int id)
         {
             return _dbSet.SingleOrDefault(x => x.Id == id);

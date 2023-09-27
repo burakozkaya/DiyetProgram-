@@ -30,6 +30,11 @@ namespace DiyetProgramı.DAL.Concrete
                 return false;
             return true;
         }
+
+        public int GetUserId(string userName)
+        {
+            return  _dbSet.Single(x => x.KullaniciMail == userName).Id;
+        }
     }
     
 }

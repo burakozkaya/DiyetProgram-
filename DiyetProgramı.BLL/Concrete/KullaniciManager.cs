@@ -52,5 +52,10 @@ namespace DiyetProgramı.BLL.Concrete
                 return true;
             return false;
         }
+
+        public int UserId(string userName)
+        {
+            return _repo.GetUserId(userName);
+        }
     }
 }
