@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DiyetProgramı.Entities.Concrete;
+using Microsoft.EntityFrameworkCore;
 
 namespace DiyetProgramı.DAL.Concrete
 {

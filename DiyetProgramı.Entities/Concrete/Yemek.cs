@@ -7,7 +7,6 @@ namespace DiyetProgramı.Entities.Concrete;
 public class Yemek : BaseEntity
 {
     public decimal Kalori { get; set; }
-    public decimal YemekPorsiyon { get; set; }
     public YemekKategorileri Kategorileri { get; set; }
     public string YemekAdi { get; set; }
     public string? ResimYolu { get; set; }
