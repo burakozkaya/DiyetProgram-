@@ -10,7 +10,7 @@ using DiyetProgramı.Entities.Enum;
 
 namespace DiyetProgramı.DAL.Context
 {
-    public class DiyetProgramıDbContext : DbContext
+    internal class DiyetProgramıDbContext : DbContext
     {
         public DbSet<Yemek> Yemekler { get; set; }
         public DbSet<Ogun> Ogunler { get; set; }

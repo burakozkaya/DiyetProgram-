@@ -1,4 +1,4 @@
-﻿namespace DiyetProgramı.Entities.Concrete;
+﻿namespace DiyetProgramı.Entities.Enum;
 
 public enum OgunIsmi
 {

@@ -1,6 +1,6 @@
-﻿using DiyetProgramı.Entities.Concrete;
+﻿using DiyetProgramı.Entities.Enum;
 
-namespace DiyetProgramı.Entities.Enum;
+namespace DiyetProgramı.Entities.Concrete;
 
 public class Ogun : BaseEntity
 {
