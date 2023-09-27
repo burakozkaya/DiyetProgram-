@@ -17,17 +17,17 @@ namespace DiyetProgramı.BLL.Concrete
             _repo = (KullaniciRepo?)baseRepo;
         }
 
-        public bool UserLogin(Kullanici user)
+        public bool UserLogin(Kullanici user)//giriş 
         {
             return _repo.UserLogin(user);
         }
 
-        public bool ValidUser(string username)
+        public bool ValidUser(string username)//kayıt
         {
             return _repo.ValidUser(username);
         }
 
-        public bool ValidMail(string username)
+        public bool ValidMail(string username)//kayıt
         {
             string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$";
             return Regex.IsMatch(username, pattern);
