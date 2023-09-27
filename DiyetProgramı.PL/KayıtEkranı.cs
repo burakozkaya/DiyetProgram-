@@ -1,4 +1,6 @@
-﻿using DiyetProgramı.Entities.Concrete;
+﻿using DiyetProgramı.BLL.Concrete;
+using DiyetProgramı.DAL.Concrete;
+using DiyetProgramı.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,6 +28,20 @@ namespace DiyetProgramı.PL
         private void button2_Click(object sender, EventArgs e)
         {
             string kullaniciMail = kullaniciMailTextBox.Text;
+            KullaniciManager kullanici = new KullaniciManager(new KullaniciRepo(1));
+
+            var termpString=string.Empty;
+            if (!kullanici.ValidUser(kullaniciMail)|| !kullanici.ValidMail(kullaniciMail))
+            {
+                termpString += "Kullanıcı mail hatalı";
+            }
+        
+
+
+
+
+
+
             string kullaniciSifre = kullaniciSifreTextBox.Text;
             string kullaniciSifreTekrari = kullaniciSifreTekrariTextBox.Text;
             string isim = isimTextBox.Text;
