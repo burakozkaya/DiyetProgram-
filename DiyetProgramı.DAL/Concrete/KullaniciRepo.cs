@@ -14,6 +14,10 @@ namespace DiyetProgramı.DAL.Concrete
         {
         }
 
+        public KullaniciRepo()
+        {
+        }
+
         public bool ValidUser(string username)
         {
             if(_dbSet.Any(x=>x.KullaniciMail == username))
@@ -21,12 +25,12 @@ namespace DiyetProgramı.DAL.Concrete
             return true;
         }
 
-        public bool UserLogin(Kullanici kullanici)
+        public bool UserLogin(string email,string password)
         {
-            var user = _dbSet.SingleOrDefault(x => x.KullaniciMail == kullanici.KullaniciMail);
+            var user = _dbSet.SingleOrDefault(x => x.KullaniciMail == email);
             if(user == null) 
                 return false;
-            if (user.KullaniciSifre != kullanici.KullaniciSifre)
+            if (user.KullaniciSifre != password)
                 return false;
             return true;
         }
