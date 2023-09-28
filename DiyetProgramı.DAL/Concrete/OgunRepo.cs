@@ -16,7 +16,7 @@ namespace DiyetProgramı.DAL.Concrete
 
         public override List<Ogun> GetAll()
         {
-            return base.GetAll().Where(x=>x.KullaniciId==_kullaniciId).ToList();
+            return _dbSet.Include(x=>x.Yemek).Where(x=>x.KullaniciId == _kullaniciId).ToList();
         }
     }
 }

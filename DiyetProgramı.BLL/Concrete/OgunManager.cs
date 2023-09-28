@@ -16,13 +16,13 @@ namespace DiyetProgramı.BLL.Concrete
             _repo = (OgunRepo?)baseRepo;
         }
 
-        public IEnumerable<Ogun> GetAll()
+        public List<Ogun> GetAll()
         {
             return _repo.GetAll();
         }
-        public IEnumerable<Ogun> GetAllDaily(DateTime dateTime)
+        public List<Ogun> GetAllDaily(DateTime dateTime)
         {
-            return _repo.GetAll().Where(x=>x.OgunVakti.Year == dateTime.Year && x.OgunVakti.Month == dateTime.Month && x.OgunVakti.Day == dateTime.Day);
+            return _repo.GetAll().Where(x=>x.OgunVakti.Year == dateTime.Year && x.OgunVakti.Month == dateTime.Month && x.OgunVakti.Day == dateTime.Day).ToList();
         }
     }
 }

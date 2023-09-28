@@ -24,10 +24,13 @@ namespace DiyetProgramı.PL
         private OgunManager ogunManager;
         private YemekManager yemekManager;
         private List<Yemek> yemekListesi;
+        private List<Ogun> ogunListesi;
         public GirişEkranı()
         {
             InitializeComponent();
             kullaniciManager = new KullaniciManager(new KullaniciRepo());
+            ogunListesi = new List<Ogun>();
+            yemekListesi = new List<Yemek>();
 
         }
 
@@ -46,7 +49,7 @@ namespace DiyetProgramı.PL
                 katagorilistcomboBox2.Items.Add(item);
             }
 
-            var ogunIsimleri = Enum.GetNames(typeof(OgunIsmi));//.ToList();
+            var ogunIsimleri = Enum.GetNames(typeof(OgunIsmi));
             // OgunComboBox.DataSource = ogunIsimleri;
             foreach (var item in ogunIsimleri)
             {
@@ -249,7 +252,32 @@ namespace DiyetProgramı.PL
         {
             panel3.Visible = false;
             panel6.Visible = true;
+            OgunListBoxUpdate();
 
+            foreach (var ogunIsmi in Enum.GetValues<OgunIsmi>())
+            {
+                comboBox1.Items.Add(ogunIsmi);
+            }
+        }
+
+        private void OgunListBoxUpdate()
+        {
+            ogunListesi.Clear();
+            listBox1.Items.Clear();
+            comboBox1.Items.Clear();
+            comboBox2.Items.Clear();
+            ogunListesi = ogunManager.GetAllDaily(DateTime.Now);
+            foreach (var ogun in ogunListesi)
+            {
+                OgunIsmi ogunIsmi = (OgunIsmi)Enum.ToObject(typeof(OgunIsmi), ogun.OgunIsmi);
+                listBox1.Items.Add(Enum.GetName(typeof(OgunIsmi), ogunIsmi) + " - " + ogun.Yemek.YemekAdi + " - " +
+                                   ogun.YenilenKalori);
+            }
+
+            foreach (var yemek in yemekListesi)
+            {
+                comboBox2.Items.Add(yemek.YemekAdi);
+            }
         }
 
         private void button12_Click(object sender, EventArgs e)
@@ -264,7 +292,6 @@ namespace DiyetProgramı.PL
             ogun.YemekId = yemek.Id;
             ogun.YenilenKalori = yemek.Kalori * ogun.YemekPorsiyon;
             ogunManager.InsertManager(ogun);
-
         }
 
         private void panel6_Paint(object sender, PaintEventArgs e)
@@ -276,6 +303,53 @@ namespace DiyetProgramı.PL
         {
             panel6.Visible = false;
             panel3.Visible = true;
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OgunTextBoxUpdate(Ogun tempOgun)
+        {
+            OgunUpdateClear();
+            textBox1.Text = tempOgun.YemekPorsiyon.ToString();
+            comboBox1.SelectedText = (Enum.GetName(typeof(OgunIsmi), tempOgun.OgunIsmi));
+            comboBox2.SelectedText = yemekListesi.SingleOrDefault(x => x.Id == tempOgun.YemekId).YemekAdi.ToString();
+
+            
+        }
+
+        private void Öğün_Sil_Click(object sender, EventArgs e)
+        {
+            var tempOgun = ogunListesi[listBox1.SelectedIndex];
+            ogunManager.DeleteManager(tempOgun);
+            OgunUpdateClear();
+        }
+        private void Öğün_Getir_Click(object sender, EventArgs e)
+        {
+                var tempOgun = ogunListesi[listBox1.SelectedIndex];
+                OgunTextBoxUpdate(tempOgun);
+
+        }
+
+        private void OgunUpdateClear()
+        {
+            comboBox1.SelectedText = null;
+            comboBox2.SelectedText = null;
+            textBox1.Clear();
+        }
+
+        private void Ögün_Güncelle_Click(object sender, EventArgs e)
+        {
+            var tempOgun = ogunListesi[listBox1.SelectedIndex];
+            tempOgun=ogunManager.GetByIdManager(tempOgun.Id);
+            //tempOgun.YemekPorsiyon = tempOgun.YemekPorsiyon.ToString();
+            //tempOgun.OgunIsmi = comboBox2.SelectedIndex;
+            //tempOgun.YemekId = yemekListesi.SingleOrDefault(x => x.Id == tempOgun.YemekId).YemekAdi.ToString();
+            ogunManager.UpdateManager(tempOgun);
+            OgunTextBoxUpdate(tempOgun);
+            OgunListBoxUpdate();
         }
     }
 }
