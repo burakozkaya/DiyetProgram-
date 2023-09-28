@@ -103,6 +103,8 @@
             Öğün_Sil = new Button();
             listBox1 = new ListBox();
             Ögün_Güncelle = new Button();
+            dateTimePicker1 = new DateTimePicker();
+            dateTimePicker2 = new DateTimePicker();
             panel1.SuspendLayout();
             groupBox1.SuspendLayout();
             panel2.SuspendLayout();
@@ -384,7 +386,7 @@
             button10.TabIndex = 28;
             button10.Text = "Kıyas Raporları";
             button10.UseVisualStyleBackColor = true;
-           
+            button10.Click += button10_Click;
             // 
             // button9
             // 
@@ -394,10 +396,11 @@
             button9.TabIndex = 27;
             button9.Text = "Gün Sonu Raporu";
             button9.UseVisualStyleBackColor = true;
-           
+            button9.Click += button9_Click;
             // 
             // panel4
             // 
+            panel4.Controls.Add(dateTimePicker2);
             panel4.Controls.Add(raporlarlistBox2);
             panel4.Controls.Add(button11);
             panel4.Controls.Add(button10);
@@ -411,7 +414,7 @@
             // 
             raporlarlistBox2.FormattingEnabled = true;
             raporlarlistBox2.ItemHeight = 20;
-            raporlarlistBox2.Location = new Point(326, 12);
+            raporlarlistBox2.Location = new Point(220, 12);
             raporlarlistBox2.Name = "raporlarlistBox2";
             raporlarlistBox2.Size = new Size(150, 104);
             raporlarlistBox2.TabIndex = 33;
@@ -444,7 +447,7 @@
             button7.TabIndex = 24;
             button7.Text = "Raporlar";
             button7.UseVisualStyleBackColor = true;
-           
+            button7.Click += button7_Click;
             // 
             // YemekComboBox
             // 
@@ -545,6 +548,7 @@
             // 
             // panel3
             // 
+            panel3.Controls.Add(dateTimePicker1);
             panel3.Controls.Add(button6);
             panel3.Controls.Add(porsiyonyaztextBox1);
             panel3.Controls.Add(label22);
@@ -816,6 +820,20 @@
             Ögün_Güncelle.UseVisualStyleBackColor = true;
             Ögün_Güncelle.Click += Ögün_Güncelle_Click;
             // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Location = new Point(250, 242);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(250, 27);
+            dateTimePicker1.TabIndex = 46;
+            // 
+            // dateTimePicker2
+            // 
+            dateTimePicker2.Location = new Point(408, 27);
+            dateTimePicker2.Name = "dateTimePicker2";
+            dateTimePicker2.Size = new Size(250, 27);
+            dateTimePicker2.TabIndex = 47;
+            // 
             // GirişEkranı
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -923,5 +941,7 @@
         private ComboBox comboBox2;
         private Label label25;
         private Button button4;
+        private DateTimePicker dateTimePicker2;
+        private DateTimePicker dateTimePicker1;
     }
 }

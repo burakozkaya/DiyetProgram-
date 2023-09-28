@@ -282,10 +282,10 @@ namespace DiyetProgramı.PL
             ogun.YemekPorsiyon = Convert.ToDecimal(porsiyonyaztextBox1.Text);
             string ogunIsmiStr = OgunConboBox.SelectedItem.ToString();
             var ogunIsmiObj = Enum.Parse(typeof(OgunIsmi), ogunIsmiStr);
-                OgunIsmi ogunIsmi = (OgunIsmi)ogunIsmiObj;
-                ogun.OgunIsmi = ogunIsmi;
-            
-            ogun.OgunVakti = DateTime.Now;
+            OgunIsmi ogunIsmi = (OgunIsmi)ogunIsmiObj;
+            ogun.OgunIsmi = ogunIsmi;
+
+            ogun.OgunVakti = dateTimePicker1.Value.Date; 
             ogun.KullaniciId = UserId;
 
             var selectedYemek = yemekListesi.SingleOrDefault(x => x.YemekAdi == YemekComboBox.SelectedItem);
@@ -295,7 +295,7 @@ namespace DiyetProgramı.PL
                 ogun.YemekId = selectedYemek.Id;
                 ogun.YenilenKalori = selectedYemek.Kalori * ogun.YemekPorsiyon;
                 ogunManager.InsertManager(ogun);
-                OgunListBoxUpdate(); 
+                OgunListBoxUpdate();
             }
             else
             {
@@ -360,8 +360,8 @@ namespace DiyetProgramı.PL
 
         private void Öğün_Getir_Click(object sender, EventArgs e)
         {
-                var tempOgun = ogunListesi[listBox1.SelectedIndex];
-                OgunTextBoxUpdate(tempOgun);
+            var tempOgun = ogunListesi[listBox1.SelectedIndex];
+            OgunTextBoxUpdate(tempOgun);
 
         }
 
@@ -375,13 +375,40 @@ namespace DiyetProgramı.PL
         private void Ögün_Güncelle_Click(object sender, EventArgs e)
         {
             var tempOgun = ogunListesi[listBox1.SelectedIndex];
-            tempOgun=ogunManager.GetByIdManager(tempOgun.Id);
+            tempOgun = ogunManager.GetByIdManager(tempOgun.Id);
             //tempOgun.YemekPorsiyon = tempOgun.YemekPorsiyon.ToString();
             //tempOgun.OgunIsmi = comboBox2.SelectedIndex;
             //tempOgun.YemekId = yemekListesi.SingleOrDefault(x => x.Id == tempOgun.YemekId).YemekAdi.ToString();
             ogunManager.UpdateManager(tempOgun);
             OgunTextBoxUpdate(tempOgun);
             OgunListBoxUpdate();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            panel3.Visible = false;
+            panel4.Visible = true;
+
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            DateTime secilenTarih = dateTimePicker2.Value.Date;
+
+
+            var gunSonuRaporlar = yemekManager.GünSonuRapor(secilenTarih);
+            raporlarlistBox2.Items.Clear();
+
+            foreach (var yemek in gunSonuRaporlar)
+            {
+                raporlarlistBox2.Items.Add($"Yemek Adı: {yemek.YemekAdi}, Yenilen Kalori: {yemek.Ogunler.Sum(o => o.YenilenKalori)}");
+            }
+
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
