@@ -49,8 +49,8 @@ namespace DiyetProgramı.PL
             {
                 OgunConboBox.Items.Add(item);
 
-
             }
+          
 
             MessageBox.Show("Sağlıklı bir yaşam için ön koşul doğru ve dengeli beslenmektir.\r\n Beslenme konusuna detaylı bakacak olursak tükettiğimiz  yiyeceklerin kalorisini bilmek ve aşırı kalori içeren işlenmiş gıdalardan kaçınmak bu \r\ndengeyi sağlamanın en kolay yollarından biridir.\r\n Araştırmalar gösteriyor ki kalori takibini yapabilen insanlar daha az kalorili \r\nyiyecekler tüketerek kilolarını dengede tutmayı başarıyorlar");
         }
@@ -210,6 +210,9 @@ namespace DiyetProgramı.PL
                     Kalori = kalori
                 });
 
+                
+
+
             }
             else
             {
@@ -235,7 +238,6 @@ namespace DiyetProgramı.PL
                 OgunIsmi = (OgunIsmi)OgunConboBox.SelectedValue,
                 OgunVakti = DateTime.Now,
                 KullaniciId = UserId,
-                
 
             };
 
