@@ -76,10 +76,11 @@
             BoyLbl = new Label();
             KilooLbl = new Label();
             panel3 = new Panel();
+            button6 = new Button();
+            porsiyonyaztextBox1 = new TextBox();
+            label22 = new Label();
             label21 = new Label();
             label20 = new Label();
-            comboBox1 = new ComboBox();
-            button4 = new Button();
             panel5 = new Panel();
             katagorilistcomboBox2 = new ComboBox();
             button5 = new Button();
@@ -89,6 +90,9 @@
             label18 = new Label();
             label17 = new Label();
             label16 = new Label();
+            sqlCommandBuilder1 = new Microsoft.Data.SqlClient.SqlCommandBuilder();
+            panel6 = new Panel();
+            listBox1 = new ListBox();
             panel1.SuspendLayout();
             groupBox1.SuspendLayout();
             panel2.SuspendLayout();
@@ -96,6 +100,7 @@
             panel4.SuspendLayout();
             panel3.SuspendLayout();
             panel5.SuspendLayout();
+            panel6.SuspendLayout();
             SuspendLayout();
             // 
             // sqlCommand1
@@ -401,7 +406,7 @@
             // 
             // button8
             // 
-            button8.Location = new Point(387, 19);
+            button8.Location = new Point(375, 79);
             button8.Name = "button8";
             button8.Size = new Size(94, 29);
             button8.TabIndex = 20;
@@ -411,12 +416,13 @@
             // 
             // button12
             // 
-            button12.Location = new Point(3, 152);
+            button12.Location = new Point(163, 143);
             button12.Name = "button12";
             button12.Size = new Size(94, 29);
             button12.TabIndex = 21;
             button12.Text = "Öğün Ekle";
             button12.UseVisualStyleBackColor = true;
+            button12.Click += button12_Click;
             // 
             // button7
             // 
@@ -430,7 +436,7 @@
             // YemekComboBox
             // 
             YemekComboBox.FormattingEnabled = true;
-            YemekComboBox.Location = new Point(341, 118);
+            YemekComboBox.Location = new Point(350, 44);
             YemekComboBox.Name = "YemekComboBox";
             YemekComboBox.Size = new Size(140, 28);
             YemekComboBox.TabIndex = 25;
@@ -438,7 +444,7 @@
             // OgunConboBox
             // 
             OgunConboBox.FormattingEnabled = true;
-            OgunConboBox.Location = new Point(141, 118);
+            OgunConboBox.Location = new Point(155, 39);
             OgunConboBox.Name = "OgunConboBox";
             OgunConboBox.Size = new Size(177, 28);
             OgunConboBox.TabIndex = 26;
@@ -526,10 +532,11 @@
             // 
             // panel3
             // 
+            panel3.Controls.Add(button6);
+            panel3.Controls.Add(porsiyonyaztextBox1);
+            panel3.Controls.Add(label22);
             panel3.Controls.Add(label21);
             panel3.Controls.Add(label20);
-            panel3.Controls.Add(comboBox1);
-            panel3.Controls.Add(button4);
             panel3.Controls.Add(KilooLbl);
             panel3.Controls.Add(BoyLbl);
             panel3.Controls.Add(SoyadLbl);
@@ -550,10 +557,36 @@
             panel3.TabIndex = 18;
             panel3.Paint += panel3_Paint;
             // 
+            // button6
+            // 
+            button6.Location = new Point(12, 28);
+            button6.Name = "button6";
+            button6.Size = new Size(124, 59);
+            button6.TabIndex = 45;
+            button6.Text = "Öğün Güncelle veya Sil";
+            button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
+            // 
+            // porsiyonyaztextBox1
+            // 
+            porsiyonyaztextBox1.Location = new Point(155, 103);
+            porsiyonyaztextBox1.Name = "porsiyonyaztextBox1";
+            porsiyonyaztextBox1.Size = new Size(125, 27);
+            porsiyonyaztextBox1.TabIndex = 44;
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Location = new Point(167, 80);
+            label22.Name = "label22";
+            label22.Size = new Size(90, 20);
+            label22.TabIndex = 43;
+            label22.Text = "Porsiyon Yaz";
+            // 
             // label21
             // 
             label21.AutoSize = true;
-            label21.Location = new Point(375, 161);
+            label21.Location = new Point(375, 16);
             label21.Name = "label21";
             label21.Size = new Size(79, 20);
             label21.TabIndex = 42;
@@ -562,28 +595,11 @@
             // label20
             // 
             label20.AutoSize = true;
-            label20.Location = new Point(189, 161);
+            label20.Location = new Point(167, 16);
             label20.Name = "label20";
             label20.Size = new Size(72, 20);
             label20.TabIndex = 21;
             label20.Text = "Öğün Seç";
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(-5, 118);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(140, 28);
-            comboBox1.TabIndex = 41;
-            // 
-            // button4
-            // 
-            button4.Location = new Point(3, 181);
-            button4.Name = "button4";
-            button4.Size = new Size(94, 29);
-            button4.TabIndex = 40;
-            button4.Text = "Öğün Sil";
-            button4.UseVisualStyleBackColor = true;
             // 
             // panel5
             // 
@@ -668,11 +684,30 @@
             label16.TabIndex = 29;
             label16.Text = "Yemek Adı:";
             // 
+            // panel6
+            // 
+            panel6.Controls.Add(listBox1);
+            panel6.Location = new Point(761, 361);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(403, 408);
+            panel6.TabIndex = 21;
+            panel6.Paint += panel6_Paint;
+            // 
+            // listBox1
+            // 
+            listBox1.FormattingEnabled = true;
+            listBox1.ItemHeight = 20;
+            listBox1.Location = new Point(37, 35);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(189, 344);
+            listBox1.TabIndex = 0;
+            // 
             // GirişEkranı
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1740, 866);
+            Controls.Add(panel6);
             Controls.Add(panel5);
             Controls.Add(panel4);
             Controls.Add(panel3);
@@ -693,6 +728,7 @@
             panel3.PerformLayout();
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
+            panel6.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -753,11 +789,15 @@
         private Label label19;
         private Label label18;
         private Label label17;
-        private ComboBox comboBox1;
-        private Button button4;
         private Label label20;
         private Label label21;
         private Button button5;
         private ComboBox katagorilistcomboBox2;
+        private Label label22;
+        private TextBox porsiyonyaztextBox1;
+        private Button button6;
+        private Microsoft.Data.SqlClient.SqlCommandBuilder sqlCommandBuilder1;
+        private Panel panel6;
+        private ListBox listBox1;
     }
 }

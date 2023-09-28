@@ -37,7 +37,20 @@ namespace DiyetProgramı.PL
             panel3.Visible = false;
             panel4.Visible = false;
             panel5.Visible = false;
+            var kategoriler = Enum.GetNames(typeof(YemekKategorileri));
+            foreach (var item in kategoriler)
+            {
+                katagorilistcomboBox2.Items.Add(item);
+            }
 
+            var ogunIsimleri = Enum.GetNames(typeof(OgunIsmi));//.ToList();
+            // OgunComboBox.DataSource = ogunIsimleri;
+            foreach (var item in ogunIsimleri)
+            {
+                OgunConboBox.Items.Add(item);
+
+
+            }
 
             MessageBox.Show("Sağlıklı bir yaşam için ön koşul doğru ve dengeli beslenmektir.\r\n Beslenme konusuna detaylı bakacak olursak tükettiğimiz  yiyeceklerin kalorisini bilmek ve aşırı kalori içeren işlenmiş gıdalardan kaçınmak bu \r\ndengeyi sağlamanın en kolay yollarından biridir.\r\n Araştırmalar gösteriyor ki kalori takibini yapabilen insanlar daha az kalorili \r\nyiyecekler tüketerek kilolarını dengede tutmayı başarıyorlar");
         }
@@ -158,13 +171,8 @@ namespace DiyetProgramı.PL
                 KilooLbl.Text = kullanici2.KullaniciKilo.ToString();
             }
 
-            OgunConboBox.Items.Clear();
-            var ogunIsimleri = Enum.GetNames(typeof(OgunIsmi));//.ToList();
-            // OgunComboBox.DataSource = ogunIsimleri;
-            foreach (var item in ogunIsimleri)
-            {
-                OgunConboBox.Items.Add(item);
-            }
+            // OgunConboBox.Items.Clear();
+
 
         }
         private void kullaniciMailTextBox_TextChanged(object sender, EventArgs e)
@@ -183,12 +191,9 @@ namespace DiyetProgramı.PL
             panel3.Visible = false;
             panel5.Visible = true;
 
-            katagorilistcomboBox2.Items.Clear();
-            var kategoriler = Enum.GetNames(typeof(YemekKategorileri));
-            foreach (var item in kategoriler)
-            {
-                katagorilistcomboBox2.Items.Add(item);
-            }
+            //katagorilistcomboBox2.Items.Clear();
+
+
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -201,8 +206,8 @@ namespace DiyetProgramı.PL
             {
                 yemekManager.InsertManager(new Entities.Concrete.Yemek()
                 {
-                    YemekAdi=yemekAdi,
-                    Kalori=kalori
+                    YemekAdi = yemekAdi,
+                    Kalori = kalori
                 });
 
             }
@@ -210,6 +215,40 @@ namespace DiyetProgramı.PL
             {
                 MessageBox.Show("Kalori bilgisini sayı olarak giriniz.");
             }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            Ogun ogun = new Ogun()
+            {
+                YemekPorsiyon = Convert.ToInt32(porsiyonyaztextBox1),
+                OgunIsmi = (OgunIsmi)OgunConboBox.SelectedValue,
+                OgunVakti = DateTime.Now,
+                KullaniciId = UserId,
+                
+
+            };
+
+           // ogun.Yemekler.Add();
+            
+            ogunManager.InsertManager(new Entities.Concrete.Ogun()
+            ); 
+
+        }
+
+        private void panel6_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
