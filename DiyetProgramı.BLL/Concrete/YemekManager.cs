@@ -28,14 +28,14 @@ namespace DiyetProgramı.BLL.Concrete
             return _repo.EnCokYenenYemek();
         }
 
-        public IEnumerable<Yemek> GünSonuRapor()
+        public IEnumerable<Yemek> GünSonuRapor(DateTime dateTime)
         {
-            return _repo.GünSonuRapor();
+            return _repo.GünSonuRapor(dateTime);
         }
 
-        public decimal GünSonuToplamKalori()
+        public decimal GünSonuToplamKalori(DateTime dateTime)
         {
-            return GünSonuRapor().Sum(x => x.Ogunler.Sum(x => x.YenilenKalori));
+            return GünSonuRapor(dateTime).Sum(x => x.Ogunler.Sum(x => x.YenilenKalori));
         }
 
         public IEnumerable<Yemek> HaftalikAylikRaporOgun(DateTime baslangicTarihi, DateTime bitisTarihi,OgunIsmi ogunIsmi)

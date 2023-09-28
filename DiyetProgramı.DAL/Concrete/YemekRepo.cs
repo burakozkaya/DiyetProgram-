@@ -48,14 +48,15 @@ namespace DiyetProgramı.DAL.Concrete
             return yemeklerx;
         }
 
-        public IEnumerable<Yemek> GünSonuRapor()
+        public IEnumerable<Yemek> GünSonuRapor(DateTime dateTime)
         {
             return _dbSet
                 .Include(x => x.Ogunler)
                 .ThenInclude(x => x.Kullanici)
                 .Where(x => x.Ogunler.Any(x => x.KullaniciId == _kullaniciId &&
-                                               x.OgunVakti.Day == DateTime.Now.Day && 
-                                               x.OgunVakti.Month == DateTime.Now.Month))
+                                               x.OgunVakti.Day == dateTime.Day && 
+                                               x.OgunVakti.Month == dateTime.Month &&
+                                               x.OgunVakti.Year == dateTime.Year))
                 .ToList();
         }
 
