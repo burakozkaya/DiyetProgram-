@@ -384,7 +384,7 @@
             button10.TabIndex = 28;
             button10.Text = "Kıyas Raporları";
             button10.UseVisualStyleBackColor = true;
-            button10.Click += button10_Click;
+           
             // 
             // button9
             // 
@@ -394,7 +394,7 @@
             button9.TabIndex = 27;
             button9.Text = "Gün Sonu Raporu";
             button9.UseVisualStyleBackColor = true;
-            button9.Click += button9_Click;
+           
             // 
             // panel4
             // 
@@ -444,7 +444,7 @@
             button7.TabIndex = 24;
             button7.Text = "Raporlar";
             button7.UseVisualStyleBackColor = true;
-            button7.Click += button7_Click;
+           
             // 
             // YemekComboBox
             // 
@@ -814,7 +814,7 @@
             Ögün_Güncelle.TabIndex = 22;
             Ögün_Güncelle.Text = "Öğün Güncelle";
             Ögün_Güncelle.UseVisualStyleBackColor = true;
-            Ögün_Güncelle.Click += Öğün_Güncelle_Click;
+            Ögün_Güncelle.Click += Ögün_Güncelle_Click;
             // 
             // GirişEkranı
             // 
