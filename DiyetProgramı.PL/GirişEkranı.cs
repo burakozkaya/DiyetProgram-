@@ -209,14 +209,8 @@ namespace DiyetProgramı.PL
 
         private void button5_Click(object sender, EventArgs e)
         {
-            // Kullanıcının girdiği YemekAdi ve Kalori bilgilerini al
             string yemekAdi = YemekAdiEktextBox2.Text;
             int kalori;
-            //if (!yemekListesi.Any(x => x.YemekAdi == yemekAdi))
-            //{
-            //    MessageBox.Show("Bu yemek daha önce eklendi.");
-            //    return;
-            //}
             if (int.TryParse(KalorimikektextBox3.Text, out kalori))
             {
                 var yemek = new Yemek()
@@ -226,7 +220,7 @@ namespace DiyetProgramı.PL
                 };
                 yemekManager.InsertManager(yemek);
                 yemekListesi.Add(yemek);
-                YemekComboBox.ResetText();
+                YemekComboBox.Items.Clear();
                 foreach (var item in yemekListesi)
                 {
                     YemekComboBox.Items.Add(item.YemekAdi);
@@ -253,11 +247,6 @@ namespace DiyetProgramı.PL
             panel3.Visible = false;
             panel6.Visible = true;
             OgunListBoxUpdate();
-
-            foreach (var ogunIsmi in Enum.GetValues<OgunIsmi>())
-            {
-                comboBox1.Items.Add(ogunIsmi);
-            }
         }
 
         private void OgunListBoxUpdate()
@@ -266,6 +255,7 @@ namespace DiyetProgramı.PL
             listBox1.Items.Clear();
             comboBox1.Items.Clear();
             comboBox2.Items.Clear();
+            textBox1.Clear();
             ogunListesi = ogunManager.GetAllDaily(DateTime.Now);
             foreach (var ogun in ogunListesi)
             {
@@ -278,6 +268,11 @@ namespace DiyetProgramı.PL
             {
                 comboBox2.Items.Add(yemek.YemekAdi);
             }
+
+            foreach (var ogunIsmi in Enum.GetValues<OgunIsmi>())
+            {
+                comboBox1.Items.Add(ogunIsmi);
+            }
         }
 
         private void button12_Click(object sender, EventArgs e)
@@ -285,14 +280,33 @@ namespace DiyetProgramı.PL
             Ogun ogun = new Ogun();
 
             ogun.YemekPorsiyon = Convert.ToDecimal(porsiyonyaztextBox1.Text);
-            ogun.OgunIsmi = (OgunIsmi)OgunConboBox.SelectedIndex;
+            string ogunIsmiStr = OgunConboBox.SelectedItem.ToString();
+            var ogunIsmiObj = Enum.Parse(typeof(OgunIsmi), ogunIsmiStr);
+                OgunIsmi ogunIsmi = (OgunIsmi)ogunIsmiObj;
+                ogun.OgunIsmi = ogunIsmi;
+            
             ogun.OgunVakti = DateTime.Now;
             ogun.KullaniciId = UserId;
-            var yemek = yemekListesi.Find(x => x.YemekAdi == YemekComboBox.SelectedItem);
-            ogun.YemekId = yemek.Id;
-            ogun.YenilenKalori = yemek.Kalori * ogun.YemekPorsiyon;
-            ogunManager.InsertManager(ogun);
+
+            var selectedYemek = yemekListesi.SingleOrDefault(x => x.YemekAdi == YemekComboBox.SelectedItem);
+
+            if (selectedYemek != null)
+            {
+                ogun.YemekId = selectedYemek.Id;
+                ogun.YenilenKalori = selectedYemek.Kalori * ogun.YemekPorsiyon;
+                ogunManager.InsertManager(ogun);
+                OgunListBoxUpdate(); 
+            }
+            else
+            {
+                MessageBox.Show("Lütfen bir yemek seçin.");
+            }
+
+            OgunConboBox.SelectedIndex = -1;
+            YemekComboBox.SelectedIndex = -1;
+            porsiyonyaztextBox1.Clear();
         }
+
 
         private void panel6_Paint(object sender, PaintEventArgs e)
         {
@@ -307,49 +321,86 @@ namespace DiyetProgramı.PL
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            int selectedIndex = listBox1.SelectedIndex;
+            if (selectedIndex >= 0 && selectedIndex < ogunListesi.Count)
+            {
+                var tempOgun = ogunListesi[selectedIndex];
+                OgunTextBoxUpdate(tempOgun);
+            }
+            else
+            {
+                MessageBox.Show("Lütfen bir öğün seçin.");
+            }
         }
 
         private void OgunTextBoxUpdate(Ogun tempOgun)
         {
             OgunUpdateClear();
             textBox1.Text = tempOgun.YemekPorsiyon.ToString();
-            comboBox1.SelectedText = (Enum.GetName(typeof(OgunIsmi), tempOgun.OgunIsmi));
-            comboBox2.SelectedText = yemekListesi.SingleOrDefault(x => x.Id == tempOgun.YemekId).YemekAdi.ToString();
-
-            
+            comboBox1.SelectedItem = tempOgun.OgunIsmi;
+            comboBox2.SelectedItem = yemekListesi.FirstOrDefault(x => x.Id == tempOgun.YemekId)?.YemekAdi;
         }
+
 
         private void Öğün_Sil_Click(object sender, EventArgs e)
         {
-            var tempOgun = ogunListesi[listBox1.SelectedIndex];
-            ogunManager.DeleteManager(tempOgun);
-            OgunUpdateClear();
+            int selectedIndex = listBox1.SelectedIndex;
+            if (selectedIndex >= 0 && selectedIndex < ogunListesi.Count)
+            {
+                var tempOgun = ogunListesi[selectedIndex];
+                ogunManager.DeleteManager(tempOgun);
+                OgunListBoxUpdate();
+                OgunUpdateClear();
+            }
+            else
+            {
+                MessageBox.Show("Lütfen bir öğün seçin.");
+            }
         }
+
         private void Öğün_Getir_Click(object sender, EventArgs e)
         {
-                var tempOgun = ogunListesi[listBox1.SelectedIndex];
-                OgunTextBoxUpdate(tempOgun);
-
+            
         }
 
         private void OgunUpdateClear()
         {
-            comboBox1.SelectedText = null;
-            comboBox2.SelectedText = null;
+            comboBox1.SelectedIndex = -1;
             textBox1.Clear();
+            comboBox2.SelectedIndex = -1;
         }
 
-        private void Ögün_Güncelle_Click(object sender, EventArgs e)
+        private void Öğün_Güncelle_Click(object sender, EventArgs e)
         {
-            var tempOgun = ogunListesi[listBox1.SelectedIndex];
-            tempOgun=ogunManager.GetByIdManager(tempOgun.Id);
-            //tempOgun.YemekPorsiyon = tempOgun.YemekPorsiyon.ToString();
-            //tempOgun.OgunIsmi = comboBox2.SelectedIndex;
-            //tempOgun.YemekId = yemekListesi.SingleOrDefault(x => x.Id == tempOgun.YemekId).YemekAdi.ToString();
-            ogunManager.UpdateManager(tempOgun);
-            OgunTextBoxUpdate(tempOgun);
-            OgunListBoxUpdate();
+            int selectedIndex = listBox1.SelectedIndex;
+            if (selectedIndex >= 0 && selectedIndex < ogunListesi.Count)
+            {
+                var tempOgun = ogunListesi[selectedIndex];
+
+                tempOgun.YemekPorsiyon = Convert.ToDecimal(textBox1.Text);
+                tempOgun.OgunIsmi = (OgunIsmi)comboBox1.SelectedItem;
+
+                var selectedYemekAdi = comboBox2.SelectedItem as string;
+                var selectedYemek = yemekListesi.SingleOrDefault(x => x.YemekAdi == selectedYemekAdi);
+
+                if (selectedYemek != null)
+                {
+                    tempOgun.YemekId = selectedYemek.Id;
+                    tempOgun.YenilenKalori = selectedYemek.Kalori * tempOgun.YemekPorsiyon;
+                    ogunManager.UpdateManager(tempOgun);
+                    OgunListBoxUpdate();
+                    MessageBox.Show("Öğün güncellendi.");
+                }
+                else
+                {
+                    MessageBox.Show("Lütfen bir yemek seçin.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Lütfen bir öğün seçin.");
+            }
         }
+
     }
 }
