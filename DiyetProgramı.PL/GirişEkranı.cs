@@ -38,6 +38,8 @@ namespace DiyetProgramı.PL
             panel3.Visible = false;
             panel4.Visible = false;
             panel5.Visible = false;
+            panel6.Visible = false;
+
             var kategoriler = Enum.GetNames(typeof(YemekKategorileri));
             foreach (var item in kategoriler)
             {
@@ -73,7 +75,7 @@ namespace DiyetProgramı.PL
                 {
                     YemekComboBox.Items.Add(yemek.YemekAdi);
                 }
-                
+
             }
             if (string.IsNullOrWhiteSpace(kullaniciAdi) || string.IsNullOrWhiteSpace(sifre))
             {
@@ -235,7 +237,7 @@ namespace DiyetProgramı.PL
             {
                 MessageBox.Show("Kalori bilgisini sayı olarak giriniz.");
             }
-            
+
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -245,6 +247,8 @@ namespace DiyetProgramı.PL
 
         private void button6_Click(object sender, EventArgs e)
         {
+            panel3.Visible = false;
+            panel6.Visible = true;
 
         }
 
@@ -256,9 +260,9 @@ namespace DiyetProgramı.PL
             ogun.OgunIsmi = (OgunIsmi)OgunConboBox.SelectedIndex;
             ogun.OgunVakti = DateTime.Now;
             ogun.KullaniciId = UserId;
-            var yemek = yemekListesi.Find(x=>x.YemekAdi == YemekComboBox.SelectedItem);
+            var yemek = yemekListesi.Find(x => x.YemekAdi == YemekComboBox.SelectedItem);
             ogun.YemekId = yemek.Id;
-            ogun.YenilenKalori = yemek.Kalori*ogun.YemekPorsiyon;
+            ogun.YenilenKalori = yemek.Kalori * ogun.YemekPorsiyon;
             ogunManager.InsertManager(ogun);
 
         }
@@ -266,6 +270,12 @@ namespace DiyetProgramı.PL
         private void panel6_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void Geri_panel6_Click(object sender, EventArgs e)
+        {
+            panel6.Visible = false;
+            panel3.Visible = true;
         }
     }
 }
