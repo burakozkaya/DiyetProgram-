@@ -207,11 +207,11 @@ namespace DiyetProgramı.PL
             // Kullanıcının girdiği YemekAdi ve Kalori bilgilerini al
             string yemekAdi = YemekAdiEktextBox2.Text;
             int kalori;
-            if (!yemekListesi.Any(x => x.YemekAdi == yemekAdi))
-            {
-                MessageBox.Show("Bu yemek daha önce eklendi.");
-                return;
-            }
+            //if (!yemekListesi.Any(x => x.YemekAdi == yemekAdi))
+            //{
+            //    MessageBox.Show("Bu yemek daha önce eklendi.");
+            //    return;
+            //}
             if (int.TryParse(KalorimikektextBox3.Text, out kalori))
             {
                 var yemek = new Yemek()
@@ -221,7 +221,11 @@ namespace DiyetProgramı.PL
                 };
                 yemekManager.InsertManager(yemek);
                 yemekListesi.Add(yemek);
-
+                YemekComboBox.ResetText();
+                foreach (var item in yemekListesi)
+                {
+                    YemekComboBox.Items.Add(item.YemekAdi);
+                }
                 panel3.Visible = true;
                 panel5.Visible = false;
                 panel5.SendToBack();
