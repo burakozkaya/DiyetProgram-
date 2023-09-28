@@ -24,11 +24,5 @@ namespace DiyetProgramı.BLL.Concrete
         {
             return _repo.GetAll().Where(x=>x.OgunVakti.Year == dateTime.Year && x.OgunVakti.Month == dateTime.Month && x.OgunVakti.Day == dateTime.Day);
         }
-
-        public override void InsertManager(Ogun entity)
-        {
-            entity.YenilenKalori = entity.YemekPorsiyon * entity.Yemek.Kalori;
-            base.InsertManager(entity);
-        }
     }
 }

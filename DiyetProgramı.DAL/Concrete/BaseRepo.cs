@@ -15,7 +15,7 @@ namespace DiyetProgramı.DAL.Concrete
     {
         protected DbSet<T> _dbSet;
         internal DiyetProgramıDbContext _dbContext;
-        protected int _kullaniciId;
+        public int _kullaniciId;
 
         public BaseRepo(int kullaniciId)
         {

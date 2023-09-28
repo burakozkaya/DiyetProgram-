@@ -23,6 +23,7 @@ namespace DiyetProgramı.PL
         private KullaniciManager kullaniciManager;
         private OgunManager ogunManager;
         private YemekManager yemekManager;
+        private List<Yemek> yemekListesi;
         public GirişEkranı()
         {
             InitializeComponent();
@@ -50,8 +51,6 @@ namespace DiyetProgramı.PL
                 OgunConboBox.Items.Add(item);
 
             }
-          
-
             MessageBox.Show("Sağlıklı bir yaşam için ön koşul doğru ve dengeli beslenmektir.\r\n Beslenme konusuna detaylı bakacak olursak tükettiğimiz  yiyeceklerin kalorisini bilmek ve aşırı kalori içeren işlenmiş gıdalardan kaçınmak bu \r\ndengeyi sağlamanın en kolay yollarından biridir.\r\n Araştırmalar gösteriyor ki kalori takibini yapabilen insanlar daha az kalorili \r\nyiyecekler tüketerek kilolarını dengede tutmayı başarıyorlar");
         }
 
@@ -60,23 +59,30 @@ namespace DiyetProgramı.PL
             string kullaniciAdi = KullaniciAdiTextBox.Text;
             string sifre = SifreTextBox.Text;
             string termpSitring = string.Empty;
-            if (!kullaniciManager.UserLogin(kullaniciAdi, sifre))
+            if (kullaniciManager.UserLogin(kullaniciAdi, sifre))
             {
-                termpSitring += "kullanici adi veya sifre hatasi";
-            }
+                UserId = kullaniciManager.UserId(kullaniciAdi);
 
+                MessageBox.Show("giriş başarılı");
+                panel1.Visible = false;
+                panel3.Visible = true;
+                yemekManager = new YemekManager(new YemekRepo(UserId));
+                ogunManager = new OgunManager(new OgunRepo(UserId));
+                yemekListesi = yemekManager.GetAll();
+                foreach (var yemek in yemekListesi)
+                {
+                    YemekComboBox.Items.Add(yemek.YemekAdi);
+                }
+                
+            }
             if (string.IsNullOrWhiteSpace(kullaniciAdi) || string.IsNullOrWhiteSpace(sifre))
             {
                 termpSitring += "Lütfen tüm alanları doldurun.";
                 return;
             }
-
             if (termpSitring == string.Empty)
             {
-                UserId = kullaniciManager.UserId(kullaniciAdi);
-                MessageBox.Show("giriş başarılı");
-                panel1.Visible = false;
-                panel3.Visible = true;
+                termpSitring += "kullanici adi veya sifre hatasi";
             }
             else
             {
@@ -201,23 +207,31 @@ namespace DiyetProgramı.PL
             // Kullanıcının girdiği YemekAdi ve Kalori bilgilerini al
             string yemekAdi = YemekAdiEktextBox2.Text;
             int kalori;
-
+            if (!yemekListesi.Any(x => x.YemekAdi == yemekAdi))
+            {
+                MessageBox.Show("Bu yemek daha önce eklendi.");
+                return;
+            }
             if (int.TryParse(KalorimikektextBox3.Text, out kalori))
             {
-                yemekManager.InsertManager(new Entities.Concrete.Yemek()
+                var yemek = new Yemek()
                 {
                     YemekAdi = yemekAdi,
                     Kalori = kalori
-                });
+                };
+                yemekManager.InsertManager(yemek);
+                yemekListesi.Add(yemek);
 
-                
-
-
+                panel3.Visible = true;
+                panel5.Visible = false;
+                panel5.SendToBack();
+                panel3.BringToFront();
             }
             else
             {
                 MessageBox.Show("Kalori bilgisini sayı olarak giriniz.");
             }
+            
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -232,19 +246,16 @@ namespace DiyetProgramı.PL
 
         private void button12_Click(object sender, EventArgs e)
         {
-            Ogun ogun = new Ogun()
-            {
-                YemekPorsiyon = Convert.ToInt32(porsiyonyaztextBox1),
-                OgunIsmi = (OgunIsmi)OgunConboBox.SelectedValue,
-                OgunVakti = DateTime.Now,
-                KullaniciId = UserId,
+            Ogun ogun = new Ogun();
 
-            };
-
-           // ogun.Yemekler.Add();
-            
-            ogunManager.InsertManager(new Entities.Concrete.Ogun()
-            ); 
+            ogun.YemekPorsiyon = Convert.ToDecimal(porsiyonyaztextBox1.Text);
+            ogun.OgunIsmi = (OgunIsmi)OgunConboBox.SelectedIndex;
+            ogun.OgunVakti = DateTime.Now;
+            ogun.KullaniciId = UserId;
+            var yemek = yemekListesi.Find(x=>x.YemekAdi == YemekComboBox.SelectedItem);
+            ogun.YemekId = yemek.Id;
+            ogun.YenilenKalori = yemek.Kalori*ogun.YemekPorsiyon;
+            ogunManager.InsertManager(ogun);
 
         }
 

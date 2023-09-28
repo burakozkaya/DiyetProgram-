@@ -18,17 +18,17 @@ namespace DiyetProgramı.BLL.Concrete
         {
             _repo = (YemekRepo?)baseRepo;
         }
-        public  IEnumerable<Yemek> GetAll()
+        public  List<Yemek> GetAll()
         {
-            return _repo.GetAll();
+            return _repo.GetAll().Where(x=>x.Ogunler.TrueForAll(x=>x.KullaniciId == _repo._kullaniciId)).ToList();
         }
 
-        public IEnumerable<Yemek> EnCokYenenYemek()
+        public List<Yemek> EnCokYenenYemek()
         {
             return _repo.EnCokYenenYemek();
         }
 
-        public IEnumerable<Yemek> GünSonuRapor(DateTime dateTime)
+        public List<Yemek> GünSonuRapor(DateTime dateTime)
         {
             return _repo.GünSonuRapor(dateTime);
         }
@@ -38,13 +38,13 @@ namespace DiyetProgramı.BLL.Concrete
             return GünSonuRapor(dateTime).Sum(x => x.Ogunler.Sum(x => x.YenilenKalori));
         }
 
-        public IEnumerable<Yemek> HaftalikAylikRaporOgun(DateTime baslangicTarihi, DateTime bitisTarihi,OgunIsmi ogunIsmi)
+        public List<Yemek> HaftalikAylikRaporOgun(DateTime baslangicTarihi, DateTime bitisTarihi,OgunIsmi ogunIsmi)
         {
-            return _repo.HaftalikAylikRapor(baslangicTarihi,bitisTarihi).Where(x=>x.Ogunler.Any(x=>x.OgunIsmi == ogunIsmi));
+            return _repo.HaftalikAylikRapor(baslangicTarihi,bitisTarihi).Where(x=>x.Ogunler.Any(x=>x.OgunIsmi == ogunIsmi)).ToList();
         }
-        public IEnumerable<Yemek> HaftalikAylikRaporKategori(DateTime baslangicTarihi, DateTime bitisTarihi,YemekKategorileri yemekKategorileri)
+        public List<Yemek> HaftalikAylikRaporKategori(DateTime baslangicTarihi, DateTime bitisTarihi,YemekKategorileri yemekKategorileri)
         {
-            return _repo.HaftalikAylikRapor(baslangicTarihi, bitisTarihi).Where(x=>x.Kategorileri == yemekKategorileri);
+            return _repo.HaftalikAylikRapor(baslangicTarihi, bitisTarihi).Where(x=>x.Kategorileri == yemekKategorileri).ToList();
         }
     }
 }

@@ -15,7 +15,7 @@ namespace DiyetProgramı.DAL.Concrete
         {
         }
 
-        public override IEnumerable<Yemek> GetAll()
+        public override List<Yemek> GetAll()
         {
             return _dbSet
                 .Include(x => x.Ogunler)
@@ -23,7 +23,7 @@ namespace DiyetProgramı.DAL.Concrete
                 .ToList();
         }
 
-        public IEnumerable<Yemek> EnCokYenenYemek()
+        public List<Yemek> EnCokYenenYemek()
         {
             var yemeklerDb = _dbSet.
                 Include(x => x.Ogunler)
@@ -47,7 +47,7 @@ namespace DiyetProgramı.DAL.Concrete
             return yemeklerx;
         }
 
-        public IEnumerable<Yemek> GünSonuRapor(DateTime dateTime)
+        public List<Yemek> GünSonuRapor(DateTime dateTime)
         {
             return _dbSet
                 .Include(x => x.Ogunler)
@@ -59,7 +59,7 @@ namespace DiyetProgramı.DAL.Concrete
                 .ToList();
         }
 
-        public IEnumerable<Yemek> HaftalikAylikRapor(DateTime baslangicTarihi, DateTime bitisTarihi)
+        public List<Yemek> HaftalikAylikRapor(DateTime baslangicTarihi, DateTime bitisTarihi)
         {
             
                 return _dbSet

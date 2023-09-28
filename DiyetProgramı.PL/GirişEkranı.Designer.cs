@@ -110,9 +110,10 @@
             // 
             // button1
             // 
-            button1.Location = new Point(327, 118);
+            button1.Location = new Point(286, 88);
+            button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
-            button1.Size = new Size(94, 29);
+            button1.Size = new Size(82, 22);
             button1.TabIndex = 0;
             button1.Text = "Giriş Yap";
             button1.UseVisualStyleBackColor = true;
@@ -120,41 +121,44 @@
             // 
             // KullaniciAdiTextBox
             // 
-            KullaniciAdiTextBox.Location = new Point(146, 52);
+            KullaniciAdiTextBox.Location = new Point(128, 39);
+            KullaniciAdiTextBox.Margin = new Padding(3, 2, 3, 2);
             KullaniciAdiTextBox.Name = "KullaniciAdiTextBox";
-            KullaniciAdiTextBox.Size = new Size(275, 27);
+            KullaniciAdiTextBox.Size = new Size(241, 23);
             KullaniciAdiTextBox.TabIndex = 1;
             // 
             // SifreTextBox
             // 
-            SifreTextBox.Location = new Point(146, 85);
+            SifreTextBox.Location = new Point(128, 64);
+            SifreTextBox.Margin = new Padding(3, 2, 3, 2);
             SifreTextBox.Name = "SifreTextBox";
-            SifreTextBox.Size = new Size(274, 27);
+            SifreTextBox.Size = new Size(240, 23);
             SifreTextBox.TabIndex = 2;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(42, 55);
+            label1.Location = new Point(37, 41);
             label1.Name = "label1";
-            label1.Size = new Size(98, 20);
+            label1.Size = new Size(78, 15);
             label1.TabIndex = 3;
             label1.Text = "Kullanıcı Mail";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(41, 88);
+            label2.Location = new Point(36, 66);
             label2.Name = "label2";
-            label2.Size = new Size(99, 20);
+            label2.Size = new Size(78, 15);
             label2.TabIndex = 4;
             label2.Text = "Kullanıcı Şifre";
             // 
             // button2
             // 
-            button2.Location = new Point(227, 118);
+            button2.Location = new Point(199, 88);
+            button2.Margin = new Padding(3, 2, 3, 2);
             button2.Name = "button2";
-            button2.Size = new Size(94, 29);
+            button2.Size = new Size(82, 22);
             button2.TabIndex = 15;
             button2.Text = "Kayıt Ol";
             button2.UseVisualStyleBackColor = true;
@@ -163,9 +167,10 @@
             // panel1
             // 
             panel1.Controls.Add(groupBox1);
-            panel1.Location = new Point(12, 12);
+            panel1.Location = new Point(10, 9);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(502, 304);
+            panel1.Size = new Size(439, 228);
             panel1.TabIndex = 16;
             // 
             // groupBox1
@@ -176,9 +181,11 @@
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(button1);
             groupBox1.Controls.Add(label1);
-            groupBox1.Location = new Point(3, 28);
+            groupBox1.Location = new Point(3, 21);
+            groupBox1.Margin = new Padding(3, 2, 3, 2);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(490, 311);
+            groupBox1.Padding = new Padding(3, 2, 3, 2);
+            groupBox1.Size = new Size(429, 233);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "groupBox1";
@@ -186,9 +193,10 @@
             // panel2
             // 
             panel2.Controls.Add(groupBox2);
-            panel2.Location = new Point(542, 12);
+            panel2.Location = new Point(474, 9);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(589, 338);
+            panel2.Size = new Size(515, 254);
             panel2.TabIndex = 17;
             // 
             // groupBox2
@@ -210,9 +218,11 @@
             groupBox2.Controls.Add(label10);
             groupBox2.Controls.Add(kullaniciSifreTextBox);
             groupBox2.Controls.Add(kullaniciMailTextBox);
-            groupBox2.Location = new Point(53, 47);
+            groupBox2.Location = new Point(46, 35);
+            groupBox2.Margin = new Padding(3, 2, 3, 2);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(532, 342);
+            groupBox2.Padding = new Padding(3, 2, 3, 2);
+            groupBox2.Size = new Size(466, 256);
             groupBox2.TabIndex = 0;
             groupBox2.TabStop = false;
             groupBox2.Text = "groupBox2";
@@ -220,9 +230,10 @@
             // 
             // button3
             // 
-            button3.Location = new Point(385, 263);
+            button3.Location = new Point(337, 197);
+            button3.Margin = new Padding(3, 2, 3, 2);
             button3.Name = "button3";
-            button3.Size = new Size(94, 29);
+            button3.Size = new Size(82, 22);
             button3.TabIndex = 51;
             button3.Text = "Kayıt Ol";
             button3.UseVisualStyleBackColor = true;
@@ -231,155 +242,166 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(54, 66);
+            label8.Location = new Point(47, 50);
             label8.Name = "label8";
-            label8.Size = new Size(143, 20);
+            label8.Size = new Size(112, 15);
             label8.TabIndex = 50;
             label8.Text = "Kullanıcı Şifre Tekrar";
             // 
             // kullaniciSifreTekrariTextBox
             // 
-            kullaniciSifreTekrariTextBox.Location = new Point(203, 63);
+            kullaniciSifreTekrariTextBox.Location = new Point(178, 47);
+            kullaniciSifreTekrariTextBox.Margin = new Padding(3, 2, 3, 2);
             kullaniciSifreTekrariTextBox.Name = "kullaniciSifreTekrariTextBox";
-            kullaniciSifreTekrariTextBox.Size = new Size(274, 27);
+            kullaniciSifreTekrariTextBox.Size = new Size(240, 23);
             kullaniciSifreTekrariTextBox.TabIndex = 49;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(100, 237);
+            label7.Location = new Point(88, 178);
             label7.Name = "label7";
-            label7.Size = new Size(35, 20);
+            label7.Size = new Size(27, 15);
             label7.TabIndex = 48;
             label7.Text = "Kilo";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(100, 204);
+            label6.Location = new Point(88, 153);
             label6.Name = "label6";
-            label6.Size = new Size(34, 20);
+            label6.Size = new Size(27, 15);
             label6.TabIndex = 47;
             label6.Text = "Boy";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(99, 171);
+            label5.Location = new Point(87, 128);
             label5.Name = "label5";
-            label5.Size = new Size(30, 20);
+            label5.Size = new Size(24, 15);
             label5.TabIndex = 46;
             label5.Text = "Yaş";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(100, 138);
+            label4.Location = new Point(88, 104);
             label4.Name = "label4";
-            label4.Size = new Size(60, 20);
+            label4.Size = new Size(48, 15);
             label4.TabIndex = 45;
             label4.Text = "Soyisim";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(100, 105);
+            label3.Location = new Point(88, 79);
             label3.Name = "label3";
-            label3.Size = new Size(36, 20);
+            label3.Size = new Size(29, 15);
             label3.TabIndex = 44;
             label3.Text = "İsim";
             // 
             // isimTextBox
             // 
-            isimTextBox.Location = new Point(203, 98);
+            isimTextBox.Location = new Point(178, 74);
+            isimTextBox.Margin = new Padding(3, 2, 3, 2);
             isimTextBox.Name = "isimTextBox";
-            isimTextBox.Size = new Size(274, 27);
+            isimTextBox.Size = new Size(240, 23);
             isimTextBox.TabIndex = 43;
             // 
             // soyisimTextBox
             // 
-            soyisimTextBox.Location = new Point(204, 131);
+            soyisimTextBox.Location = new Point(178, 98);
+            soyisimTextBox.Margin = new Padding(3, 2, 3, 2);
             soyisimTextBox.Name = "soyisimTextBox";
-            soyisimTextBox.Size = new Size(274, 27);
+            soyisimTextBox.Size = new Size(240, 23);
             soyisimTextBox.TabIndex = 42;
             // 
             // kiloTextBox
             // 
-            kiloTextBox.Location = new Point(205, 230);
+            kiloTextBox.Location = new Point(179, 172);
+            kiloTextBox.Margin = new Padding(3, 2, 3, 2);
             kiloTextBox.Name = "kiloTextBox";
-            kiloTextBox.Size = new Size(274, 27);
+            kiloTextBox.Size = new Size(240, 23);
             kiloTextBox.TabIndex = 41;
             // 
             // yasTextBox
             // 
-            yasTextBox.Location = new Point(205, 164);
+            yasTextBox.Location = new Point(179, 123);
+            yasTextBox.Margin = new Padding(3, 2, 3, 2);
             yasTextBox.Name = "yasTextBox";
-            yasTextBox.Size = new Size(274, 27);
+            yasTextBox.Size = new Size(240, 23);
             yasTextBox.TabIndex = 40;
             // 
             // boyTextBox
             // 
-            boyTextBox.Location = new Point(204, 197);
+            boyTextBox.Location = new Point(178, 148);
+            boyTextBox.Margin = new Padding(3, 2, 3, 2);
             boyTextBox.Name = "boyTextBox";
-            boyTextBox.Size = new Size(274, 27);
+            boyTextBox.Size = new Size(240, 23);
             boyTextBox.TabIndex = 39;
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(99, 33);
+            label9.Location = new Point(87, 25);
             label9.Name = "label9";
-            label9.Size = new Size(99, 20);
+            label9.Size = new Size(78, 15);
             label9.TabIndex = 38;
             label9.Text = "Kullanıcı Şifre";
             // 
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(100, 0);
+            label10.Location = new Point(88, 0);
             label10.Name = "label10";
-            label10.Size = new Size(98, 20);
+            label10.Size = new Size(78, 15);
             label10.TabIndex = 37;
             label10.Text = "Kullanıcı Mail";
             // 
             // kullaniciSifreTextBox
             // 
-            kullaniciSifreTextBox.Location = new Point(204, 30);
+            kullaniciSifreTextBox.Location = new Point(178, 22);
+            kullaniciSifreTextBox.Margin = new Padding(3, 2, 3, 2);
             kullaniciSifreTextBox.Name = "kullaniciSifreTextBox";
-            kullaniciSifreTextBox.Size = new Size(274, 27);
+            kullaniciSifreTextBox.Size = new Size(240, 23);
             kullaniciSifreTextBox.TabIndex = 36;
             // 
             // kullaniciMailTextBox
             // 
-            kullaniciMailTextBox.Location = new Point(204, -3);
+            kullaniciMailTextBox.Location = new Point(178, -2);
+            kullaniciMailTextBox.Margin = new Padding(3, 2, 3, 2);
             kullaniciMailTextBox.Name = "kullaniciMailTextBox";
-            kullaniciMailTextBox.Size = new Size(275, 27);
+            kullaniciMailTextBox.Size = new Size(241, 23);
             kullaniciMailTextBox.TabIndex = 35;
             kullaniciMailTextBox.TextChanged += kullaniciMailTextBox_TextChanged;
             // 
             // button11
             // 
-            button11.Location = new Point(23, 82);
+            button11.Location = new Point(20, 62);
+            button11.Margin = new Padding(3, 2, 3, 2);
             button11.Name = "button11";
-            button11.Size = new Size(159, 29);
+            button11.Size = new Size(139, 22);
             button11.TabIndex = 29;
             button11.Text = "Yemek Çeşidi Raporu";
             button11.UseVisualStyleBackColor = true;
             // 
             // button10
             // 
-            button10.Location = new Point(23, 47);
+            button10.Location = new Point(20, 35);
+            button10.Margin = new Padding(3, 2, 3, 2);
             button10.Name = "button10";
-            button10.Size = new Size(159, 29);
+            button10.Size = new Size(139, 22);
             button10.TabIndex = 28;
             button10.Text = "Kıyas Raporları";
             button10.UseVisualStyleBackColor = true;
             // 
             // button9
             // 
-            button9.Location = new Point(23, 12);
+            button9.Location = new Point(20, 9);
+            button9.Margin = new Padding(3, 2, 3, 2);
             button9.Name = "button9";
-            button9.Size = new Size(159, 29);
+            button9.Size = new Size(139, 22);
             button9.TabIndex = 27;
             button9.Text = "Gün Sonu Raporu";
             button9.UseVisualStyleBackColor = true;
@@ -390,25 +412,27 @@
             panel4.Controls.Add(button11);
             panel4.Controls.Add(button10);
             panel4.Controls.Add(button9);
-            panel4.Location = new Point(74, 375);
+            panel4.Location = new Point(65, 281);
+            panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
-            panel4.Size = new Size(681, 125);
+            panel4.Size = new Size(596, 94);
             panel4.TabIndex = 19;
             // 
             // RaporLbl
             // 
             RaporLbl.AutoSize = true;
-            RaporLbl.Location = new Point(290, 47);
+            RaporLbl.Location = new Point(254, 35);
             RaporLbl.Name = "RaporLbl";
-            RaporLbl.Size = new Size(58, 20);
+            RaporLbl.Size = new Size(44, 15);
             RaporLbl.TabIndex = 20;
             RaporLbl.Text = "label11";
             // 
             // button8
             // 
-            button8.Location = new Point(375, 79);
+            button8.Location = new Point(328, 59);
+            button8.Margin = new Padding(3, 2, 3, 2);
             button8.Name = "button8";
-            button8.Size = new Size(94, 29);
+            button8.Size = new Size(82, 22);
             button8.TabIndex = 20;
             button8.Text = "Yemek Ekle";
             button8.UseVisualStyleBackColor = true;
@@ -416,9 +440,10 @@
             // 
             // button12
             // 
-            button12.Location = new Point(163, 143);
+            button12.Location = new Point(143, 107);
+            button12.Margin = new Padding(3, 2, 3, 2);
             button12.Name = "button12";
-            button12.Size = new Size(94, 29);
+            button12.Size = new Size(82, 22);
             button12.TabIndex = 21;
             button12.Text = "Öğün Ekle";
             button12.UseVisualStyleBackColor = true;
@@ -426,9 +451,10 @@
             // 
             // button7
             // 
-            button7.Location = new Point(301, 322);
+            button7.Location = new Point(263, 242);
+            button7.Margin = new Padding(3, 2, 3, 2);
             button7.Name = "button7";
-            button7.Size = new Size(94, 29);
+            button7.Size = new Size(82, 22);
             button7.TabIndex = 24;
             button7.Text = "Raporlar";
             button7.UseVisualStyleBackColor = true;
@@ -436,97 +462,99 @@
             // YemekComboBox
             // 
             YemekComboBox.FormattingEnabled = true;
-            YemekComboBox.Location = new Point(350, 44);
+            YemekComboBox.Location = new Point(306, 33);
+            YemekComboBox.Margin = new Padding(3, 2, 3, 2);
             YemekComboBox.Name = "YemekComboBox";
-            YemekComboBox.Size = new Size(140, 28);
+            YemekComboBox.Size = new Size(123, 23);
             YemekComboBox.TabIndex = 25;
             // 
             // OgunConboBox
             // 
             OgunConboBox.FormattingEnabled = true;
-            OgunConboBox.Location = new Point(155, 39);
+            OgunConboBox.Location = new Point(136, 29);
+            OgunConboBox.Margin = new Padding(3, 2, 3, 2);
             OgunConboBox.Name = "OgunConboBox";
-            OgunConboBox.Size = new Size(177, 28);
+            OgunConboBox.Size = new Size(155, 23);
             OgunConboBox.TabIndex = 26;
             // 
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(12, 293);
+            label11.Location = new Point(10, 220);
             label11.Name = "label11";
-            label11.Size = new Size(39, 20);
+            label11.Size = new Size(32, 15);
             label11.TabIndex = 28;
             label11.Text = "Isim:";
             // 
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(12, 328);
+            label12.Location = new Point(10, 246);
             label12.Name = "label12";
-            label12.Size = new Size(53, 20);
+            label12.Size = new Size(42, 15);
             label12.TabIndex = 29;
             label12.Text = "Soyad:";
             // 
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(14, 363);
+            label13.Location = new Point(12, 272);
             label13.Name = "label13";
-            label13.Size = new Size(37, 20);
+            label13.Size = new Size(30, 15);
             label13.TabIndex = 30;
             label13.Text = "Boy:";
             // 
             // label14
             // 
             label14.AutoSize = true;
-            label14.Location = new Point(14, 398);
+            label14.Location = new Point(12, 298);
             label14.Name = "label14";
-            label14.Size = new Size(38, 20);
+            label14.Size = new Size(30, 15);
             label14.TabIndex = 31;
             label14.Text = "Kilo:";
             // 
             // label15
             // 
             label15.AutoSize = true;
-            label15.Location = new Point(86, 251);
+            label15.Location = new Point(75, 188);
             label15.Name = "label15";
-            label15.Size = new Size(99, 20);
+            label15.Size = new Size(77, 15);
             label15.TabIndex = 20;
             label15.Text = "Profil Bilgileri";
             // 
             // IsimLbl
             // 
             IsimLbl.AutoSize = true;
-            IsimLbl.Location = new Point(86, 293);
+            IsimLbl.Location = new Point(75, 220);
             IsimLbl.Name = "IsimLbl";
-            IsimLbl.Size = new Size(99, 20);
+            IsimLbl.Size = new Size(77, 15);
             IsimLbl.TabIndex = 36;
             IsimLbl.Text = "Profil Bilgileri";
             // 
             // SoyadLbl
             // 
             SoyadLbl.AutoSize = true;
-            SoyadLbl.Location = new Point(86, 331);
+            SoyadLbl.Location = new Point(75, 248);
             SoyadLbl.Name = "SoyadLbl";
-            SoyadLbl.Size = new Size(99, 20);
+            SoyadLbl.Size = new Size(77, 15);
             SoyadLbl.TabIndex = 37;
             SoyadLbl.Text = "Profil Bilgileri";
             // 
             // BoyLbl
             // 
             BoyLbl.AutoSize = true;
-            BoyLbl.Location = new Point(86, 363);
+            BoyLbl.Location = new Point(75, 272);
             BoyLbl.Name = "BoyLbl";
-            BoyLbl.Size = new Size(99, 20);
+            BoyLbl.Size = new Size(77, 15);
             BoyLbl.TabIndex = 38;
             BoyLbl.Text = "Profil Bilgileri";
             // 
             // KilooLbl
             // 
             KilooLbl.AutoSize = true;
-            KilooLbl.Location = new Point(86, 398);
+            KilooLbl.Location = new Point(75, 298);
             KilooLbl.Name = "KilooLbl";
-            KilooLbl.Size = new Size(99, 20);
+            KilooLbl.Size = new Size(77, 15);
             KilooLbl.TabIndex = 39;
             KilooLbl.Text = "Profil Bilgileri";
             // 
@@ -551,17 +579,19 @@
             panel3.Controls.Add(button7);
             panel3.Controls.Add(button12);
             panel3.Controls.Add(button8);
-            panel3.Location = new Point(1170, 12);
+            panel3.Location = new Point(1024, 9);
+            panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(513, 455);
+            panel3.Size = new Size(449, 341);
             panel3.TabIndex = 18;
             panel3.Paint += panel3_Paint;
             // 
             // button6
             // 
-            button6.Location = new Point(12, 28);
+            button6.Location = new Point(10, 21);
+            button6.Margin = new Padding(3, 2, 3, 2);
             button6.Name = "button6";
-            button6.Size = new Size(124, 59);
+            button6.Size = new Size(108, 44);
             button6.TabIndex = 45;
             button6.Text = "Öğün Güncelle veya Sil";
             button6.UseVisualStyleBackColor = true;
@@ -569,35 +599,36 @@
             // 
             // porsiyonyaztextBox1
             // 
-            porsiyonyaztextBox1.Location = new Point(155, 103);
+            porsiyonyaztextBox1.Location = new Point(136, 77);
+            porsiyonyaztextBox1.Margin = new Padding(3, 2, 3, 2);
             porsiyonyaztextBox1.Name = "porsiyonyaztextBox1";
-            porsiyonyaztextBox1.Size = new Size(125, 27);
+            porsiyonyaztextBox1.Size = new Size(110, 23);
             porsiyonyaztextBox1.TabIndex = 44;
             // 
             // label22
             // 
             label22.AutoSize = true;
-            label22.Location = new Point(167, 80);
+            label22.Location = new Point(146, 60);
             label22.Name = "label22";
-            label22.Size = new Size(90, 20);
+            label22.Size = new Size(73, 15);
             label22.TabIndex = 43;
             label22.Text = "Porsiyon Yaz";
             // 
             // label21
             // 
             label21.AutoSize = true;
-            label21.Location = new Point(375, 16);
+            label21.Location = new Point(328, 12);
             label21.Name = "label21";
-            label21.Size = new Size(79, 20);
+            label21.Size = new Size(63, 15);
             label21.TabIndex = 42;
             label21.Text = "Yemek Seç";
             // 
             // label20
             // 
             label20.AutoSize = true;
-            label20.Location = new Point(167, 16);
+            label20.Location = new Point(146, 12);
             label20.Name = "label20";
-            label20.Size = new Size(72, 20);
+            label20.Size = new Size(58, 15);
             label20.TabIndex = 21;
             label20.Text = "Öğün Seç";
             // 
@@ -611,24 +642,27 @@
             panel5.Controls.Add(label18);
             panel5.Controls.Add(label17);
             panel5.Controls.Add(label16);
-            panel5.Location = new Point(57, 516);
+            panel5.Location = new Point(50, 387);
+            panel5.Margin = new Padding(3, 2, 3, 2);
             panel5.Name = "panel5";
-            panel5.Size = new Size(698, 139);
+            panel5.Size = new Size(611, 104);
             panel5.TabIndex = 20;
             // 
             // katagorilistcomboBox2
             // 
             katagorilistcomboBox2.FormattingEnabled = true;
-            katagorilistcomboBox2.Location = new Point(114, 68);
+            katagorilistcomboBox2.Location = new Point(100, 51);
+            katagorilistcomboBox2.Margin = new Padding(3, 2, 3, 2);
             katagorilistcomboBox2.Name = "katagorilistcomboBox2";
-            katagorilistcomboBox2.Size = new Size(125, 28);
+            katagorilistcomboBox2.Size = new Size(110, 23);
             katagorilistcomboBox2.TabIndex = 21;
             // 
             // button5
             // 
-            button5.Location = new Point(317, 19);
+            button5.Location = new Point(276, 11);
+            button5.Margin = new Padding(3, 2, 3, 2);
             button5.Name = "button5";
-            button5.Size = new Size(94, 29);
+            button5.Size = new Size(82, 22);
             button5.TabIndex = 21;
             button5.Text = "Ekle";
             button5.UseVisualStyleBackColor = true;
@@ -636,83 +670,88 @@
             // 
             // YemekAdiEktextBox2
             // 
-            YemekAdiEktextBox2.Location = new Point(114, 6);
+            YemekAdiEktextBox2.Location = new Point(100, 4);
+            YemekAdiEktextBox2.Margin = new Padding(3, 2, 3, 2);
             YemekAdiEktextBox2.Name = "YemekAdiEktextBox2";
-            YemekAdiEktextBox2.Size = new Size(125, 27);
+            YemekAdiEktextBox2.Size = new Size(110, 23);
             YemekAdiEktextBox2.TabIndex = 22;
             // 
             // KalorimikektextBox3
             // 
-            KalorimikektextBox3.Location = new Point(124, 39);
+            KalorimikektextBox3.Location = new Point(108, 29);
+            KalorimikektextBox3.Margin = new Padding(3, 2, 3, 2);
             KalorimikektextBox3.Name = "KalorimikektextBox3";
-            KalorimikektextBox3.Size = new Size(125, 27);
+            KalorimikektextBox3.Size = new Size(110, 23);
             KalorimikektextBox3.TabIndex = 23;
             // 
             // label19
             // 
             label19.AutoSize = true;
-            label19.Location = new Point(17, 88);
+            label19.Location = new Point(15, 66);
             label19.Name = "label19";
-            label19.Size = new Size(52, 20);
+            label19.Size = new Size(42, 15);
             label19.TabIndex = 32;
             label19.Text = "Resim:";
             // 
             // label18
             // 
             label18.AutoSize = true;
-            label18.Location = new Point(17, 68);
+            label18.Location = new Point(15, 51);
             label18.Name = "label18";
-            label18.Size = new Size(69, 20);
+            label18.Size = new Size(54, 15);
             label18.TabIndex = 31;
             label18.Text = "Kategori:";
             // 
             // label17
             // 
             label17.AutoSize = true;
-            label17.Location = new Point(17, 39);
+            label17.Location = new Point(15, 29);
             label17.Name = "label17";
-            label17.Size = new Size(51, 20);
+            label17.Size = new Size(40, 15);
             label17.TabIndex = 30;
             label17.Text = "Kalori:";
             // 
             // label16
             // 
             label16.AutoSize = true;
-            label16.Location = new Point(17, 19);
+            label16.Location = new Point(15, 14);
             label16.Name = "label16";
-            label16.Size = new Size(82, 20);
+            label16.Size = new Size(66, 15);
             label16.TabIndex = 29;
             label16.Text = "Yemek Adı:";
             // 
             // panel6
             // 
             panel6.Controls.Add(listBox1);
-            panel6.Location = new Point(761, 361);
+            panel6.Location = new Point(666, 271);
+            panel6.Margin = new Padding(3, 2, 3, 2);
             panel6.Name = "panel6";
-            panel6.Size = new Size(403, 408);
+            panel6.Size = new Size(353, 306);
             panel6.TabIndex = 21;
             panel6.Paint += panel6_Paint;
             // 
             // listBox1
             // 
             listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 20;
-            listBox1.Location = new Point(37, 35);
+            listBox1.ItemHeight = 15;
+            listBox1.Location = new Point(32, 26);
+            listBox1.Margin = new Padding(3, 2, 3, 2);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(189, 344);
+            listBox1.Size = new Size(166, 259);
             listBox1.TabIndex = 0;
             // 
             // GirişEkranı
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1740, 866);
+            ClientSize = new Size(1522, 650);
             Controls.Add(panel6);
             Controls.Add(panel5);
             Controls.Add(panel4);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "GirişEkranı";
             Text = "GirişEkranı";
             Load += GirişEkranı_Load;
