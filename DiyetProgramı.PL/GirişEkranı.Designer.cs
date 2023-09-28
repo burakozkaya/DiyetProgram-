@@ -814,7 +814,7 @@
             Ögün_Güncelle.TabIndex = 22;
             Ögün_Güncelle.Text = "Öğün Güncelle";
             Ögün_Güncelle.UseVisualStyleBackColor = true;
-            Ögün_Güncelle.Click += Ögün_Güncelle_Click;
+            Ögün_Güncelle.Click += Öğün_Güncelle_Click;
             // 
             // GirişEkranı
             // 

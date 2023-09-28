@@ -33,7 +33,7 @@ namespace DiyetProgramı.DAL.Context
             modelBuilder
                 .Entity<Yemek>()
                 .Property(x => x.Kalori)
-                .HasPrecision(5, 2);
+                .HasPrecision(8, 2);
 
         }
     }
