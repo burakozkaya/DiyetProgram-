@@ -14,5 +14,5 @@ public class Kullanici : BaseEntity
     public int KullaniciBoy { get; set; }
 
     //Nav Property
-    public List<Ogun> Ogunler { get; set; }
+    public List<Ogun> Ogunler { get; set; } = new List<Ogun>();
 }

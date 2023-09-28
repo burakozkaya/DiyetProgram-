@@ -11,6 +11,6 @@ public class Yemek : BaseEntity
     public string YemekAdi { get; set; }
     public string? ResimYolu { get; set; }
 
-    public List<Ogun> Ogunler { get; set; }
+    public List<Ogun> Ogunler { get; set; } = new List<Ogun>();
 
 }

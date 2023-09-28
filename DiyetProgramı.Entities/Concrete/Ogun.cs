@@ -12,5 +12,5 @@ public class Ogun : BaseEntity
 
     //Nav Property
     public Kullanici Kullanici {get; set; }
-    public List<Yemek> Yemekler { get; set; }
+    public List<Yemek> Yemekler { get; set; } = new List<Yemek>();
 }
