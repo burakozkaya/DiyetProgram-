@@ -100,6 +100,8 @@
             Öğün_Sil = new Button();
             listBox1 = new ListBox();
             Ögün_Güncelle = new Button();
+            label25 = new Label();
+            comboBox2 = new ComboBox();
             panel1.SuspendLayout();
             groupBox1.SuspendLayout();
             panel2.SuspendLayout();
@@ -658,7 +660,7 @@
             // label19
             // 
             label19.AutoSize = true;
-            label19.Location = new Point(17, 88);
+            label19.Location = new Point(17, 104);
             label19.Name = "label19";
             label19.Size = new Size(52, 20);
             label19.TabIndex = 32;
@@ -693,6 +695,8 @@
             // 
             // panel6
             // 
+            panel6.Controls.Add(comboBox2);
+            panel6.Controls.Add(label25);
             panel6.Controls.Add(textBox1);
             panel6.Controls.Add(label23);
             panel6.Controls.Add(label24);
@@ -770,12 +774,29 @@
             // 
             // Ögün_Güncelle
             // 
-            Ögün_Güncelle.Location = new Point(454, 180);
+            Ögün_Güncelle.Location = new Point(452, 241);
             Ögün_Güncelle.Name = "Ögün_Güncelle";
             Ögün_Güncelle.Size = new Size(127, 29);
             Ögün_Güncelle.TabIndex = 22;
             Ögün_Güncelle.Text = "Öğün Güncelle";
             Ögün_Güncelle.UseVisualStyleBackColor = true;
+            // 
+            // label25
+            // 
+            label25.AutoSize = true;
+            label25.Location = new Point(466, 171);
+            label25.Name = "label25";
+            label25.Size = new Size(78, 20);
+            label25.TabIndex = 50;
+            label25.Text = "Yemek Yaz";
+            // 
+            // comboBox2
+            // 
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Location = new Point(456, 194);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(140, 28);
+            comboBox2.TabIndex = 52;
             // 
             // GirişEkranı
             // 
@@ -881,5 +902,7 @@
         private Label label23;
         private Label label24;
         private ComboBox comboBox1;
+        private ComboBox comboBox2;
+        private Label label25;
     }
 }
