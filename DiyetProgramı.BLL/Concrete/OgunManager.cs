@@ -20,6 +20,10 @@ namespace DiyetProgramı.BLL.Concrete
         {
             return _repo.GetAll();
         }
+        public IEnumerable<Ogun> GetAllDaily(DateTime dateTime)
+        {
+            return _repo.GetAll().Where(x=>x.OgunVakti.Year == dateTime.Year && x.OgunVakti.Month == dateTime.Month && x.OgunVakti.Day == dateTime.Day);
+        }
 
         public override void InsertManager(Ogun entity)
         {
