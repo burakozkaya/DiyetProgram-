@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DiyetProgramı.Entities.Concrete;
+using DiyetProgramı.Entities.Enum;
 using Microsoft.EntityFrameworkCore;
 
 namespace DiyetProgramı.DAL.Concrete
@@ -17,6 +18,18 @@ namespace DiyetProgramı.DAL.Concrete
         public override List<Ogun> GetAll()
         {
             return _dbSet.Include(x=>x.Yemek).Where(x=>x.KullaniciId == _kullaniciId).ToList();
+        }
+        public List<Ogun> HaftalikAylikRapor(DateTime baslangicTarihi, DateTime bitisTarihi,OgunIsmi ogunIsmi)
+        {
+
+            return _dbSet.Where(x =>
+                 x.OgunVakti >= baslangicTarihi && x.OgunVakti <= bitisTarihi && x.OgunIsmi == ogunIsmi).ToList();
+        }
+        public List<Ogun> HaftalikAylikRaporKullanici(DateTime baslangicTarihi, DateTime bitisTarihi, OgunIsmi ogunIsmi)
+        {
+
+            return _dbSet.Where(x =>
+                x.KullaniciId == _kullaniciId && x.OgunVakti >= baslangicTarihi && x.OgunVakti <= bitisTarihi && x.OgunIsmi == ogunIsmi).ToList();
         }
     }
 }

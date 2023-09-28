@@ -5,6 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using DiyetProgramı.Entities.Concrete;
+using DiyetProgramı.Entities.Enum;
 using Microsoft.EntityFrameworkCore;
 
 namespace DiyetProgramı.DAL.Concrete
@@ -59,16 +60,25 @@ namespace DiyetProgramı.DAL.Concrete
                 .ToList();
         }
 
-        public List<Yemek> HaftalikAylikRapor(DateTime baslangicTarihi, DateTime bitisTarihi)
+        public List<Yemek> HaftalikAylikRaporKullanici(DateTime baslangicTarihi, DateTime bitisTarihi,YemekKategorileri yemekKategorileri)
         {
             
                 return _dbSet
                     .Include(x => x.Ogunler)
                     .ThenInclude(x => x.Kullanici)
-                    .Where(x => x.Ogunler.Any(ogun => ogun.KullaniciId == _kullaniciId &&
+                    .Where(x =>x.Kategorileri == yemekKategorileri && x.Ogunler.Any(ogun => ogun.KullaniciId == _kullaniciId &&
                                                       ogun.OgunVakti >= baslangicTarihi &&
                                                       ogun.OgunVakti <= bitisTarihi))
                     .ToList();
+        }
+        public List<Yemek> HaftalikAylikRapor(DateTime baslangicTarihi, DateTime bitisTarihi,YemekKategorileri yemekKategorileri)
+        {
+
+            return _dbSet
+                .Include(x => x.Ogunler)
+                .Where(x => x.Ogunler.Any(ogun => ogun.OgunVakti >= baslangicTarihi &&
+                                                        ogun.OgunVakti <= bitisTarihi && x.Kategorileri == yemekKategorileri))
+                .ToList();
         }
     }
 }

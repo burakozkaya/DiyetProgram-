@@ -1,5 +1,6 @@
 ﻿using DiyetProgramı.BLL.Concrete;
 using DiyetProgramı.DAL.Concrete;
+using DiyetProgramı.Entities.Abstract;
 using DiyetProgramı.Entities.Concrete;
 using DiyetProgramı.Entities.Enum;
 using System;
@@ -31,6 +32,8 @@ namespace DiyetProgramı.PL
             kullaniciManager = new KullaniciManager(new KullaniciRepo());
             ogunListesi = new List<Ogun>();
             yemekListesi = new List<Yemek>();
+            dateTimePicker1.MaxDate = DateTime.Now;
+            dateTimePicker2.MaxDate = DateTime.Now;
 
         }
 
@@ -186,16 +189,6 @@ namespace DiyetProgramı.PL
 
 
         }
-        private void kullaniciMailTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-
-        }
-
         private void button8_Click(object sender, EventArgs e)
         {
             panel5.BringToFront();
@@ -216,7 +209,8 @@ namespace DiyetProgramı.PL
                 var yemek = new Yemek()
                 {
                     YemekAdi = yemekAdi,
-                    Kalori = kalori
+                    Kalori = kalori,
+                    Kategorileri = (YemekKategorileri)Enum.Parse(typeof(YemekKategorileri), katagorilistcomboBox2.SelectedItem.ToString())
                 };
                 yemekManager.InsertManager(yemek);
                 yemekListesi.Add(yemek);
@@ -234,11 +228,6 @@ namespace DiyetProgramı.PL
             {
                 MessageBox.Show("Kalori bilgisini sayı olarak giriniz.");
             }
-
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
 
         }
 
@@ -285,7 +274,7 @@ namespace DiyetProgramı.PL
             OgunIsmi ogunIsmi = (OgunIsmi)ogunIsmiObj;
             ogun.OgunIsmi = ogunIsmi;
 
-            ogun.OgunVakti = dateTimePicker1.Value.Date; 
+            ogun.OgunVakti = dateTimePicker1.Value.Date;
             ogun.KullaniciId = UserId;
 
             var selectedYemek = yemekListesi.SingleOrDefault(x => x.YemekAdi == YemekComboBox.SelectedItem);
@@ -305,12 +294,6 @@ namespace DiyetProgramı.PL
             OgunConboBox.SelectedIndex = -1;
             YemekComboBox.SelectedIndex = -1;
             porsiyonyaztextBox1.Clear();
-        }
-
-
-        private void panel6_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void Geri_panel6_Click(object sender, EventArgs e)
@@ -388,6 +371,7 @@ namespace DiyetProgramı.PL
         {
             panel3.Visible = false;
             panel4.Visible = true;
+            HaftalikRadioBtn.Checked = true;
 
         }
 
@@ -407,6 +391,67 @@ namespace DiyetProgramı.PL
         }
 
         private void button10_Click(object sender, EventArgs e)
+        {
+            int days;
+            raporlarlistBox2.Items.Clear();
+            RaporlarListbox3.Items.Clear();
+            if (HaftalikRadioBtn.Checked)
+            {
+                days = 7;
+            }
+            else
+            {
+                days = 30;
+            }
+
+            foreach (var value in Enum.GetValues(typeof(OgunIsmi)))
+            {
+                var temp = $"{value} :";
+                temp += ogunManager.HaftalikAylikRaporMax(dateTimePicker2.Value.AddDays(-days), dateTimePicker2.Value,
+                    (OgunIsmi)value);
+                temp += " Kcal";
+                temp += ogunManager.HaftalikAylikRaporAvg(dateTimePicker2.Value.AddDays(-days), dateTimePicker2.Value,
+                    (OgunIsmi)value);
+                temp += " Kcal";
+                temp += ogunManager.HaftalikAylikRaporMin(dateTimePicker2.Value.AddDays(-days), dateTimePicker2.Value,
+                    (OgunIsmi)value);
+                temp += " Kcal";
+                temp += ogunManager.HaftalikAylikRaporKullaniciAvg(dateTimePicker2.Value.AddDays(-days),
+                    dateTimePicker2.Value,
+                    (OgunIsmi)value);
+                temp += " Kcal";
+                raporlarlistBox2.Items.Add(temp);
+
+            }
+            foreach (var value in Enum.GetValues(typeof(YemekKategorileri)))
+            {
+                var temp = $"{value} :";
+                temp += yemekManager.HaftalikAylikRaporKategoriMax(dateTimePicker2.Value.AddDays(-days), dateTimePicker2.Value,
+                    (YemekKategorileri)value);
+                temp += " Kcal ";
+                temp += yemekManager.HaftalikAylikRaporKategoriAvg(dateTimePicker2.Value.AddDays(-days), dateTimePicker2.Value,
+                    (YemekKategorileri)value);
+                temp += " Kcal ";
+                temp += yemekManager.HaftalikAylikRaporKategoriMin(dateTimePicker2.Value.AddDays(-days), dateTimePicker2.Value,
+                    (YemekKategorileri)value);
+                temp += " Kcal ";
+                temp += yemekManager.HaftalikAylikRaporKullanici(dateTimePicker2.Value.AddDays(-days),
+                    dateTimePicker2.Value,
+                    (YemekKategorileri)value);
+                temp += " Kcal";
+                RaporlarListbox3.Items.Add(temp);
+
+            }
+
+
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void raporlarlistBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
