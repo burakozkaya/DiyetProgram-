@@ -226,7 +226,7 @@ namespace DiyetProgramı.PL
                 };
                 yemekManager.InsertManager(yemek);
                 yemekListesi.Add(yemek);
-                YemekComboBox.ResetText();
+                YemekComboBox.Items.Clear();
                 foreach (var item in yemekListesi)
                 {
                     YemekComboBox.Items.Add(item.YemekAdi);
@@ -317,7 +317,7 @@ namespace DiyetProgramı.PL
             comboBox1.SelectedText = (Enum.GetName(typeof(OgunIsmi), tempOgun.OgunIsmi));
             comboBox2.SelectedText = yemekListesi.SingleOrDefault(x => x.Id == tempOgun.YemekId).YemekAdi.ToString();
 
-            
+
         }
 
         private void Öğün_Sil_Click(object sender, EventArgs e)
@@ -328,8 +328,8 @@ namespace DiyetProgramı.PL
         }
         private void Öğün_Getir_Click(object sender, EventArgs e)
         {
-                var tempOgun = ogunListesi[listBox1.SelectedIndex];
-                OgunTextBoxUpdate(tempOgun);
+            var tempOgun = ogunListesi[listBox1.SelectedIndex];
+            OgunTextBoxUpdate(tempOgun);
 
         }
 
@@ -343,13 +343,41 @@ namespace DiyetProgramı.PL
         private void Ögün_Güncelle_Click(object sender, EventArgs e)
         {
             var tempOgun = ogunListesi[listBox1.SelectedIndex];
-            tempOgun=ogunManager.GetByIdManager(tempOgun.Id);
+            tempOgun = ogunManager.GetByIdManager(tempOgun.Id);
             //tempOgun.YemekPorsiyon = tempOgun.YemekPorsiyon.ToString();
             //tempOgun.OgunIsmi = comboBox2.SelectedIndex;
             //tempOgun.YemekId = yemekListesi.SingleOrDefault(x => x.Id == tempOgun.YemekId).YemekAdi.ToString();
             ogunManager.UpdateManager(tempOgun);
             OgunTextBoxUpdate(tempOgun);
             OgunListBoxUpdate();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            panel3.Visible = false;
+            panel4.Visible = true;
+
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+
+            DateTime tarih = DateTime.Now.Date; // Bugünün tarihi
+            var gunSonuRaporlar = yemekManager.GünSonuRapor(tarih);
+
+
+
+            raporlarlistBox2.Items.Clear();
+            foreach (var yemek in gunSonuRaporlar)
+            {
+                raporlarlistBox2.Items.Add($"Yemek Adı: {yemek.YemekAdi}, Yenilen Kalori: {yemek.Ogunler.Sum(o => o.YenilenKalori)}");
+            }
+
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
