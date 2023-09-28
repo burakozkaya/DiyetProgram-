@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DiyetProgramı.DAL.Migrations
 {
     [DbContext(typeof(DiyetProgramıDbContext))]
-    [Migration("20230927083934_mg3")]
-    partial class mg3
+    [Migration("20230928083344_mg1")]
+    partial class mg1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -82,6 +82,9 @@ namespace DiyetProgramı.DAL.Migrations
                     b.Property<DateTime>("OgunVakti")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("YemekId")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("YemekPorsiyon")
                         .HasColumnType("decimal(18,2)");
 
@@ -91,6 +94,8 @@ namespace DiyetProgramı.DAL.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("KullaniciId");
+
+                    b.HasIndex("YemekId");
 
                     b.ToTable("Ogunler");
                 });
@@ -122,21 +127,6 @@ namespace DiyetProgramı.DAL.Migrations
                     b.ToTable("Yemekler");
                 });
 
-            modelBuilder.Entity("OgunYemek", b =>
-                {
-                    b.Property<int>("OgunlerId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("YemeklerId")
-                        .HasColumnType("int");
-
-                    b.HasKey("OgunlerId", "YemeklerId");
-
-                    b.HasIndex("YemeklerId");
-
-                    b.ToTable("OgunYemek");
-                });
-
             modelBuilder.Entity("DiyetProgramı.Entities.Concrete.Ogun", b =>
                 {
                     b.HasOne("DiyetProgramı.Entities.Concrete.Kullanici", "Kullanici")
@@ -145,25 +135,23 @@ namespace DiyetProgramı.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("DiyetProgramı.Entities.Concrete.Yemek", "Yemek")
+                        .WithMany("Ogunler")
+                        .HasForeignKey("YemekId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Kullanici");
-                });
 
-            modelBuilder.Entity("OgunYemek", b =>
-                {
-                    b.HasOne("DiyetProgramı.Entities.Concrete.Ogun", null)
-                        .WithMany()
-                        .HasForeignKey("OgunlerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DiyetProgramı.Entities.Concrete.Yemek", null)
-                        .WithMany()
-                        .HasForeignKey("YemeklerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Yemek");
                 });
 
             modelBuilder.Entity("DiyetProgramı.Entities.Concrete.Kullanici", b =>
+                {
+                    b.Navigation("Ogunler");
+                });
+
+            modelBuilder.Entity("DiyetProgramı.Entities.Concrete.Yemek", b =>
                 {
                     b.Navigation("Ogunler");
                 });

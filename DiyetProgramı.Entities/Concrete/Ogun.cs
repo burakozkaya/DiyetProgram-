@@ -9,8 +9,9 @@ public class Ogun : BaseEntity
     public DateTime OgunVakti { get; set; }
     public decimal YemekPorsiyon { get; set; }
     public decimal YenilenKalori { get; set; }
+    public int YemekId { get; set; }
 
     //Nav Property
     public Kullanici Kullanici {get; set; }
-    public List<Yemek> Yemekler { get; set; } = new List<Yemek>();
+    public Yemek Yemek { get; set; }
 }

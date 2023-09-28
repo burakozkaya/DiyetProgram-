@@ -27,8 +27,7 @@ namespace DiyetProgramı.BLL.Concrete
 
         public override void InsertManager(Ogun entity)
         {
-            var yemek = entity.Yemekler.SingleOrDefault(x => x.Id == entity.Id);
-            entity.YenilenKalori = entity.YemekPorsiyon * yemek.Kalori;
+            entity.YenilenKalori = entity.YemekPorsiyon * entity.Yemek.Kalori;
             base.InsertManager(entity);
         }
     }
