@@ -20,7 +20,6 @@ namespace DiyetProgramı.DAL.Concrete
             return _dbSet
                 .Include(x => x.Ogunler)
                 .ThenInclude(ogun => ogun.Kullanici)
-                .Where(x => x.Ogunler.Any(ogun => ogun.KullaniciId == _kullaniciId))
                 .ToList();
         }
 
