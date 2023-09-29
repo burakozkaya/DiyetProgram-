@@ -146,6 +146,10 @@ namespace DiyetProgramı.PL
             {
                 termpString += "sifre tanımlama hatasi.\r\n";
             }
+            if (kullaniciSifre != kullaniciSifreTekrari)
+            {
+                termpString += "sifre tekrarı tanımlama hatasi.\r\n";
+            }
             if (termpString == string.Empty)
             {
                 MessageBox.Show("kayıt olusturuldu");
@@ -209,7 +213,7 @@ namespace DiyetProgramı.PL
                 MessageBox.Show("Aynı yemek girilemez");
                 return;
             }
-            if (int.TryParse(KalorimikektextBox3.Text, out kalori) )
+            if (int.TryParse(KalorimikektextBox3.Text, out kalori))
             {
                 var yemek = new Yemek()
                 {
@@ -484,6 +488,35 @@ namespace DiyetProgramı.PL
             {
                 GunSonuKiyasRaporListBox.Items.Add(yemekRaporu);
             }
+        }
+
+        private void Geri_Panel4_Click(object sender, EventArgs e)
+        {
+            panel4.Visible = false;
+            panel3.Visible = true;
+        }
+
+        private void Geri_Panel5_Click(object sender, EventArgs e)
+        {
+            panel5.Visible = false;
+            panel3.Visible = true;
+        }
+
+        private void Geri_Panel3_Click(object sender, EventArgs e)
+        {
+            panel3.Visible = false;
+            panel1.Visible = true;
+        }
+
+        private void Geri_panel1_Click(object sender, EventArgs e)
+        {
+            panel2.Visible = false;
+            panel1.Visible = true;
+        }
+
+        private void label28_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
