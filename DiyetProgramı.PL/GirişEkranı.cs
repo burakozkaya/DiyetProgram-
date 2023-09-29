@@ -377,6 +377,7 @@ namespace DiyetProgramı.PL
 
         private void button9_Click(object sender, EventArgs e)
         {
+
             DateTime secilenTarih = dateTimePicker2.Value.Date;
 
 
