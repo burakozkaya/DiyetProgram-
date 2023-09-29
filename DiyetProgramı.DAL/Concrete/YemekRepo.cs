@@ -108,5 +108,14 @@ namespace DiyetProgramı.DAL.Concrete
                                                         ogun.OgunVakti <= bitisTarihi && x.Kategorileri == yemekKategorileri))
                 .ToList();
         }
+
+        public override void Delete(Yemek entity)
+        {
+            if (_dbSet.Include(x => x.Ogunler).Any(x => x.Ogunler.Any(x => x.YemekId == entity.Id)))
+                throw new Exception();
+            _dbSet.Remove(entity);
+            SaveChanges();
+
+        }
     }
 }

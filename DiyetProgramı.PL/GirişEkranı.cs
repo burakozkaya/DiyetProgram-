@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Resources;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,25 +27,26 @@ namespace DiyetProgramı.PL
         private YemekManager yemekManager;
         private List<Yemek> yemekListesi;
         private List<Ogun> ogunListesi;
+        private string secilenResimYolu;
         public GirişEkranı()
         {
             InitializeComponent();
             kullaniciManager = new KullaniciManager(new KullaniciRepo());
             ogunListesi = new List<Ogun>();
             yemekListesi = new List<Yemek>();
-            OgunEkleDateTimePicker.MaxDate = DateTime.Now;
-            RaporlarDateTimePicker.MaxDate = DateTime.Now;
+            OgunEkleDateTimePicker.MaxDate = DateTime.Now.AddMonths(2);
+            RaporlarDateTimePicker.MaxDate = DateTime.Now.AddMonths(2);
 
         }
 
         private void GirişEkranı_Load(object sender, EventArgs e)
         {
 
-            panel2.Visible = false;
-            panel3.Visible = false;
-            panel4.Visible = false;
-            panel5.Visible = false;
-            panel6.Visible = false;
+            KayitOlPanel.Visible = false;
+            OgunEklePanel.Visible = false;
+            RaporPanel.Visible = false;
+            YemekGuncellePanel.Visible = false;
+            OgunGuncellePanel.Visible = false;
 
             var kategoriler = Enum.GetNames(typeof(YemekKategorileri));
             foreach (var item in kategoriler)
@@ -72,8 +74,8 @@ namespace DiyetProgramı.PL
             {
                 UserId = tempInt;
                 MessageBox.Show("giriş başarılı");
-                panel1.Visible = false;
-                panel3.Visible = true;
+                GirisPanel.Visible = false;
+                OgunEklePanel.Visible = true;
                 yemekManager = new YemekManager(new YemekRepo(UserId));
                 ogunManager = new OgunManager(new OgunRepo(UserId));
                 yemekListesi = yemekManager.GetAll();
@@ -105,9 +107,9 @@ namespace DiyetProgramı.PL
 
         private void KayitOlClick(object sender, EventArgs e)
         {
-            panel1.BringToFront();
-            panel1.Visible = false;
-            panel2.Visible = true;
+            GirisPanel.BringToFront();
+            GirisPanel.Visible = false;
+            KayitOlPanel.Visible = true;
             //this.Visible = false;
             //KayıtEkranı kayıtEkran = new KayıtEkranı();
             //kayıtEkran.ShowDialog();
@@ -116,7 +118,7 @@ namespace DiyetProgramı.PL
 
         private void KayitOlEkraniClick(object sender, EventArgs e)
         {
-            panel2.BringToFront();
+            KayitOlPanel.BringToFront();
 
             string kullaniciMail = kullaniciMailTextBox.Text;
             string kullaniciSifre = kullaniciSifreTextBox.Text;
@@ -163,8 +165,8 @@ namespace DiyetProgramı.PL
                     KullaniciSoyadi = soyisim,
                     KullaniciYasi = yas,
                 });
-                panel2.Visible = false;
-                panel1.Visible = true;
+                KayitOlPanel.Visible = false;
+                GirisPanel.Visible = true;
 
             }
             else
@@ -175,7 +177,7 @@ namespace DiyetProgramı.PL
 
             //panel2.Visible = false;
             //panel1.Visible = true;
-            panel1.BringToFront();
+            GirisPanel.BringToFront();
         }
         private void panel3_Paint(object sender, PaintEventArgs e)
         {
@@ -195,11 +197,20 @@ namespace DiyetProgramı.PL
         }
         private void YemekEkleBtnClick(object sender, EventArgs e)
         {
-            panel5.BringToFront();
-            panel3.Visible = false;
-            panel5.Visible = true;
+            YemekGuncellePanel.BringToFront();
+            OgunEklePanel.Visible = false;
+            YemekGuncellePanel.Visible = true;
+            MevcutYemekListBox.Items.Clear();
+            katagorilistcomboBox2.Items.Clear();
+            foreach (var yemek in yemekListesi)
+            {
+                MevcutYemekListBox.Items.Add(yemek.YemekAdi);
+            }
 
-            //katagorilistcomboBox2.Items.Clear();
+            foreach (var name in Enum.GetValues(typeof(YemekKategorileri)))
+            {
+                katagorilistcomboBox2.Items.Add(name);
+            }
 
 
         }
@@ -207,31 +218,31 @@ namespace DiyetProgramı.PL
         private void YemekEkleClick(object sender, EventArgs e)
         {
             string yemekAdi = YemekAdiEktextBox2.Text;
-            int kalori;
+            decimal kalori;
             if (yemekListesi.Any(x => x.YemekAdi == yemekAdi))
             {
                 MessageBox.Show("Aynı yemek girilemez");
                 return;
             }
-            if (int.TryParse(KalorimikektextBox3.Text, out kalori))
+            if (decimal.TryParse(KalorimikektextBox3.Text, out kalori))
             {
                 var yemek = new Yemek()
                 {
                     YemekAdi = yemekAdi,
                     Kalori = kalori,
-                    Kategorileri = (YemekKategorileri)Enum.Parse(typeof(YemekKategorileri), katagorilistcomboBox2.SelectedItem.ToString())
+                    Kategorileri = (YemekKategorileri)Enum.Parse(typeof(YemekKategorileri),
+                        katagorilistcomboBox2.SelectedItem.ToString()),
+                    ResimYolu = secilenResimYolu,
                 };
                 yemekManager.InsertManager(yemek);
                 yemekListesi.Add(yemek);
+
                 YemekComboBox.Items.Clear();
                 foreach (var item in yemekListesi)
                 {
                     YemekComboBox.Items.Add(item.YemekAdi);
                 }
-                panel3.Visible = true;
-                panel5.Visible = false;
-                panel5.SendToBack();
-                panel3.BringToFront();
+                YemekEkleGuncelleCleaner();
             }
             else
             {
@@ -242,8 +253,8 @@ namespace DiyetProgramı.PL
 
         private void OgunGuncelleSilClick(object sender, EventArgs e)
         {
-            panel3.Visible = false;
-            panel6.Visible = true;
+            OgunEklePanel.Visible = false;
+            OgunGuncellePanel.Visible = true;
             OgunListBoxUpdate();
         }
 
@@ -307,8 +318,8 @@ namespace DiyetProgramı.PL
 
         private void Geri_panel6_Click(object sender, EventArgs e)
         {
-            panel6.Visible = false;
-            panel3.Visible = true;
+            OgunGuncellePanel.Visible = false;
+            OgunEklePanel.Visible = true;
         }
 
         private void OgunUpdateDeleteListBoxSelectedIndexChanged(object sender, EventArgs e)
@@ -368,15 +379,18 @@ namespace DiyetProgramı.PL
         {
             var tempOgun = ogunListesi[OgunUpdateDeleteListBox.SelectedIndex];
             tempOgun = ogunManager.GetByIdManager(tempOgun.Id);
+            tempOgun.YemekPorsiyon = Convert.ToDecimal(porsiyonYazTextBox.Text);
+            tempOgun.OgunIsmi = (OgunIsmi)OgunUpdateDeleteOgunCombobox.SelectedIndex;
+            tempOgun.OgunVakti = OgunGuncelleDateTimePicker.Value;
             ogunManager.UpdateManager(tempOgun);
-            OgunTextBoxUpdate(tempOgun);
+            OgunUpdateClear();
             OgunListBoxUpdate();
         }
 
         private void RaporlarBtnClick(object sender, EventArgs e)
         {
-            panel3.Visible = false;
-            panel4.Visible = true;
+            OgunEklePanel.Visible = false;
+            RaporPanel.Visible = true;
             HaftalikRadioBtn.Checked = true;
 
         }
@@ -492,30 +506,137 @@ namespace DiyetProgramı.PL
 
         private void Geri_Panel4_Click(object sender, EventArgs e)
         {
-            panel4.Visible = false;
-            panel3.Visible = true;
+            RaporPanel.Visible = false;
+            OgunEklePanel.Visible = true;
         }
 
         private void Geri_Panel5_Click(object sender, EventArgs e)
         {
-            panel5.Visible = false;
-            panel3.Visible = true;
+            YemekGuncellePanel.Visible = false;
+            OgunEklePanel.Visible = true;
         }
 
         private void Geri_Panel3_Click(object sender, EventArgs e)
         {
-            panel3.Visible = false;
-            panel1.Visible = true;
+            OgunEklePanel.Visible = false;
+            GirisPanel.Visible = true;
         }
 
         private void Geri_panel1_Click(object sender, EventArgs e)
         {
-            panel2.Visible = false;
-            panel1.Visible = true;
+            KayitOlPanel.Visible = false;
+            GirisPanel.Visible = true;
+        }
+        private void YemekSilBtn_Click(object sender, EventArgs e)
+        {
+            var tempYemek = yemekListesi[MevcutYemekListBox.SelectedIndex];
+            try
+            {
+                yemekManager.DeleteManager(tempYemek);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("Öğüne bağlı yemek silinemez");
+                return;
+            }
+            yemekListesi.Remove(tempYemek);
+
+            YemekEkleGuncelleCleaner();
         }
 
-        private void label28_Click(object sender, EventArgs e)
+        private void YemekGuncelleBtn_Click(object sender, EventArgs e)
         {
+            var tempYemek = yemekListesi[MevcutYemekListBox.SelectedIndex];
+            tempYemek.YemekAdi = YemekAdiEktextBox2.Text;
+            tempYemek.Kalori = Convert.ToDecimal(KalorimikektextBox3.Text);
+            tempYemek.Kategorileri = (YemekKategorileri)katagorilistcomboBox2.SelectedIndex;
+            yemekManager.UpdateManager(tempYemek);
+            YemekEkleGuncelleCleaner();
+        }
+
+        private void YemekEkleGuncelleCleaner()
+        {
+            MevcutYemekListBox.Items.Clear();
+            foreach (var yemek in yemekListesi)
+            {
+                MevcutYemekListBox.Items.Add(yemek.YemekAdi);
+            }
+            YemekAdiEktextBox2.Text = string.Empty;
+            KalorimikektextBox3.Text = string.Empty;
+            katagorilistcomboBox2.SelectedIndex = -1;
+            secilenResimYolu = String.Empty;
+        }
+
+        private void MevcutYemekListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (MevcutYemekListBox.SelectedIndex != -1)
+            {
+                var selectedYemek = yemekListesi[MevcutYemekListBox.SelectedIndex];
+                katagorilistcomboBox2.SelectedItem = selectedYemek.Kategorileri;
+                KalorimikektextBox3.Text = selectedYemek.Kalori.ToString();
+                YemekAdiEktextBox2.Text = selectedYemek.YemekAdi;
+                string resimYolu = selectedYemek.ResimYolu;
+
+                // Eğer resim yolu null değilse (resim varsa)
+                if (!string.IsNullOrEmpty(resimYolu))
+                {
+                    // Resmi yükle
+                    using (Image resim = Image.FromFile(resimYolu))
+                    {
+                        // PictureBox'a resmi atayın
+                        pictureBox10.Image = new Bitmap(resim);
+                    }
+                }
+                else
+                {
+                    pictureBox10.Image = Properties.Resources.Yemek;
+                }
+            }
+        }
+
+        private void OgunGuncelleDateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            OgunUpdateDeleteListBox.Items.Clear();
+            ogunListesi.Clear();
+            foreach (var ogun in ogunManager.GetAllDaily(OgunGuncelleDateTimePicker.Value))
+            {
+                ogunListesi.Add(ogun);
+                OgunIsmi ogunIsmi = (OgunIsmi)Enum.ToObject(typeof(OgunIsmi), ogun.OgunIsmi);
+                OgunUpdateDeleteListBox.Items.Add(Enum.GetName(typeof(OgunIsmi), ogunIsmi) + " - " + ogun.Yemek.YemekAdi + " - " +
+                                                  ogun.YenilenKalori);
+            }
+
+        }
+
+        private void OpenFileDialog_Click(object sender, EventArgs e)
+        {
+            // Resim yolunu saklamak için bir değişken tanımlayın
+
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Resim Dosyaları (*.jpg, *.jpeg, *.png, *.gif)|*.jpg;*.jpeg;*.png;*.gif";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    secilenResimYolu = openFileDialog.FileName; // Seçilen resmin yolunu saklayın
+                    string secilenResimAdi = Path.GetFileName(secilenResimYolu); // Resim dosyasının adını al
+                    pictureBox10.Image = new Bitmap(secilenResimYolu); // PictureBox'a seçilen resmi yükle
+                }
+            }
+        }
+
+        private void YemekComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var tempYemek = yemekListesi[YemekComboBox.SelectedIndex];
+            if (tempYemek.ResimYolu == null)
+                pictureBox8.Image = Properties.Resources.Yemek;
+            else
+            {
+                using (Image resim = Image.FromFile(tempYemek.ResimYolu))
+                {
+
+                    pictureBox8.Image = new Bitmap(resim);
+                }
+            }
 
         }
     }
