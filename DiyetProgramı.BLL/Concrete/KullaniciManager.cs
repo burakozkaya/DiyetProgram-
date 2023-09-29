@@ -17,7 +17,7 @@ namespace DiyetProgramı.BLL.Concrete
             _repo = (KullaniciRepo?)baseRepo;
         }
 
-        public bool UserLogin(string email,string password)//giriş 
+        public int UserLogin(string email,string password)//giriş 
         {
             return _repo.UserLogin(email,password);
         }

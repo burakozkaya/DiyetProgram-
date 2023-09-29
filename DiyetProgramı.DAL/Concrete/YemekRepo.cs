@@ -24,8 +24,36 @@ namespace DiyetProgramı.DAL.Concrete
                 .ToList();
         }
 
+        public List<YemekRaporu> YemekRapor()
+        {
+            return _dbSet
+                .Select(yemek => new YemekRaporu
+                {
+                    YemekAdi = yemek.YemekAdi,
+                    Sabah = yemek.Ogunler
+                        .Where(ogun => ogun.OgunIsmi == OgunIsmi.sabah)
+                        .Sum(ogun => ogun.YemekPorsiyon),
+                    SabahOgleArasi = yemek.Ogunler
+                        .Where(ogun => ogun.OgunIsmi == OgunIsmi.sabahogleArasi)
+                        .Sum(ogun => ogun.YemekPorsiyon),
+                    Oglen = yemek.Ogunler
+                        .Where(ogun => ogun.OgunIsmi == OgunIsmi.oglen)
+                        .Sum(ogun => ogun.YemekPorsiyon),
+                    Ikindi = yemek.Ogunler
+                        .Where(ogun => ogun.OgunIsmi == OgunIsmi.ikindi)
+                        .Sum(ogun => ogun.YemekPorsiyon),
+                    Aksam = yemek.Ogunler
+                        .Where(ogun => ogun.OgunIsmi == OgunIsmi.aksam)
+                        .Sum(ogun => ogun.YemekPorsiyon),
+                    Yatsi = yemek.Ogunler
+                        .Where(ogun => ogun.OgunIsmi == OgunIsmi.yatsi)
+                        .Sum(ogun => ogun.YemekPorsiyon)
+                })
+                .ToList();
+        }
         public List<Yemek> EnCokYenenYemek()
         {
+            var yemeklerx = new List<Yemek>();
             var yemeklerDb = _dbSet.
                 Include(x => x.Ogunler)
                 .ThenInclude(x => x.Kullanici).ToList();
@@ -38,10 +66,10 @@ namespace DiyetProgramı.DAL.Concrete
                     id = x.Key
                 })
                 .OrderByDescending(x => x.id)
-                .Take(5)
+                .Take(10)
                 .ToList();
-            var yemeklerx = new List<Yemek>();
-            foreach (var yemek in yemeklerx)
+            
+            foreach (var yemek in yemeklerDb)
             {
                 yemeklerx.Add(yemeklerDb.SingleOrDefault(x=>x.Id == yemek.Id));
             }

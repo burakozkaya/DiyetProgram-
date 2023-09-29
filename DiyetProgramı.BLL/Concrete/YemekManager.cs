@@ -17,7 +17,7 @@ namespace DiyetProgramı.BLL.Concrete
         private List<Yemek> _yemeks;
         public YemekManager(BaseRepo<Yemek> baseRepo) : base(baseRepo)
         {
-            _repo = (YemekRepo?)baseRepo;
+            _repo = (YemekRepo)baseRepo;
         }
         public  List<Yemek> GetAll()
         {
@@ -27,6 +27,11 @@ namespace DiyetProgramı.BLL.Concrete
         public List<Yemek> EnCokYenenYemek()
         {
             return _repo.EnCokYenenYemek();
+        }
+
+        public List<YemekRaporu> YemekRaporu()
+        {
+            return _repo.YemekRapor();
         }
 
         public List<Yemek> GünSonuRapor(DateTime dateTime)
@@ -69,7 +74,7 @@ namespace DiyetProgramı.BLL.Concrete
             return _yemeks.Average(x => x.Ogunler.Average(x => x.YenilenKalori));
         }
 
-        public decimal? HaftalikAylikRaporKullanici(DateTime baslangicTarihi, DateTime bitisTarihi,YemekKategorileri yemekKategorileri)
+        public decimal HaftalikAylikRaporKullanici(DateTime baslangicTarihi, DateTime bitisTarihi,YemekKategorileri yemekKategorileri)
         {
             _yemeks = new List<Yemek>();
             _yemeks = _repo.HaftalikAylikRaporKullanici(baslangicTarihi, bitisTarihi, yemekKategorileri);

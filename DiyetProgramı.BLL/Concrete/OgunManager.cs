@@ -27,7 +27,7 @@ namespace DiyetProgramı.BLL.Concrete
         {
             return _repo.GetAll().Where(x=>x.OgunVakti.Year == dateTime.Year && x.OgunVakti.Month == dateTime.Month && x.OgunVakti.Day == dateTime.Day).ToList();
         }
-        public decimal? HaftalikAylikRaporMax(DateTime baslangicTarihi, DateTime bitisTarihi,OgunIsmi ogunIsmi)
+        public decimal HaftalikAylikRaporMax(DateTime baslangicTarihi, DateTime bitisTarihi,OgunIsmi ogunIsmi)
         {
             _oguns = new List<Ogun>();
             _oguns = _repo.HaftalikAylikRapor(baslangicTarihi, bitisTarihi, ogunIsmi);
@@ -37,7 +37,7 @@ namespace DiyetProgramı.BLL.Concrete
             }
             return _oguns.Max(x=>x.YenilenKalori);
         }
-        public decimal? HaftalikAylikRaporMin(DateTime baslangicTarihi, DateTime bitisTarihi, OgunIsmi ogunIsmi)
+        public decimal HaftalikAylikRaporMin(DateTime baslangicTarihi, DateTime bitisTarihi, OgunIsmi ogunIsmi)
         {
             _oguns = new List<Ogun>();
             _oguns = _repo.HaftalikAylikRapor(baslangicTarihi, bitisTarihi, ogunIsmi);
@@ -47,7 +47,7 @@ namespace DiyetProgramı.BLL.Concrete
             }
             return _oguns.Min(x => x.YenilenKalori);
         }
-        public decimal? HaftalikAylikRaporAvg(DateTime baslangicTarihi, DateTime bitisTarihi, OgunIsmi ogunIsmi)
+        public decimal HaftalikAylikRaporAvg(DateTime baslangicTarihi, DateTime bitisTarihi, OgunIsmi ogunIsmi)
         {
             _oguns = new List<Ogun>();
             _oguns = _repo.HaftalikAylikRapor(baslangicTarihi, bitisTarihi, ogunIsmi);
@@ -58,7 +58,7 @@ namespace DiyetProgramı.BLL.Concrete
             return _oguns.Average(x => x.YenilenKalori);
         }
 
-        public decimal? HaftalikAylikRaporKullaniciAvg(DateTime baslangicTarihi, DateTime bitisTarihi, OgunIsmi ogunIsmi)
+        public decimal HaftalikAylikRaporKullaniciAvg(DateTime baslangicTarihi, DateTime bitisTarihi, OgunIsmi ogunIsmi)
         {
             _oguns = new List<Ogun>();
             _oguns = _repo.HaftalikAylikRaporKullanici(baslangicTarihi, bitisTarihi, ogunIsmi);

@@ -32,8 +32,8 @@ namespace DiyetProgramı.PL
             kullaniciManager = new KullaniciManager(new KullaniciRepo());
             ogunListesi = new List<Ogun>();
             yemekListesi = new List<Yemek>();
-            dateTimePicker1.MaxDate = DateTime.Now;
-            dateTimePicker2.MaxDate = DateTime.Now;
+            OgunEkleDateTimePicker.MaxDate = DateTime.Now;
+            RaporlarDateTimePicker.MaxDate = DateTime.Now;
 
         }
 
@@ -62,15 +62,15 @@ namespace DiyetProgramı.PL
             MessageBox.Show("Sağlıklı bir yaşam için ön koşul doğru ve dengeli beslenmektir.\r\n Beslenme konusuna detaylı bakacak olursak tükettiğimiz  yiyeceklerin kalorisini bilmek ve aşırı kalori içeren işlenmiş gıdalardan kaçınmak bu \r\ndengeyi sağlamanın en kolay yollarından biridir.\r\n Araştırmalar gösteriyor ki kalori takibini yapabilen insanlar daha az kalorili \r\nyiyecekler tüketerek kilolarını dengede tutmayı başarıyorlar");
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void GirişYapClick(object sender, EventArgs e)
         {
             string kullaniciAdi = KullaniciAdiTextBox.Text;
             string sifre = SifreTextBox.Text;
             string termpSitring = string.Empty;
-            if (kullaniciManager.UserLogin(kullaniciAdi, sifre))
+            var tempInt = kullaniciManager.UserLogin(kullaniciAdi, sifre);
+            if (tempInt != -1)
             {
-                UserId = kullaniciManager.UserId(kullaniciAdi);
-
+                UserId = tempInt;
                 MessageBox.Show("giriş başarılı");
                 panel1.Visible = false;
                 panel3.Visible = true;
@@ -83,25 +83,27 @@ namespace DiyetProgramı.PL
                 }
 
             }
-            if (string.IsNullOrWhiteSpace(kullaniciAdi) || string.IsNullOrWhiteSpace(sifre))
-            {
-                termpSitring += "Lütfen tüm alanları doldurun.";
-                return;
-            }
-            if (termpSitring == string.Empty)
-            {
-                termpSitring += "kullanici adi veya sifre hatasi";
-            }
             else
             {
+                if (string.IsNullOrWhiteSpace(kullaniciAdi) || string.IsNullOrWhiteSpace(sifre))
+                {
+                    termpSitring += "Lütfen tüm alanları doldurun.";
+                    return;
+                }
+                if (termpSitring == string.Empty)
+                {
+                    termpSitring += "kullanici adi veya sifre hatasi";
+                }
                 MessageBox.Show(termpSitring);
             }
+
+
 
         }
 
 
 
-        private void button2_Click(object sender, EventArgs e)
+        private void KayitOlClick(object sender, EventArgs e)
         {
             panel1.BringToFront();
             panel1.Visible = false;
@@ -112,11 +114,9 @@ namespace DiyetProgramı.PL
             //this.Show();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void KayitOlEkraniClick(object sender, EventArgs e)
         {
             panel2.BringToFront();
-
-
 
             string kullaniciMail = kullaniciMailTextBox.Text;
             string kullaniciSifre = kullaniciSifreTextBox.Text;
@@ -189,7 +189,7 @@ namespace DiyetProgramı.PL
 
 
         }
-        private void button8_Click(object sender, EventArgs e)
+        private void YemekEkleBtnClick(object sender, EventArgs e)
         {
             panel5.BringToFront();
             panel3.Visible = false;
@@ -200,11 +200,16 @@ namespace DiyetProgramı.PL
 
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void YemekEkleClick(object sender, EventArgs e)
         {
             string yemekAdi = YemekAdiEktextBox2.Text;
             int kalori;
-            if (int.TryParse(KalorimikektextBox3.Text, out kalori))
+            if (yemekListesi.Any(x => x.YemekAdi == yemekAdi))
+            {
+                MessageBox.Show("Aynı yemek girilemez");
+                return;
+            }
+            if (int.TryParse(KalorimikektextBox3.Text, out kalori) )
             {
                 var yemek = new Yemek()
                 {
@@ -231,7 +236,7 @@ namespace DiyetProgramı.PL
 
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void OgunGuncelleSilClick(object sender, EventArgs e)
         {
             panel3.Visible = false;
             panel6.Visible = true;
@@ -241,30 +246,30 @@ namespace DiyetProgramı.PL
         private void OgunListBoxUpdate()
         {
             ogunListesi.Clear();
-            listBox1.Items.Clear();
-            comboBox1.Items.Clear();
-            comboBox2.Items.Clear();
-            textBox1.Clear();
+            OgunUpdateDeleteListBox.Items.Clear();
+            OgunUpdateDeleteOgunCombobox.Items.Clear();
+            OgunUpdateDeleteYemekCombobox.Items.Clear();
+            porsiyonYazTextBox.Clear();
             ogunListesi = ogunManager.GetAllDaily(DateTime.Now);
             foreach (var ogun in ogunListesi)
             {
                 OgunIsmi ogunIsmi = (OgunIsmi)Enum.ToObject(typeof(OgunIsmi), ogun.OgunIsmi);
-                listBox1.Items.Add(Enum.GetName(typeof(OgunIsmi), ogunIsmi) + " - " + ogun.Yemek.YemekAdi + " - " +
+                OgunUpdateDeleteListBox.Items.Add(Enum.GetName(typeof(OgunIsmi), ogunIsmi) + " - " + ogun.Yemek.YemekAdi + " - " +
                                    ogun.YenilenKalori);
             }
 
             foreach (var yemek in yemekListesi)
             {
-                comboBox2.Items.Add(yemek.YemekAdi);
+                OgunUpdateDeleteYemekCombobox.Items.Add(yemek.YemekAdi);
             }
 
             foreach (var ogunIsmi in Enum.GetValues<OgunIsmi>())
             {
-                comboBox1.Items.Add(ogunIsmi);
+                OgunUpdateDeleteOgunCombobox.Items.Add(ogunIsmi);
             }
         }
 
-        private void button12_Click(object sender, EventArgs e)
+        private void OgunEkleBtnClick(object sender, EventArgs e)
         {
             Ogun ogun = new Ogun();
 
@@ -274,7 +279,7 @@ namespace DiyetProgramı.PL
             OgunIsmi ogunIsmi = (OgunIsmi)ogunIsmiObj;
             ogun.OgunIsmi = ogunIsmi;
 
-            ogun.OgunVakti = dateTimePicker1.Value.Date;
+            ogun.OgunVakti = OgunEkleDateTimePicker.Value.Date;
             ogun.KullaniciId = UserId;
 
             var selectedYemek = yemekListesi.SingleOrDefault(x => x.YemekAdi == YemekComboBox.SelectedItem);
@@ -302,9 +307,9 @@ namespace DiyetProgramı.PL
             panel3.Visible = true;
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void OgunUpdateDeleteListBoxSelectedIndexChanged(object sender, EventArgs e)
         {
-            int selectedIndex = listBox1.SelectedIndex;
+            int selectedIndex = OgunUpdateDeleteListBox.SelectedIndex;
             if (selectedIndex >= 0 && selectedIndex < ogunListesi.Count)
             {
                 var tempOgun = ogunListesi[selectedIndex];
@@ -319,15 +324,15 @@ namespace DiyetProgramı.PL
         private void OgunTextBoxUpdate(Ogun tempOgun)
         {
             OgunUpdateClear();
-            textBox1.Text = tempOgun.YemekPorsiyon.ToString();
-            comboBox1.SelectedItem = tempOgun.OgunIsmi;
-            comboBox2.SelectedItem = yemekListesi.FirstOrDefault(x => x.Id == tempOgun.YemekId)?.YemekAdi;
+            porsiyonYazTextBox.Text = tempOgun.YemekPorsiyon.ToString();
+            OgunUpdateDeleteOgunCombobox.SelectedItem = tempOgun.OgunIsmi;
+            OgunUpdateDeleteYemekCombobox.SelectedItem = yemekListesi.FirstOrDefault(x => x.Id == tempOgun.YemekId)?.YemekAdi;
         }
 
 
         private void Öğün_Sil_Click(object sender, EventArgs e)
         {
-            int selectedIndex = listBox1.SelectedIndex;
+            int selectedIndex = OgunUpdateDeleteListBox.SelectedIndex;
             if (selectedIndex >= 0 && selectedIndex < ogunListesi.Count)
             {
                 var tempOgun = ogunListesi[selectedIndex];
@@ -343,31 +348,28 @@ namespace DiyetProgramı.PL
 
         private void Öğün_Getir_Click(object sender, EventArgs e)
         {
-            var tempOgun = ogunListesi[listBox1.SelectedIndex];
+            var tempOgun = ogunListesi[OgunUpdateDeleteListBox.SelectedIndex];
             OgunTextBoxUpdate(tempOgun);
 
         }
 
         private void OgunUpdateClear()
         {
-            comboBox1.SelectedIndex = -1;
-            textBox1.Clear();
-            comboBox2.SelectedIndex = -1;
+            OgunUpdateDeleteOgunCombobox.SelectedIndex = -1;
+            porsiyonYazTextBox.Clear();
+            OgunUpdateDeleteYemekCombobox.SelectedIndex = -1;
         }
 
         private void Ögün_Güncelle_Click(object sender, EventArgs e)
         {
-            var tempOgun = ogunListesi[listBox1.SelectedIndex];
+            var tempOgun = ogunListesi[OgunUpdateDeleteListBox.SelectedIndex];
             tempOgun = ogunManager.GetByIdManager(tempOgun.Id);
-            //tempOgun.YemekPorsiyon = tempOgun.YemekPorsiyon.ToString();
-            //tempOgun.OgunIsmi = comboBox2.SelectedIndex;
-            //tempOgun.YemekId = yemekListesi.SingleOrDefault(x => x.Id == tempOgun.YemekId).YemekAdi.ToString();
             ogunManager.UpdateManager(tempOgun);
             OgunTextBoxUpdate(tempOgun);
             OgunListBoxUpdate();
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void RaporlarBtnClick(object sender, EventArgs e)
         {
             panel3.Visible = false;
             panel4.Visible = true;
@@ -375,27 +377,31 @@ namespace DiyetProgramı.PL
 
         }
 
-        private void button9_Click(object sender, EventArgs e)
+        private void GunSonuRaporuClick(object sender, EventArgs e)
         {
 
-            DateTime secilenTarih = dateTimePicker2.Value.Date;
-
-
+            DateTime secilenTarih = RaporlarDateTimePicker.Value.Date;
+            var tempInt = yemekManager.GünSonuToplamKalori(RaporlarDateTimePicker.Value.Date);
+            if (tempInt == 0)
+                return;
             var gunSonuRaporlar = yemekManager.GünSonuRapor(secilenTarih);
-            raporlarlistBox2.Items.Clear();
+
+            GunSonuKiyasRaporListBox.Items.Clear();
 
             foreach (var yemek in gunSonuRaporlar)
             {
-                raporlarlistBox2.Items.Add($"Yemek Adı: {yemek.YemekAdi}, Yenilen Kalori: {yemek.Ogunler.Sum(o => o.YenilenKalori)}");
+                GunSonuKiyasRaporListBox.Items.Add($"Yemek Adı: {yemek.YemekAdi}, Yenilen Kalori: {yemek.Ogunler.Sum(o => o.YenilenKalori)}");
             }
+
+            GunSonuKiyasRaporListBox.Items.Add("Gün Sonu Toplam Kalori : " + tempInt);
 
         }
 
-        private void button10_Click(object sender, EventArgs e)
+        private void KiyasRaporuClick(object sender, EventArgs e)
         {
             int days;
-            raporlarlistBox2.Items.Clear();
-            RaporlarListbox3.Items.Clear();
+            GunSonuKiyasRaporListBox.Items.Clear();
+            kiyasRaporOgunListBox.Items.Clear();
             if (HaftalikRadioBtn.Checked)
             {
                 days = 7;
@@ -405,43 +411,52 @@ namespace DiyetProgramı.PL
                 days = 30;
             }
 
+            int aralik = 1; // Her iki öğe arasındaki satır aralığı
+
             foreach (var value in Enum.GetValues(typeof(OgunIsmi)))
             {
-                var temp = $"{value} :";
-                temp += ogunManager.HaftalikAylikRaporMax(dateTimePicker2.Value.AddDays(-days), dateTimePicker2.Value,
-                    (OgunIsmi)value);
-                temp += " Kcal";
-                temp += ogunManager.HaftalikAylikRaporAvg(dateTimePicker2.Value.AddDays(-days), dateTimePicker2.Value,
-                    (OgunIsmi)value);
-                temp += " Kcal";
-                temp += ogunManager.HaftalikAylikRaporMin(dateTimePicker2.Value.AddDays(-days), dateTimePicker2.Value,
-                    (OgunIsmi)value);
-                temp += " Kcal";
-                temp += ogunManager.HaftalikAylikRaporKullaniciAvg(dateTimePicker2.Value.AddDays(-days),
-                    dateTimePicker2.Value,
-                    (OgunIsmi)value);
-                temp += " Kcal";
-                raporlarlistBox2.Items.Add(temp);
+                var temp = $"{Enum.GetName(typeof(OgunIsmi), value)} :";
+                temp += $" Max: {ogunManager.HaftalikAylikRaporMax(RaporlarDateTimePicker.Value.AddDays(-days), RaporlarDateTimePicker.Value, (OgunIsmi)value).ToString("0.0")} Kcal";
+                temp += $" Avg: {ogunManager.HaftalikAylikRaporAvg(RaporlarDateTimePicker.Value.AddDays(-days), RaporlarDateTimePicker.Value, (OgunIsmi)value).ToString("0.0")} Kcal";
+                temp += $" Min: {ogunManager.HaftalikAylikRaporMin(RaporlarDateTimePicker.Value.AddDays(-days), RaporlarDateTimePicker.Value, (OgunIsmi)value).ToString("0.0")} Kcal";
+                temp += $" UserAvg: {ogunManager.HaftalikAylikRaporKullaniciAvg(RaporlarDateTimePicker.Value.AddDays(-days), RaporlarDateTimePicker.Value, (OgunIsmi)value).ToString("0.0")} Kcal";
 
+                GunSonuKiyasRaporListBox.Items.Add(temp);
+
+                // Her iki öğe arasına belirli bir aralık eklemek için
+                if (value.GetHashCode() < Enum.GetValues(typeof(OgunIsmi)).Length - 1)
+                {
+                    for (int j = 0; j < aralik; j++)
+                    {
+                        GunSonuKiyasRaporListBox.Items.Add(""); // Boş satır eklemek için
+                    }
+                }
             }
-            foreach (var value in Enum.GetValues(typeof(YemekKategorileri)))
-            {
-                var temp = $"{value} :";
-                temp += yemekManager.HaftalikAylikRaporKategoriMax(dateTimePicker2.Value.AddDays(-days), dateTimePicker2.Value,
-                    (YemekKategorileri)value);
-                temp += " Kcal ";
-                temp += yemekManager.HaftalikAylikRaporKategoriAvg(dateTimePicker2.Value.AddDays(-days), dateTimePicker2.Value,
-                    (YemekKategorileri)value);
-                temp += " Kcal ";
-                temp += yemekManager.HaftalikAylikRaporKategoriMin(dateTimePicker2.Value.AddDays(-days), dateTimePicker2.Value,
-                    (YemekKategorileri)value);
-                temp += " Kcal ";
-                temp += yemekManager.HaftalikAylikRaporKullanici(dateTimePicker2.Value.AddDays(-days),
-                    dateTimePicker2.Value,
-                    (YemekKategorileri)value);
-                temp += " Kcal";
-                RaporlarListbox3.Items.Add(temp);
 
+            for (int i = 0; i < Enum.GetValues(typeof(YemekKategorileri)).Length; i++)
+            {
+                var value = Enum.GetValues(typeof(YemekKategorileri)).GetValue(i);
+                var maxKcal = yemekManager.HaftalikAylikRaporKategoriMax(RaporlarDateTimePicker.Value.AddDays(-days), RaporlarDateTimePicker.Value, (YemekKategorileri)value);
+                var avgKcal = yemekManager.HaftalikAylikRaporKategoriAvg(RaporlarDateTimePicker.Value.AddDays(-days), RaporlarDateTimePicker.Value, (YemekKategorileri)value);
+                var minKcal = yemekManager.HaftalikAylikRaporKategoriMin(RaporlarDateTimePicker.Value.AddDays(-days), RaporlarDateTimePicker.Value, (YemekKategorileri)value);
+                var userAvgKcal = yemekManager.HaftalikAylikRaporKullanici(RaporlarDateTimePicker.Value.AddDays(-days), RaporlarDateTimePicker.Value, (YemekKategorileri)value);
+
+                string temp = $"{Enum.GetName(typeof(YemekKategorileri), value)} :";
+                temp += $" Max: {maxKcal.ToString("0.0")} Kcal";
+                temp += $" Avg: {avgKcal.ToString("0.0")} Kcal";
+                temp += $" Min: {minKcal.ToString("0.0")} Kcal";
+                temp += $" UserAvg: {userAvgKcal.ToString("0.0")} Kcal";
+
+                kiyasRaporOgunListBox.Items.Add(temp);
+
+                // Her iki öğe arasına belirli bir aralık eklemek için
+                if (i < Enum.GetValues(typeof(YemekKategorileri)).Length - 1)
+                {
+                    for (int j = 0; j < aralik; j++)
+                    {
+                        kiyasRaporOgunListBox.Items.Add(""); // Boş satır eklemek için
+                    }
+                }
             }
 
 
@@ -452,9 +467,23 @@ namespace DiyetProgramı.PL
 
         }
 
-        private void raporlarlistBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void GunSonuKiyasRaporListBoxSelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void YemekCesidiRaporClick(object sender, EventArgs e)
+        {
+            kiyasRaporOgunListBox.Items.Clear();
+            foreach (var yemek in yemekManager.EnCokYenenYemek())
+            {
+                kiyasRaporOgunListBox.Items.Add(yemek.YemekAdi + " " + yemek.Kalori);
+            }
+            GunSonuKiyasRaporListBox.Items.Clear();
+            foreach (var yemekRaporu in yemekManager.YemekRaporu())
+            {
+                GunSonuKiyasRaporListBox.Items.Add(yemekRaporu);
+            }
         }
     }
 }

@@ -14,7 +14,7 @@ namespace DiyetProgramı.DAL.Concrete
         {
         }
 
-        public KullaniciRepo()
+        public KullaniciRepo() : base()
         {
         }
 
@@ -25,14 +25,14 @@ namespace DiyetProgramı.DAL.Concrete
             return true;
         }
 
-        public bool UserLogin(string email,string password)
+        public int UserLogin(string email,string password)
         {
             var user = _dbSet.SingleOrDefault(x => x.KullaniciMail == email);
             if(user == null) 
-                return false;
+                return -1;
             if (user.KullaniciSifre != password)
-                return false;
-            return true;
+                return -1;
+            return user.Id;
         }
 
         public int GetUserId(string userName)
