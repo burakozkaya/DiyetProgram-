@@ -626,6 +626,8 @@ namespace DiyetProgramı.PL
 
         private void YemekComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if(YemekComboBox.SelectedIndex == -1)
+            { pictureBox8.Image = Properties.Resources.Yemek; return; }
             var tempYemek = yemekListesi[YemekComboBox.SelectedIndex];
             if (tempYemek.ResimYolu == null)
                 pictureBox8.Image = Properties.Resources.Yemek;
@@ -633,7 +635,6 @@ namespace DiyetProgramı.PL
             {
                 using (Image resim = Image.FromFile(tempYemek.ResimYolu))
                 {
-
                     pictureBox8.Image = new Bitmap(resim);
                 }
             }
