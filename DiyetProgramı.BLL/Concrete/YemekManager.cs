@@ -21,7 +21,7 @@ namespace DiyetProgramı.BLL.Concrete
         }
         public  List<Yemek> GetAll()
         {
-            return _repo.GetAll().Where(x=>x.Ogunler.TrueForAll(x=>x.KullaniciId == _repo._kullaniciId)).ToList();
+            return _repo.GetAll();
         }
 
         public List<Yemek> EnCokYenenYemek()
@@ -34,15 +34,6 @@ namespace DiyetProgramı.BLL.Concrete
             return _repo.YemekRapor();
         }
 
-        public List<Yemek> GünSonuRapor(DateTime dateTime)
-        {
-            return _repo.GünSonuRapor(dateTime);
-        }
-
-        public decimal GünSonuToplamKalori(DateTime dateTime)
-        {
-            return GünSonuRapor(dateTime).Sum(x => x.Ogunler.Sum(x => x.YenilenKalori));
-        }
         public decimal HaftalikAylikRaporKategoriMax(DateTime baslangicTarihi, DateTime bitisTarihi,YemekKategorileri yemekKategorileri)
         {
             _yemeks = new List<Yemek>();

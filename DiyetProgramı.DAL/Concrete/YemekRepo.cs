@@ -19,8 +19,7 @@ namespace DiyetProgramı.DAL.Concrete
         public override List<Yemek> GetAll()
         {
             return _dbSet
-                .Include(x => x.Ogunler)
-                .ThenInclude(ogun => ogun.Kullanici)
+                .Where(x=>x.KullaniciId == _kullaniciId)
                 .ToList();
         }
 
@@ -32,9 +31,6 @@ namespace DiyetProgramı.DAL.Concrete
                     YemekAdi = yemek.YemekAdi,
                     Sabah = yemek.Ogunler
                         .Where(ogun => ogun.OgunIsmi == OgunIsmi.sabah)
-                        .Sum(ogun => ogun.YemekPorsiyon),
-                    SabahOgleArasi = yemek.Ogunler
-                        .Where(ogun => ogun.OgunIsmi == OgunIsmi.sabahogleArasi)
                         .Sum(ogun => ogun.YemekPorsiyon),
                     Oglen = yemek.Ogunler
                         .Where(ogun => ogun.OgunIsmi == OgunIsmi.oglen)
@@ -56,10 +52,10 @@ namespace DiyetProgramı.DAL.Concrete
             var yemeklerx = new List<Yemek>();
             var yemeklerDb = _dbSet.
                 Include(x => x.Ogunler)
-                .ThenInclude(x => x.Kullanici).ToList();
+                .ToList();
 
             var yemekler = yemeklerDb
-                .Where(x => x.Ogunler.Any(x => x.KullaniciId == _kullaniciId))
+                .Where(x => x.KullaniciId == _kullaniciId)
                 .GroupBy(x => x.YemekAdi)
                 .Select(x => new
                 {
@@ -68,10 +64,10 @@ namespace DiyetProgramı.DAL.Concrete
                 .OrderByDescending(x => x.id)
                 .Take(10)
                 .ToList();
-            
+
             foreach (var yemek in yemeklerDb)
             {
-                yemeklerx.Add(yemeklerDb.SingleOrDefault(x=>x.Id == yemek.Id));
+                yemeklerx.Add(yemeklerDb.SingleOrDefault(x => x.Id == yemek.Id));
             }
             return yemeklerx;
         }
@@ -80,26 +76,24 @@ namespace DiyetProgramı.DAL.Concrete
         {
             return _dbSet
                 .Include(x => x.Ogunler)
-                .ThenInclude(x => x.Kullanici)
-                .Where(x => x.Ogunler.Any(x => x.KullaniciId == _kullaniciId &&
-                                               x.OgunVakti.Day == dateTime.Day && 
+                .Where(x => x.KullaniciId == _kullaniciId && x.Ogunler.Any(x => 
+                                               x.OgunVakti.Day == dateTime.Day &&
                                                x.OgunVakti.Month == dateTime.Month &&
                                                x.OgunVakti.Year == dateTime.Year))
                 .ToList();
         }
 
-        public List<Yemek> HaftalikAylikRaporKullanici(DateTime baslangicTarihi, DateTime bitisTarihi,YemekKategorileri yemekKategorileri)
+        public List<Yemek> HaftalikAylikRaporKullanici(DateTime baslangicTarihi, DateTime bitisTarihi, YemekKategorileri yemekKategorileri)
         {
-            
-                return _dbSet
-                    .Include(x => x.Ogunler)
-                    .ThenInclude(x => x.Kullanici)
-                    .Where(x =>x.Kategorileri == yemekKategorileri && x.Ogunler.Any(ogun => ogun.KullaniciId == _kullaniciId &&
-                                                      ogun.OgunVakti >= baslangicTarihi &&
-                                                      ogun.OgunVakti <= bitisTarihi))
-                    .ToList();
+
+            return _dbSet
+                .Include(x => x.Ogunler)
+                .Where(x => x.Kategorileri == yemekKategorileri && x.KullaniciId == _kullaniciId && x.Ogunler.Any(ogun =>
+                                                  ogun.OgunVakti >= baslangicTarihi &&
+                                                  ogun.OgunVakti <= bitisTarihi))
+                .ToList();
         }
-        public List<Yemek> HaftalikAylikRapor(DateTime baslangicTarihi, DateTime bitisTarihi,YemekKategorileri yemekKategorileri)
+        public List<Yemek> HaftalikAylikRapor(DateTime baslangicTarihi, DateTime bitisTarihi, YemekKategorileri yemekKategorileri)
         {
 
             return _dbSet
@@ -116,6 +110,12 @@ namespace DiyetProgramı.DAL.Concrete
             _dbSet.Remove(entity);
             SaveChanges();
 
+        }
+
+        public override void Insert(Yemek entity)
+        {
+            entity.KullaniciId = _kullaniciId;
+            base.Insert(entity);
         }
     }
 }

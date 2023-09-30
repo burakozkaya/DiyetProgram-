@@ -4,7 +4,6 @@ namespace DiyetProgramı.Entities.Concrete;
 
 public class Ogun : BaseEntity
 {
-    public int KullaniciId { get; set; }
     public OgunIsmi OgunIsmi { get; set; }
     public DateTime OgunVakti { get; set; }
     public decimal YemekPorsiyon { get; set; }
@@ -12,6 +11,5 @@ public class Ogun : BaseEntity
     public int YemekId { get; set; }
 
     //Nav Property
-    public Kullanici Kullanici {get; set; }
     public Yemek Yemek { get; set; }
 }

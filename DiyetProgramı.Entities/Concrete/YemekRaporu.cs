@@ -10,7 +10,6 @@ namespace DiyetProgramı.Entities.Concrete
     {
         public string YemekAdi { get; set; }
         public decimal Sabah { get; set; }
-        public decimal SabahOgleArasi { get; set; }
         public decimal Oglen { get; set; }
         public decimal Ikindi { get; set; }
         public decimal Aksam { get; set; }
@@ -18,7 +17,7 @@ namespace DiyetProgramı.Entities.Concrete
         public override string ToString()
         {
             return
-                $"{YemekAdi} - Sabah: {Sabah} - Sabah Öğle Arası: {SabahOgleArasi} - Öğlen: {Oglen} - İkindi: {Ikindi} - Akşam: {Aksam} - Yatsı: {Yatsi}";
+                $"{YemekAdi} - Sabah: {Sabah} - Öğlen: {Oglen} - İkindi: {Ikindi} - Akşam: {Aksam} - Yatsı: {Yatsi}";
         }
     }
 }

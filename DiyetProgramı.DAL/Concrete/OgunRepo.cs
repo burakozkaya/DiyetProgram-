@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DiyetProgramı.DAL.Abstract;
 using DiyetProgramı.Entities.Concrete;
 using DiyetProgramı.Entities.Enum;
 using Microsoft.EntityFrameworkCore;
@@ -17,9 +18,9 @@ namespace DiyetProgramı.DAL.Concrete
 
         public override List<Ogun> GetAll()
         {
-            return _dbSet.Include(x=>x.Yemek).Where(x=>x.KullaniciId == _kullaniciId).ToList();
+            return _dbSet.Include(x => x.Yemek).ToList();
         }
-        public List<Ogun> HaftalikAylikRapor(DateTime baslangicTarihi, DateTime bitisTarihi,OgunIsmi ogunIsmi)
+        public List<Ogun> HaftalikAylikRapor(DateTime baslangicTarihi, DateTime bitisTarihi, OgunIsmi ogunIsmi)
         {
 
             return _dbSet.Where(x =>
@@ -28,8 +29,27 @@ namespace DiyetProgramı.DAL.Concrete
         public List<Ogun> HaftalikAylikRaporKullanici(DateTime baslangicTarihi, DateTime bitisTarihi, OgunIsmi ogunIsmi)
         {
 
-            return _dbSet.Where(x =>
-                x.KullaniciId == _kullaniciId && x.OgunVakti >= baslangicTarihi && x.OgunVakti <= bitisTarihi && x.OgunIsmi == ogunIsmi).ToList();
+            return _dbSet.Include(x => x.Yemek).Where(x =>
+                x.Yemek.KullaniciId == _kullaniciId && x.OgunVakti >= baslangicTarihi && x.OgunVakti <= bitisTarihi && x.OgunIsmi == ogunIsmi).ToList();
+        }
+
+        public decimal GunSonuToplamKalori(DateTime dateTime)
+        {
+            return _dbSet
+                .Where(x => x.OgunVakti.Day == dateTime.Day && x.OgunVakti.Month == dateTime.Month &&
+                            dateTime.Year == dateTime.Year).Sum(x => x.YenilenKalori);
+        }
+        public List<Ogun> GünSonuRapor(DateTime dateTime)
+        {
+            return _dbSet.Include(x=>x.Yemek).Where(x =>
+                x.OgunVakti.Day == dateTime.Day && x.OgunVakti.Month == dateTime.Month &&
+                dateTime.Year == dateTime.Year).ToList();
+        }
+
+        public override void Update(Ogun entity)
+        {
+            entity.YenilenKalori = entity.YemekPorsiyon * entity.Yemek.Kalori;
+            base.Update(entity);
         }
     }
 }

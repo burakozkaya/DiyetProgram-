@@ -68,5 +68,15 @@ namespace DiyetProgramı.BLL.Concrete
             }
             return _oguns.Average(x => x.YenilenKalori);
         }
+
+        public decimal GunSonuToplamKalori(DateTime dateTime)
+        {
+            return _repo.GunSonuToplamKalori(dateTime);
+        }
+
+        public List<Ogun> GünSonuRapor(DateTime dateTime)
+        {
+            return _repo.GünSonuRapor(dateTime);
+        }
     }
 }
