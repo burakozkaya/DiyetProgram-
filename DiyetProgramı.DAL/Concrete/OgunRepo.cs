@@ -51,5 +51,6 @@ namespace DiyetProgramı.DAL.Concrete
             entity.YenilenKalori = entity.YemekPorsiyon * entity.Yemek.Kalori;
             base.Update(entity);
         }
+
     }
 }
