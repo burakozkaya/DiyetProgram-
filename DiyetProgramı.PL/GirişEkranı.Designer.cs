@@ -453,7 +453,6 @@
             RaporPanel.Name = "RaporPanel";
             RaporPanel.Size = new Size(461, 551);
             RaporPanel.TabIndex = 19;
-            RaporPanel.Paint += panel4_Paint;
             // 
             // CesitLbl2
             // 
@@ -549,7 +548,6 @@
             GunSonuKiyasRaporListBox.Name = "GunSonuKiyasRaporListBox";
             GunSonuKiyasRaporListBox.Size = new Size(446, 154);
             GunSonuKiyasRaporListBox.TabIndex = 33;
-            GunSonuKiyasRaporListBox.SelectedIndexChanged += GunSonuKiyasRaporListBoxSelectedIndexChanged;
             // 
             // OgunEkleBtn
             // 
@@ -1357,9 +1355,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(653, 611);
             Controls.Add(OgunGuncellePanel);
+            Controls.Add(YemekGuncellePanel);
             Controls.Add(OgunEklePanel);
             Controls.Add(GirisPanel);
-            Controls.Add(YemekGuncellePanel);
             Controls.Add(RaporPanel);
             Controls.Add(ProfilPanel);
             Controls.Add(KayitOlPanel);

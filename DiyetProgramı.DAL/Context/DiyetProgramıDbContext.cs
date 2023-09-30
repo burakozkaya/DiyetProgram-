@@ -30,10 +30,12 @@ namespace DiyetProgramı.DAL.Context
                 .Entity<Kullanici>()
                 .Property(x=>x.KullaniciMail)
                 .HasMaxLength(50);
+
+
             modelBuilder
                 .Entity<Yemek>()
                 .Property(x => x.Kalori)
-                .HasPrecision(8, 2);
+                .HasPrecision(7, 2); 
 
         }
     }

@@ -82,11 +82,7 @@ namespace DiyetProgramı.PL
                 yemekManager = new YemekManager(new YemekRepo(UserId));
                 ogunManager = new OgunManager(new OgunRepo(UserId));
                 yemekListesi = yemekManager.GetAll();
-                foreach (var yemek in yemekListesi)
-                {
-                    YemekComboBox.Items.Add(yemek.YemekAdi);
-                }
-
+                yemekListesi.ForEach(x => YemekComboBox.Items.Add(x.YemekAdi));
                 kayıtbtnn.Visible = false;
                 Girisbtnn.Visible = false;
                 Homebtnnn.Enabled = true;
@@ -132,8 +128,6 @@ namespace DiyetProgramı.PL
             bool resutBoy = int.TryParse(boyTextBox.Text, out var boy);
             bool resultKilo = decimal.TryParse(kiloTextBox.Text, out var kilo);
 
-            //KullaniciManager kullanici = new KullaniciManager(new KullaniciRepo(1));
-
             var termpString = string.Empty;
             if (!kullaniciManager.ValidUser(kullaniciMail) || !kullaniciManager.ValidMail(kullaniciMail))
             {
@@ -177,9 +171,6 @@ namespace DiyetProgramı.PL
                 MessageBox.Show(termpString);
             }
 
-
-            //panel2.Visible = false;
-            //panel1.Visible = true;
             GirisPanel.BringToFront();
         }
         private void panel3_Paint(object sender, PaintEventArgs e)
@@ -193,10 +184,6 @@ namespace DiyetProgramı.PL
                 BoyLbl.Text = kullanici2.KullaniciBoy.ToString();
                 KilooLbl.Text = kullanici2.KullaniciKilo.ToString();
             }
-
-            // OgunConboBox.Items.Clear();
-
-
         }
 
         private void YemekEkleClick(object sender, EventArgs e)
@@ -282,7 +269,7 @@ namespace DiyetProgramı.PL
                 MessageBox.Show("Lütfen tüm alanların düzgün bir şekilde doldurulduğundan emin olunuz");
                 return;
             }
-            
+
 
             var selectedYemek = yemekListesi.SingleOrDefault(x => x.YemekAdi == YemekComboBox.SelectedItem);
 
@@ -426,7 +413,7 @@ namespace DiyetProgramı.PL
                 days = 30;
             }
 
-            int aralik = 1; // Her iki öğe arasındaki satır aralığı
+            int aralik = 1; 
 
             foreach (var value in Enum.GetValues(typeof(OgunIsmi)))
             {
@@ -438,12 +425,11 @@ namespace DiyetProgramı.PL
 
                 GunSonuKiyasRaporListBox.Items.Add(temp);
 
-                // Her iki öğe arasına belirli bir aralık eklemek için
                 if (value.GetHashCode() < Enum.GetValues(typeof(OgunIsmi)).Length - 1)
                 {
                     for (int j = 0; j < aralik; j++)
                     {
-                        GunSonuKiyasRaporListBox.Items.Add(""); // Boş satır eklemek için
+                        GunSonuKiyasRaporListBox.Items.Add("");
                     }
                 }
             }
@@ -464,26 +450,15 @@ namespace DiyetProgramı.PL
 
                 kiyasRaporOgunListBox.Items.Add(temp);
 
-                // Her iki öğe arasına belirli bir aralık eklemek için
                 if (i < Enum.GetValues(typeof(YemekKategorileri)).Length - 1)
                 {
                     for (int j = 0; j < aralik; j++)
                     {
-                        kiyasRaporOgunListBox.Items.Add(""); // Boş satır eklemek için
+                        kiyasRaporOgunListBox.Items.Add(""); 
                     }
                 }
             }
 
-
-        }
-
-        private void panel4_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void GunSonuKiyasRaporListBoxSelectedIndexChanged(object sender, EventArgs e)
-        {
 
         }
 
@@ -528,8 +503,6 @@ namespace DiyetProgramı.PL
                 return;
             }
 
-
-
         }
 
         private void YemekGuncelleBtn_Click(object sender, EventArgs e)
@@ -540,6 +513,11 @@ namespace DiyetProgramı.PL
                 tempYemek.YemekAdi = YemekAdiEktextBox2.Text;
                 tempYemek.Kalori = Convert.ToDecimal(KalorimikektextBox3.Text);
                 tempYemek.Kategorileri = (YemekKategorileri)katagorilistcomboBox2.SelectedIndex;
+                if (yemekListesi.Any(x => x.YemekAdi == tempYemek.YemekAdi))
+                {
+                    MessageBox.Show("Aynı isme sahip yemek girilemez");
+                    return;
+                }
                 yemekManager.UpdateManager(tempYemek);
                 YemekEkleGuncelleCleaner();
             }
@@ -655,6 +633,8 @@ namespace DiyetProgramı.PL
             RaporPanel.Visible = false;
             KayitOlPanel.Visible = false;
             GirisPanel.Visible = false;
+            YemekComboBox.Items.Clear();
+            yemekListesi.ForEach(x => YemekComboBox.Items.Add(x.YemekAdi));
         }
 
         private void YemekBtnnn_Click(object sender, EventArgs e)
@@ -667,8 +647,11 @@ namespace DiyetProgramı.PL
             KayitOlPanel.Visible = false;
             GirisPanel.Visible = false;
 
+            katagorilistcomboBox2.SelectedIndex = -1;
             MevcutYemekListBox.Items.Clear();
             katagorilistcomboBox2.Items.Clear();
+            YemekAdiEktextBox2.Clear();
+            KalorimikektextBox3.Clear();
             foreach (var yemek in yemekListesi)
             {
                 MevcutYemekListBox.Items.Add(yemek.YemekAdi);
@@ -697,6 +680,10 @@ namespace DiyetProgramı.PL
             RaporPanel.Visible = false;
             KayitOlPanel.Visible = false;
             GirisPanel.Visible = false;
+
+            OgunUpdateDeleteOgunCombobox.SelectedIndex = -1;
+            porsiyonYazTextBox.Text = string.Empty;
+            OgunUpdateDeleteYemekCombobox.SelectedIndex = -1;
         }
 
         private void ProfilBtnnn_Click(object sender, EventArgs e)
