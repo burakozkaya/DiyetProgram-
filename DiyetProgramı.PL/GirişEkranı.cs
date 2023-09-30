@@ -36,6 +36,8 @@ namespace DiyetProgramı.PL
             yemekListesi = new List<Yemek>();
             OgunEkleDateTimePicker.MaxDate = DateTime.Now.AddMonths(2);
             RaporlarDateTimePicker.MaxDate = DateTime.Now.AddMonths(2);
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
 
         }
 
@@ -104,17 +106,8 @@ namespace DiyetProgramı.PL
         }
 
 
+        //iptal
 
-        private void KayitOlClick(object sender, EventArgs e)
-        {
-            GirisPanel.BringToFront();
-            GirisPanel.Visible = false;
-            KayitOlPanel.Visible = true;
-            //this.Visible = false;
-            //KayıtEkranı kayıtEkran = new KayıtEkranı();
-            //kayıtEkran.ShowDialog();
-            //this.Show();
-        }
 
         private void KayitOlEkraniClick(object sender, EventArgs e)
         {
@@ -195,25 +188,6 @@ namespace DiyetProgramı.PL
 
 
         }
-        private void YemekEkleBtnClick(object sender, EventArgs e)
-        {
-            YemekGuncellePanel.BringToFront();
-            OgunEklePanel.Visible = false;
-            YemekGuncellePanel.Visible = true;
-            MevcutYemekListBox.Items.Clear();
-            katagorilistcomboBox2.Items.Clear();
-            foreach (var yemek in yemekListesi)
-            {
-                MevcutYemekListBox.Items.Add(yemek.YemekAdi);
-            }
-
-            foreach (var name in Enum.GetValues(typeof(YemekKategorileri)))
-            {
-                katagorilistcomboBox2.Items.Add(name);
-            }
-
-
-        }
 
         private void YemekEkleClick(object sender, EventArgs e)
         {
@@ -251,12 +225,7 @@ namespace DiyetProgramı.PL
 
         }
 
-        private void OgunGuncelleSilClick(object sender, EventArgs e)
-        {
-            OgunEklePanel.Visible = false;
-            OgunGuncellePanel.Visible = true;
-            OgunListBoxUpdate();
-        }
+
 
         private void OgunListBoxUpdate()
         {
@@ -387,17 +356,11 @@ namespace DiyetProgramı.PL
             OgunListBoxUpdate();
         }
 
-        private void RaporlarBtnClick(object sender, EventArgs e)
-        {
-            OgunEklePanel.Visible = false;
-            RaporPanel.Visible = true;
-            HaftalikRadioBtn.Checked = true;
 
-        }
 
         private void GunSonuRaporuClick(object sender, EventArgs e)
         {
-
+            kiyasRaporOgunListBox.Visible = false;
             DateTime secilenTarih = RaporlarDateTimePicker.Value.Date;
             var tempInt = yemekManager.GünSonuToplamKalori(RaporlarDateTimePicker.Value.Date);
             if (tempInt == 0)
@@ -504,24 +467,6 @@ namespace DiyetProgramı.PL
             }
         }
 
-        private void Geri_Panel4_Click(object sender, EventArgs e)
-        {
-            RaporPanel.Visible = false;
-            OgunEklePanel.Visible = true;
-        }
-
-        private void Geri_Panel5_Click(object sender, EventArgs e)
-        {
-            YemekGuncellePanel.Visible = false;
-            OgunEklePanel.Visible = true;
-        }
-
-        private void Geri_Panel3_Click(object sender, EventArgs e)
-        {
-            OgunEklePanel.Visible = false;
-            GirisPanel.Visible = true;
-        }
-
         private void Geri_panel1_Click(object sender, EventArgs e)
         {
             KayitOlPanel.Visible = false;
@@ -626,7 +571,7 @@ namespace DiyetProgramı.PL
 
         private void YemekComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(YemekComboBox.SelectedIndex == -1)
+            if (YemekComboBox.SelectedIndex == -1)
             { pictureBox8.Image = Properties.Resources.Yemek; return; }
             var tempYemek = yemekListesi[YemekComboBox.SelectedIndex];
             if (tempYemek.ResimYolu == null)
@@ -640,5 +585,266 @@ namespace DiyetProgramı.PL
             }
 
         }
+
+        private void Girisbtnn_Click(object sender, EventArgs e)
+        {
+            OgunEklePanel.Visible = false;
+            ProfilPanel.Visible = false;
+            YemekGuncellePanel.Visible = false;
+            OgunGuncellePanel.Visible = false;
+            RaporPanel.Visible = false;
+            KayitOlPanel.Visible = false;
+            GirisPanel.Visible = true;
+
+        }
+
+        private void kayıtbtnn_Click(object sender, EventArgs e)
+        {
+            OgunEklePanel.Visible = false;
+            ProfilPanel.Visible = false;
+            YemekGuncellePanel.Visible = false;
+            OgunGuncellePanel.Visible = false;
+            RaporPanel.Visible = false;
+            KayitOlPanel.Visible = true;
+            GirisPanel.Visible = false;
+        }
+
+        private void Homebtnnn_Click(object sender, EventArgs e)
+        {
+            OgunEklePanel.Visible = true;
+            ProfilPanel.Visible = false;
+            YemekGuncellePanel.Visible = false;
+            OgunGuncellePanel.Visible = false;
+            RaporPanel.Visible = false;
+            KayitOlPanel.Visible = false;
+            GirisPanel.Visible = false;
+        }
+
+        private void YemekBtnnn_Click(object sender, EventArgs e)
+        {
+            OgunEklePanel.Visible = false;
+            ProfilPanel.Visible = false;
+            YemekGuncellePanel.Visible = true;
+            OgunGuncellePanel.Visible = false;
+            RaporPanel.Visible = false;
+            KayitOlPanel.Visible = false;
+            GirisPanel.Visible = false;
+
+            MevcutYemekListBox.Items.Clear();
+            katagorilistcomboBox2.Items.Clear();
+            foreach (var yemek in yemekListesi)
+            {
+                MevcutYemekListBox.Items.Add(yemek.YemekAdi);
+            }
+
+            foreach (var name in Enum.GetValues(typeof(YemekKategorileri)))
+            {
+                katagorilistcomboBox2.Items.Add(name);
+            }
+        }
+
+        private void OgunBtnnn_Click(object sender, EventArgs e)
+        {
+
+            //RaporLbl.Visible = true;
+            //GunSonuKiyasRaporListBox.Visible = true;
+            //KiyasLbl1.Visible = false;
+            //CesitLbl1.Visible = false;
+            //KiyasLbl2.Visible = false;
+            //CesitLbl2.Visible=false;
+
+            OgunEklePanel.Visible = false;
+            ProfilPanel.Visible = false;
+            YemekGuncellePanel.Visible = false;
+            OgunGuncellePanel.Visible = true;
+            RaporPanel.Visible = false;
+            KayitOlPanel.Visible = false;
+            GirisPanel.Visible = false;
+        }
+
+        private void ProfilBtnnn_Click(object sender, EventArgs e)
+        {
+
+            OgunEklePanel.Visible = false;
+            ProfilPanel.Visible = true;
+            YemekGuncellePanel.Visible = false;
+            OgunGuncellePanel.Visible = false;
+            RaporPanel.Visible = false;
+            KayitOlPanel.Visible = false;
+            GirisPanel.Visible = false;
+        }
+
+        private void GunSonRaporBtn_Click(object sender, EventArgs e)
+        {
+            GunSonuKiyasRaporListBox.Items.Clear();
+            OgunEklePanel.Visible = false;
+            ProfilPanel.Visible = false;
+            YemekGuncellePanel.Visible = false;
+            OgunGuncellePanel.Visible = false;
+            RaporPanel.Visible = true;
+            KayitOlPanel.Visible = false;
+            GirisPanel.Visible = false;
+
+            GunSonuRaporuBtn.Visible = true;
+            RaporLbl.Visible = true;
+            GunSonuKiyasRaporListBox.Visible = true;
+            KiyasLbl1.Visible = false;
+            CesitLbl1.Visible = false;
+            KiyasLbl2.Visible = false;
+            CesitLbl2.Visible = false;
+            HaftalikRadioBtn.Visible = false;
+            AylikRadioBtn.Visible = false;
+            RaporlarDateTimePicker.Visible = true;
+            KiyasRaporBtn.Visible = false;
+            button11.Visible = false;
+            kiyasRaporOgunListBox.Visible = false;
+
+            DateTime secilenTarih = RaporlarDateTimePicker.Value.Date;
+            var tempInt = yemekManager.GünSonuToplamKalori(RaporlarDateTimePicker.Value.Date);
+            if (tempInt == 0)
+                return;
+            var gunSonuRaporlar = yemekManager.GünSonuRapor(secilenTarih);
+
+            GunSonuKiyasRaporListBox.Items.Clear();
+
+            foreach (var yemek in gunSonuRaporlar)
+            {
+                GunSonuKiyasRaporListBox.Items.Add($"Yemek Adı: {yemek.YemekAdi}, Yenilen Kalori: {yemek.Ogunler.Sum(o => o.YenilenKalori)}");
+            }
+
+            GunSonuKiyasRaporListBox.Items.Add("Gün Sonu Toplam Kalori : " + tempInt);
+
+
+        }
+
+        private void KıyasRaporBtnnn_Click(object sender, EventArgs e)
+        {
+
+
+            OgunEklePanel.Visible = false;
+            ProfilPanel.Visible = false;
+            YemekGuncellePanel.Visible = false;
+            OgunGuncellePanel.Visible = false;
+            RaporPanel.Visible = true;
+            KayitOlPanel.Visible = false;
+            GirisPanel.Visible = false;
+
+            GunSonuRaporuBtn.Visible = false;
+            RaporLbl.Visible = false;
+            GunSonuKiyasRaporListBox.Visible = true;
+            KiyasLbl1.Visible = true;
+            CesitLbl1.Visible = false;
+            KiyasLbl2.Visible = true;
+            CesitLbl2.Visible = false;
+            HaftalikRadioBtn.Visible = true;
+            AylikRadioBtn.Visible = true;
+            RaporlarDateTimePicker.Visible = true;
+            KiyasRaporBtn.Visible = true;
+            button11.Visible = false;
+            kiyasRaporOgunListBox.Visible = true;
+
+
+            int days;
+            GunSonuKiyasRaporListBox.Items.Clear();
+            kiyasRaporOgunListBox.Items.Clear();
+            if (HaftalikRadioBtn.Checked)
+            {
+                days = 7;
+            }
+            else
+            {
+                days = 30;
+            }
+
+            int aralik = 1; // Her iki öğe arasındaki satır aralığı
+
+            foreach (var value in Enum.GetValues(typeof(OgunIsmi)))
+            {
+                var temp = $"{Enum.GetName(typeof(OgunIsmi), value)} :";
+                temp += $" Max: {ogunManager.HaftalikAylikRaporMax(RaporlarDateTimePicker.Value.AddDays(-days), RaporlarDateTimePicker.Value, (OgunIsmi)value).ToString("0.0")} Kcal";
+                temp += $" Avg: {ogunManager.HaftalikAylikRaporAvg(RaporlarDateTimePicker.Value.AddDays(-days), RaporlarDateTimePicker.Value, (OgunIsmi)value).ToString("0.0")} Kcal";
+                temp += $" Min: {ogunManager.HaftalikAylikRaporMin(RaporlarDateTimePicker.Value.AddDays(-days), RaporlarDateTimePicker.Value, (OgunIsmi)value).ToString("0.0")} Kcal";
+                temp += $" UserAvg: {ogunManager.HaftalikAylikRaporKullaniciAvg(RaporlarDateTimePicker.Value.AddDays(-days), RaporlarDateTimePicker.Value, (OgunIsmi)value).ToString("0.0")} Kcal";
+
+                GunSonuKiyasRaporListBox.Items.Add(temp);
+
+                // Her iki öğe arasına belirli bir aralık eklemek için
+                if (value.GetHashCode() < Enum.GetValues(typeof(OgunIsmi)).Length - 1)
+                {
+                    for (int j = 0; j < aralik; j++)
+                    {
+                        GunSonuKiyasRaporListBox.Items.Add(""); // Boş satır eklemek için
+                    }
+                }
+            }
+
+            for (int i = 0; i < Enum.GetValues(typeof(YemekKategorileri)).Length; i++)
+            {
+                var value = Enum.GetValues(typeof(YemekKategorileri)).GetValue(i);
+                var maxKcal = yemekManager.HaftalikAylikRaporKategoriMax(RaporlarDateTimePicker.Value.AddDays(-days), RaporlarDateTimePicker.Value, (YemekKategorileri)value);
+                var avgKcal = yemekManager.HaftalikAylikRaporKategoriAvg(RaporlarDateTimePicker.Value.AddDays(-days), RaporlarDateTimePicker.Value, (YemekKategorileri)value);
+                var minKcal = yemekManager.HaftalikAylikRaporKategoriMin(RaporlarDateTimePicker.Value.AddDays(-days), RaporlarDateTimePicker.Value, (YemekKategorileri)value);
+                var userAvgKcal = yemekManager.HaftalikAylikRaporKullanici(RaporlarDateTimePicker.Value.AddDays(-days), RaporlarDateTimePicker.Value, (YemekKategorileri)value);
+
+                string temp = $"{Enum.GetName(typeof(YemekKategorileri), value)} :";
+                temp += $" Max: {maxKcal.ToString("0.0")} Kcal";
+                temp += $" Avg: {avgKcal.ToString("0.0")} Kcal";
+                temp += $" Min: {minKcal.ToString("0.0")} Kcal";
+                temp += $" UserAvg: {userAvgKcal.ToString("0.0")} Kcal";
+
+                kiyasRaporOgunListBox.Items.Add(temp);
+
+                // Her iki öğe arasına belirli bir aralık eklemek için
+                if (i < Enum.GetValues(typeof(YemekKategorileri)).Length - 1)
+                {
+                    for (int j = 0; j < aralik; j++)
+                    {
+                        kiyasRaporOgunListBox.Items.Add(""); // Boş satır eklemek için
+                    }
+                }
+            }
+
+
+
+        }
+
+        private void YemekCesidiBtnnn_Click(object sender, EventArgs e)
+        {
+            kiyasRaporOgunListBox.Items.Clear();
+            OgunEklePanel.Visible = false;
+            ProfilPanel.Visible = false;
+            YemekGuncellePanel.Visible = false;
+            OgunGuncellePanel.Visible = false;
+            RaporPanel.Visible = true;
+            KayitOlPanel.Visible = false;
+            GirisPanel.Visible = false;
+
+            GunSonuRaporuBtn.Visible = false;
+            RaporLbl.Visible = false;
+            GunSonuKiyasRaporListBox.Visible = true;
+            KiyasLbl1.Visible = false;
+            CesitLbl1.Visible = true;
+            KiyasLbl2.Visible = false;
+            CesitLbl2.Visible = true;
+            HaftalikRadioBtn.Visible = true;
+            AylikRadioBtn.Visible = true;
+            RaporlarDateTimePicker.Visible = true;
+            KiyasRaporBtn.Visible = false;
+            button11.Visible = true;
+            kiyasRaporOgunListBox.Visible = true;
+
+
+
+            foreach (var yemek in yemekManager.EnCokYenenYemek())
+            {
+                kiyasRaporOgunListBox.Items.Add(yemek.YemekAdi + " " + yemek.Kalori);
+            }
+            GunSonuKiyasRaporListBox.Items.Clear();
+            foreach (var yemekRaporu in yemekManager.YemekRaporu())
+            {
+                GunSonuKiyasRaporListBox.Items.Add(yemekRaporu);
+            }
+        }
+
     }
 }
