@@ -535,6 +535,7 @@ namespace DiyetProgramı.PL
             KalorimikektextBox3.Text = string.Empty;
             katagorilistcomboBox2.SelectedIndex = -1;
             secilenResimYolu = String.Empty;
+            pictureBox10.Image = Properties.Resources.Yemek;
         }
 
         private void MevcutYemekListBox_SelectedIndexChanged(object sender, EventArgs e)
