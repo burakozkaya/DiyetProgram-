@@ -39,7 +39,9 @@ namespace DiyetProgramı.PL
             OgunGuncelleDateTimePicker.MaxDate = DateTime.Now;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
-
+            CikisBtn.Visible = false;
+            YardimBtn.Visible = false;
+            this.Text = "Kalori Takip Programı";
         }
 
         private void GirişEkranı_Load(object sender, EventArgs e)
@@ -64,7 +66,6 @@ namespace DiyetProgramı.PL
                 OgunConboBox.Items.Add(item);
 
             }
-            MessageBox.Show("Sağlıklı bir yaşam için ön koşul doğru ve dengeli beslenmektir.\r\n Beslenme konusuna detaylı bakacak olursak tükettiğimiz  yiyeceklerin kalorisini bilmek ve aşırı kalori içeren işlenmiş gıdalardan kaçınmak bu \r\ndengeyi sağlamanın en kolay yollarından biridir.\r\n Araştırmalar gösteriyor ki kalori takibini yapabilen insanlar daha az kalorili \r\nyiyecekler tüketerek kilolarını dengede tutmayı başarıyorlar");
         }
 
         private void GirişYapClick(object sender, EventArgs e)
@@ -92,6 +93,8 @@ namespace DiyetProgramı.PL
                 GunSonRaporBtn.Enabled = true;
                 KıyasRaporBtnnn.Enabled = true;
                 YemekCesidiBtnnn.Enabled = true;
+                CikisBtn.Visible = true;
+                YardimBtn.Visible = true;
             }
             else
             {
@@ -106,14 +109,7 @@ namespace DiyetProgramı.PL
                 }
                 MessageBox.Show(termpSitring);
             }
-
-
-
         }
-
-
-        //iptal
-
 
         private void KayitOlEkraniClick(object sender, EventArgs e)
         {
@@ -137,7 +133,7 @@ namespace DiyetProgramı.PL
             {
                 termpString += "Lütfen tüm alanları doldurun.\r\n";
             }
-            if (!resultYas || !resutBoy || !resultKilo)
+            if (!resultYas || !resutBoy || !resultKilo ||yas < 1 || boy <20 || kilo < 4)
             {
                 termpString += "yaş,boy veya kilo değişken tanımlama hatası.\r\n";
             }
@@ -413,7 +409,7 @@ namespace DiyetProgramı.PL
                 days = 30;
             }
 
-            int aralik = 1; 
+            int aralik = 1;
 
             foreach (var value in Enum.GetValues(typeof(OgunIsmi)))
             {
@@ -454,7 +450,7 @@ namespace DiyetProgramı.PL
                 {
                     for (int j = 0; j < aralik; j++)
                     {
-                        kiyasRaporOgunListBox.Items.Add(""); 
+                        kiyasRaporOgunListBox.Items.Add("");
                     }
                 }
             }
@@ -551,13 +547,11 @@ namespace DiyetProgramı.PL
                 YemekAdiEktextBox2.Text = selectedYemek.YemekAdi;
                 string resimYolu = selectedYemek.ResimYolu;
 
-                // Eğer resim yolu null değilse (resim varsa)
                 if (!string.IsNullOrEmpty(resimYolu))
                 {
                     // Resmi yükle
                     using (Image resim = Image.FromFile(resimYolu))
                     {
-                        // PictureBox'a resmi atayın
                         pictureBox10.Image = new Bitmap(resim);
                     }
                 }
@@ -570,16 +564,15 @@ namespace DiyetProgramı.PL
 
         private void OpenFileDialog_Click(object sender, EventArgs e)
         {
-            // Resim yolunu saklamak için bir değişken tanımlayın
 
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.Filter = "Resim Dosyaları (*.jpg, *.jpeg, *.png, *.gif)|*.jpg;*.jpeg;*.png;*.gif";
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    secilenResimYolu = openFileDialog.FileName; // Seçilen resmin yolunu saklayın
-                    string secilenResimAdi = Path.GetFileName(secilenResimYolu); // Resim dosyasının adını al
-                    pictureBox10.Image = new Bitmap(secilenResimYolu); // PictureBox'a seçilen resmi yükle
+                    secilenResimYolu = openFileDialog.FileName;
+                    string secilenResimAdi = Path.GetFileName(secilenResimYolu);
+                    pictureBox10.Image = new Bitmap(secilenResimYolu);
                 }
             }
         }
@@ -665,14 +658,6 @@ namespace DiyetProgramı.PL
 
         private void OgunBtnnn_Click(object sender, EventArgs e)
         {
-
-            //RaporLbl.Visible = true;
-            //GunSonuKiyasRaporListBox.Visible = true;
-            //KiyasLbl1.Visible = false;
-            //CesitLbl1.Visible = false;
-            //KiyasLbl2.Visible = false;
-            //CesitLbl2.Visible=false;
-
             OgunEklePanel.Visible = false;
             ProfilPanel.Visible = false;
             YemekGuncellePanel.Visible = false;
@@ -782,5 +767,41 @@ namespace DiyetProgramı.PL
             AylikRadioBtn.Visible = false;
         }
 
+        private void CikisBtn_Click(object sender, EventArgs e)
+        {
+            DialogResult yeniOyun = MessageBox.Show("Kullanıcı çıkışı mı yapmak istersiniz", "Kalori Takip", MessageBoxButtons.YesNo);
+            if (yeniOyun == DialogResult.Yes)
+            {
+                Application.Restart();
+                Environment.Exit(0);
+            }
+            else
+            {
+                Application.Exit();
+            }
+        }
+
+        private void YardimBtn_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Kalori Takip Uygulamasına Hoş Geldiniz!\n\n" +
+                            "Bu uygulama ile günlük kalori alımınızı ve öğünlerinizi takip edebilirsiniz.\n\n" +
+                            "Ana Özellikler:\n" +
+                            "- Kayıt Ol: Yeni bir kullanıcı olarak kaydınızı oluşturun.\n" +
+                            "- Giriş Yap: Kayıtlı bir kullanıcı olarak uygulamaya giriş yapın.\n" +
+                            "- Ana Ekran: Giriş yaptıktan sonra ana ekranı görüntüleyebilirsiniz. Bu ekranda günlük öğünlerinizi ekleyebilirsiniz.\n" +
+                            "- Yemekler: Yemek eklemek ve güncellemek için bu bölümü kullanabilirsiniz. Her yemeği adı, kalori değeri ve kategoriye göre kaydedebilirsiniz.\n" +
+                            "- Öğünler: Günlük öğünlerinizi eklemek ve güncellemek için bu bölümü kullanabilirsiniz. Öğün adı, yemek seçimi ve porsiyon miktarını kaydedebilirsiniz.\n" +
+                            "- Profil: Kullanıcı profilinizi görüntüleyebilir ve güncelleyebilirsiniz. İsim, soyisim, boy, kilo ve yaş gibi bilgilerinizi burada düzenleyebilirsiniz.\n" +
+                            "- Raporlar: Günlük ve haftalık/aylık raporlarınızı görüntüleyebilirsiniz. Tükettiğiniz kalorileri, öğünleri ve yemek türlerini inceleyebilirsiniz.\n" +
+                            "- Yardım: Şu an gördüğünüz bu yardım penceresini görüntüler.\n" +
+                            "- Çıkış: Uygulamadan çıkış yapabilirsiniz.\n\n" +
+                            "Uygulamanın her bölümünü kullanırken lütfen bilgilerinizi eksiksiz ve doğru bir şekilde girdiğinizden emin olun.\n\n" +
+                            "Sağlıklı bir yaşam için kalori takibinizi bu uygulama ile daha kolay yapabilirsiniz. İyi kullanımlar dileriz!");
+        }
+
+        private void HakkimizdeBtn_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Hakkımızda\r\n\r\nBiz, \"Diyet Programı\" ekibi olarak size hizmet vermek için buradayız. İşte ekibimizden kısa bir tanıtım:\r\n\r\nProje Lideri: Burak Özkaya\r\nYazılım Geliştirici: Burak Özkaya,Sergen Aktaş,Ekrem Salih Ünlü\r\n\r\nBizler, bu projeyi bir araya gelerek hayata geçirdik. Projenin her aşamasında birlikte çalışarak, projenin nasıl şekilleneceği ve hangi katmanlardan oluşacağı konusunda ortak kararlar aldık. Burak DAL'ı yazdı, Sergen PL'i oluşturdu ve Ekrem BL'i oluşturdu. Sizin için en iyi kalori takip deneyimini sunabilmek için çaba sarf ediyoruz.\r\n\r\nTeşekkür ederiz,\r\n\"Kalori Takip Programı\" Ekibi");
+        }
     }
 }

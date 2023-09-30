@@ -8,9 +8,17 @@ namespace DiyetProgramı.Entities.Enum
 {
     public enum YemekKategorileri
     {
-        Çorbalar, 
+        Çorbalar,
+        Kahvaltılık,
         Salatalar,
-        Ana_Yemekler,
+        Et,
+        Balık,
+        FastFood,
+        Sulu_Yemek,
+        Unlu_Mamüller,
+        Meyve,
+        Sebze,
+        İçecekler,
         Atıştırmalıklar,
         Tatlılar
     }

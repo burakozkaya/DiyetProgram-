@@ -118,6 +118,8 @@
             Ögün_Güncelle = new Button();
             openFileDialog1 = new OpenFileDialog();
             MenüPanel = new Panel();
+            CikisBtn = new Button();
+            YardimBtn = new Button();
             HakkimizdeBtn = new Button();
             YemekCesidiBtnnn = new Button();
             KıyasRaporBtnnn = new Button();
@@ -211,7 +213,7 @@
             GirisPanel.Location = new Point(192, 60);
             GirisPanel.Margin = new Padding(3, 2, 3, 2);
             GirisPanel.Name = "GirisPanel";
-            GirisPanel.Size = new Size(461, 551);
+            GirisPanel.Size = new Size(461, 550);
             GirisPanel.TabIndex = 16;
             // 
             // KayitOlPanel
@@ -238,7 +240,7 @@
             KayitOlPanel.Location = new Point(192, 60);
             KayitOlPanel.Margin = new Padding(3, 2, 3, 2);
             KayitOlPanel.Name = "KayitOlPanel";
-            KayitOlPanel.Size = new Size(461, 551);
+            KayitOlPanel.Size = new Size(461, 550);
             KayitOlPanel.TabIndex = 17;
             // 
             // KayitEkraniBtn
@@ -451,7 +453,7 @@
             RaporPanel.Location = new Point(192, 60);
             RaporPanel.Margin = new Padding(3, 2, 3, 2);
             RaporPanel.Name = "RaporPanel";
-            RaporPanel.Size = new Size(461, 551);
+            RaporPanel.Size = new Size(461, 550);
             RaporPanel.TabIndex = 19;
             // 
             // CesitLbl2
@@ -675,7 +677,7 @@
             OgunEklePanel.Location = new Point(192, 60);
             OgunEklePanel.Margin = new Padding(3, 2, 3, 2);
             OgunEklePanel.Name = "OgunEklePanel";
-            OgunEklePanel.Size = new Size(461, 551);
+            OgunEklePanel.Size = new Size(461, 550);
             OgunEklePanel.TabIndex = 18;
             OgunEklePanel.Paint += panel3_Paint;
             // 
@@ -762,7 +764,7 @@
             YemekGuncellePanel.Location = new Point(192, 60);
             YemekGuncellePanel.Margin = new Padding(3, 2, 3, 2);
             YemekGuncellePanel.Name = "YemekGuncellePanel";
-            YemekGuncellePanel.Size = new Size(461, 551);
+            YemekGuncellePanel.Size = new Size(461, 550);
             YemekGuncellePanel.TabIndex = 20;
             // 
             // label27
@@ -918,7 +920,7 @@
             OgunGuncellePanel.Location = new Point(192, 60);
             OgunGuncellePanel.Margin = new Padding(3, 2, 3, 2);
             OgunGuncellePanel.Name = "OgunGuncellePanel";
-            OgunGuncellePanel.Size = new Size(461, 551);
+            OgunGuncellePanel.Size = new Size(461, 550);
             OgunGuncellePanel.TabIndex = 21;
             // 
             // pictureBox14
@@ -1044,6 +1046,8 @@
             // MenüPanel
             // 
             MenüPanel.BackColor = SystemColors.ButtonShadow;
+            MenüPanel.Controls.Add(CikisBtn);
+            MenüPanel.Controls.Add(YardimBtn);
             MenüPanel.Controls.Add(HakkimizdeBtn);
             MenüPanel.Controls.Add(YemekCesidiBtnnn);
             MenüPanel.Controls.Add(KıyasRaporBtnnn);
@@ -1059,8 +1063,50 @@
             MenüPanel.Location = new Point(0, 0);
             MenüPanel.Margin = new Padding(3, 2, 3, 2);
             MenüPanel.Name = "MenüPanel";
-            MenüPanel.Size = new Size(192, 611);
+            MenüPanel.Size = new Size(192, 610);
             MenüPanel.TabIndex = 22;
+            // 
+            // CikisBtn
+            // 
+            CikisBtn.BackColor = SystemColors.ButtonShadow;
+            CikisBtn.Dock = DockStyle.Top;
+            CikisBtn.FlatAppearance.BorderSize = 0;
+            CikisBtn.FlatStyle = FlatStyle.Flat;
+            CikisBtn.ForeColor = Color.White;
+            CikisBtn.Image = Properties.Resources.icons8_about_50;
+            CikisBtn.ImageAlign = ContentAlignment.BottomLeft;
+            CikisBtn.Location = new Point(0, 654);
+            CikisBtn.Margin = new Padding(3, 2, 3, 2);
+            CikisBtn.Name = "CikisBtn";
+            CikisBtn.Padding = new Padding(10, 0, 0, 0);
+            CikisBtn.Size = new Size(192, 54);
+            CikisBtn.TabIndex = 19;
+            CikisBtn.Text = "Çıkış";
+            CikisBtn.TextAlign = ContentAlignment.MiddleLeft;
+            CikisBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
+            CikisBtn.UseVisualStyleBackColor = false;
+            CikisBtn.Click += CikisBtn_Click;
+            // 
+            // YardimBtn
+            // 
+            YardimBtn.BackColor = SystemColors.ButtonShadow;
+            YardimBtn.Dock = DockStyle.Top;
+            YardimBtn.FlatAppearance.BorderSize = 0;
+            YardimBtn.FlatStyle = FlatStyle.Flat;
+            YardimBtn.ForeColor = Color.White;
+            YardimBtn.Image = Properties.Resources.icons8_about_50;
+            YardimBtn.ImageAlign = ContentAlignment.BottomLeft;
+            YardimBtn.Location = new Point(0, 600);
+            YardimBtn.Margin = new Padding(3, 2, 3, 2);
+            YardimBtn.Name = "YardimBtn";
+            YardimBtn.Padding = new Padding(10, 0, 0, 0);
+            YardimBtn.Size = new Size(192, 54);
+            YardimBtn.TabIndex = 20;
+            YardimBtn.Text = "Yardım";
+            YardimBtn.TextAlign = ContentAlignment.MiddleLeft;
+            YardimBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
+            YardimBtn.UseVisualStyleBackColor = false;
+            YardimBtn.Click += YardimBtn_Click;
             // 
             // HakkimizdeBtn
             // 
@@ -1071,16 +1117,17 @@
             HakkimizdeBtn.ForeColor = Color.White;
             HakkimizdeBtn.Image = Properties.Resources.icons8_about_50;
             HakkimizdeBtn.ImageAlign = ContentAlignment.BottomLeft;
-            HakkimizdeBtn.Location = new Point(0, 537);
+            HakkimizdeBtn.Location = new Point(0, 546);
             HakkimizdeBtn.Margin = new Padding(3, 2, 3, 2);
             HakkimizdeBtn.Name = "HakkimizdeBtn";
             HakkimizdeBtn.Padding = new Padding(10, 0, 0, 0);
-            HakkimizdeBtn.Size = new Size(192, 50);
+            HakkimizdeBtn.Size = new Size(192, 54);
             HakkimizdeBtn.TabIndex = 18;
             HakkimizdeBtn.Text = "Hakkımızda";
             HakkimizdeBtn.TextAlign = ContentAlignment.MiddleLeft;
             HakkimizdeBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
             HakkimizdeBtn.UseVisualStyleBackColor = false;
+            HakkimizdeBtn.Click += HakkimizdeBtn_Click;
             // 
             // YemekCesidiBtnnn
             // 
@@ -1092,11 +1139,11 @@
             YemekCesidiBtnnn.ForeColor = Color.White;
             YemekCesidiBtnnn.Image = Properties.Resources.icons8_multiple_options_64;
             YemekCesidiBtnnn.ImageAlign = ContentAlignment.BottomLeft;
-            YemekCesidiBtnnn.Location = new Point(0, 484);
+            YemekCesidiBtnnn.Location = new Point(0, 492);
             YemekCesidiBtnnn.Margin = new Padding(3, 2, 3, 2);
             YemekCesidiBtnnn.Name = "YemekCesidiBtnnn";
             YemekCesidiBtnnn.Padding = new Padding(10, 0, 0, 0);
-            YemekCesidiBtnnn.Size = new Size(192, 53);
+            YemekCesidiBtnnn.Size = new Size(192, 54);
             YemekCesidiBtnnn.TabIndex = 14;
             YemekCesidiBtnnn.Text = "Yemek Çeşidi Raporları";
             YemekCesidiBtnnn.TextAlign = ContentAlignment.MiddleLeft;
@@ -1114,11 +1161,11 @@
             KıyasRaporBtnnn.ForeColor = Color.White;
             KıyasRaporBtnnn.Image = Properties.Resources.icons8_comparison_50;
             KıyasRaporBtnnn.ImageAlign = ContentAlignment.BottomLeft;
-            KıyasRaporBtnnn.Location = new Point(0, 431);
+            KıyasRaporBtnnn.Location = new Point(0, 438);
             KıyasRaporBtnnn.Margin = new Padding(3, 2, 3, 2);
             KıyasRaporBtnnn.Name = "KıyasRaporBtnnn";
             KıyasRaporBtnnn.Padding = new Padding(10, 0, 0, 0);
-            KıyasRaporBtnnn.Size = new Size(192, 53);
+            KıyasRaporBtnnn.Size = new Size(192, 54);
             KıyasRaporBtnnn.TabIndex = 13;
             KıyasRaporBtnnn.Text = "Kıyas Raporları";
             KıyasRaporBtnnn.TextAlign = ContentAlignment.MiddleLeft;
@@ -1136,11 +1183,11 @@
             GunSonRaporBtn.ForeColor = Color.White;
             GunSonRaporBtn.Image = Properties.Resources.icons8_daily_50;
             GunSonRaporBtn.ImageAlign = ContentAlignment.BottomLeft;
-            GunSonRaporBtn.Location = new Point(0, 378);
+            GunSonRaporBtn.Location = new Point(0, 384);
             GunSonRaporBtn.Margin = new Padding(3, 2, 3, 2);
             GunSonRaporBtn.Name = "GunSonRaporBtn";
             GunSonRaporBtn.Padding = new Padding(10, 0, 0, 0);
-            GunSonRaporBtn.Size = new Size(192, 53);
+            GunSonRaporBtn.Size = new Size(192, 54);
             GunSonRaporBtn.TabIndex = 12;
             GunSonRaporBtn.Text = "Gün Sonu Raporları";
             GunSonRaporBtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -1158,11 +1205,11 @@
             OgunBtnnn.ForeColor = Color.White;
             OgunBtnnn.Image = Properties.Resources.icons8_daytime_50;
             OgunBtnnn.ImageAlign = ContentAlignment.BottomLeft;
-            OgunBtnnn.Location = new Point(0, 325);
+            OgunBtnnn.Location = new Point(0, 330);
             OgunBtnnn.Margin = new Padding(3, 2, 3, 2);
             OgunBtnnn.Name = "OgunBtnnn";
             OgunBtnnn.Padding = new Padding(10, 0, 0, 0);
-            OgunBtnnn.Size = new Size(192, 53);
+            OgunBtnnn.Size = new Size(192, 54);
             OgunBtnnn.TabIndex = 11;
             OgunBtnnn.Text = "Öğün Ayarları";
             OgunBtnnn.TextAlign = ContentAlignment.MiddleLeft;
@@ -1180,11 +1227,11 @@
             YemekBtnnn.ForeColor = Color.White;
             YemekBtnnn.Image = Properties.Resources.icons8_meal_50;
             YemekBtnnn.ImageAlign = ContentAlignment.BottomLeft;
-            YemekBtnnn.Location = new Point(0, 272);
+            YemekBtnnn.Location = new Point(0, 276);
             YemekBtnnn.Margin = new Padding(3, 2, 3, 2);
             YemekBtnnn.Name = "YemekBtnnn";
             YemekBtnnn.Padding = new Padding(10, 0, 0, 0);
-            YemekBtnnn.Size = new Size(192, 53);
+            YemekBtnnn.Size = new Size(192, 54);
             YemekBtnnn.TabIndex = 10;
             YemekBtnnn.Text = "Yemek Ayarları";
             YemekBtnnn.TextAlign = ContentAlignment.MiddleLeft;
@@ -1202,11 +1249,11 @@
             ProfilBtnnn.ForeColor = Color.White;
             ProfilBtnnn.Image = Properties.Resources.icons8_account_50;
             ProfilBtnnn.ImageAlign = ContentAlignment.BottomLeft;
-            ProfilBtnnn.Location = new Point(0, 219);
+            ProfilBtnnn.Location = new Point(0, 222);
             ProfilBtnnn.Margin = new Padding(3, 2, 3, 2);
             ProfilBtnnn.Name = "ProfilBtnnn";
             ProfilBtnnn.Padding = new Padding(10, 0, 0, 0);
-            ProfilBtnnn.Size = new Size(192, 53);
+            ProfilBtnnn.Size = new Size(192, 54);
             ProfilBtnnn.TabIndex = 15;
             ProfilBtnnn.Text = "Profil Bilgileri";
             ProfilBtnnn.TextAlign = ContentAlignment.MiddleLeft;
@@ -1224,11 +1271,11 @@
             Homebtnnn.ForeColor = Color.White;
             Homebtnnn.Image = Properties.Resources.icons8_home_50;
             Homebtnnn.ImageAlign = ContentAlignment.BottomLeft;
-            Homebtnnn.Location = new Point(0, 166);
+            Homebtnnn.Location = new Point(0, 168);
             Homebtnnn.Margin = new Padding(3, 2, 3, 2);
             Homebtnnn.Name = "Homebtnnn";
             Homebtnnn.Padding = new Padding(10, 0, 0, 0);
-            Homebtnnn.Size = new Size(192, 53);
+            Homebtnnn.Size = new Size(192, 54);
             Homebtnnn.TabIndex = 16;
             Homebtnnn.Text = "Anasayfa";
             Homebtnnn.TextAlign = ContentAlignment.MiddleLeft;
@@ -1245,11 +1292,11 @@
             kayıtbtnn.ForeColor = Color.White;
             kayıtbtnn.Image = Properties.Resources.icons8_sign_up_50;
             kayıtbtnn.ImageAlign = ContentAlignment.BottomLeft;
-            kayıtbtnn.Location = new Point(0, 113);
+            kayıtbtnn.Location = new Point(0, 114);
             kayıtbtnn.Margin = new Padding(3, 2, 3, 2);
             kayıtbtnn.Name = "kayıtbtnn";
             kayıtbtnn.Padding = new Padding(10, 0, 0, 0);
-            kayıtbtnn.Size = new Size(192, 53);
+            kayıtbtnn.Size = new Size(192, 54);
             kayıtbtnn.TabIndex = 9;
             kayıtbtnn.Text = "Kayıt Ol";
             kayıtbtnn.TextAlign = ContentAlignment.MiddleLeft;
@@ -1270,7 +1317,7 @@
             Girisbtnn.Margin = new Padding(3, 2, 3, 2);
             Girisbtnn.Name = "Girisbtnn";
             Girisbtnn.Padding = new Padding(10, 0, 0, 0);
-            Girisbtnn.Size = new Size(192, 53);
+            Girisbtnn.Size = new Size(192, 54);
             Girisbtnn.TabIndex = 8;
             Girisbtnn.Text = "Giris Yap";
             Girisbtnn.TextAlign = ContentAlignment.MiddleLeft;
@@ -1337,7 +1384,7 @@
             ProfilPanel.Location = new Point(192, 60);
             ProfilPanel.Margin = new Padding(3, 2, 3, 2);
             ProfilPanel.Name = "ProfilPanel";
-            ProfilPanel.Size = new Size(461, 551);
+            ProfilPanel.Size = new Size(461, 550);
             ProfilPanel.TabIndex = 57;
             // 
             // ProfilpictureBox
@@ -1353,7 +1400,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(653, 611);
+            ClientSize = new Size(653, 610);
             Controls.Add(OgunGuncellePanel);
             Controls.Add(YemekGuncellePanel);
             Controls.Add(OgunEklePanel);
@@ -1501,5 +1548,7 @@
         private PictureBox ProfilpictureBox;
         private Button HakkimizdeBtn;
         private Button OgunGetirBtn;
+        private Button CikisBtn;
+        private Button YardimBtn;
     }
 }
