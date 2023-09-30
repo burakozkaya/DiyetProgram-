@@ -670,6 +670,8 @@ namespace DiyetProgramı.PL
             OgunUpdateDeleteOgunCombobox.SelectedIndex = -1;
             porsiyonYazTextBox.Text = string.Empty;
             OgunUpdateDeleteYemekCombobox.SelectedIndex = -1;
+            OgunUpdateDeleteYemekCombobox.Items.Clear();
+            yemekListesi.ForEach(x=>OgunUpdateDeleteYemekCombobox.Items.Add(x.YemekAdi));
         }
 
         private void ProfilBtnnn_Click(object sender, EventArgs e)
