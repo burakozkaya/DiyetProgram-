@@ -230,9 +230,12 @@ namespace DiyetProgramı.PL
             ogunListesi = ogunManager.GetAllDaily(OgunGuncelleDateTimePicker.Value.Date);
             foreach (var ogun in ogunListesi)
             {
+                string formattedYenilenKalori = ogun.YenilenKalori.ToString("N2");
+
+               
                 OgunIsmi ogunIsmi = (OgunIsmi)Enum.ToObject(typeof(OgunIsmi), ogun.OgunIsmi);
-                OgunUpdateDeleteListBox.Items.Add(Enum.GetName(typeof(OgunIsmi), ogunIsmi) + " - " + ogun.Yemek.YemekAdi + " - " +
-                                   ogun.YenilenKalori);
+                
+                OgunUpdateDeleteListBox.Items.Add(Enum.GetName(typeof(OgunIsmi), ogunIsmi) + " - " + ogun.Yemek.YemekAdi + " - " + formattedYenilenKalori);
             }
 
             foreach (var yemek in yemekListesi)
@@ -352,6 +355,7 @@ namespace DiyetProgramı.PL
             }
             var tempOgun = ogunListesi[OgunUpdateDeleteListBox.SelectedIndex];
             tempOgun = ogunManager.GetByIdManager(tempOgun.Id);
+            tempOgun.YemekId = yemekListesi[OgunUpdateDeleteYemekCombobox.SelectedIndex].Id;
             tempOgun.YemekPorsiyon = Convert.ToDecimal(porsiyonYazTextBox.Text);
             tempOgun.OgunIsmi = (OgunIsmi)OgunUpdateDeleteOgunCombobox.SelectedIndex;
             tempOgun.OgunVakti = OgunGuncelleDateTimePicker.Value.Date;
@@ -509,11 +513,7 @@ namespace DiyetProgramı.PL
                 tempYemek.YemekAdi = YemekAdiEktextBox2.Text;
                 tempYemek.Kalori = Convert.ToDecimal(KalorimikektextBox3.Text);
                 tempYemek.Kategorileri = (YemekKategorileri)katagorilistcomboBox2.SelectedIndex;
-                if (yemekListesi.Any(x => x.YemekAdi == tempYemek.YemekAdi))
-                {
-                    MessageBox.Show("Aynı isme sahip yemek girilemez");
-                    return;
-                }
+               
                 yemekManager.UpdateManager(tempYemek);
                 YemekEkleGuncelleCleaner();
             }
@@ -582,7 +582,7 @@ namespace DiyetProgramı.PL
             if (YemekComboBox.SelectedIndex == -1)
             { pictureBox8.Image = Properties.Resources.Yemek; return; }
             var tempYemek = yemekListesi[YemekComboBox.SelectedIndex];
-            if (tempYemek.ResimYolu == null)
+            if (string.IsNullOrEmpty(tempYemek.ResimYolu))
                 pictureBox8.Image = Properties.Resources.Yemek;
             else
             {
@@ -769,16 +769,12 @@ namespace DiyetProgramı.PL
 
         private void CikisBtn_Click(object sender, EventArgs e)
         {
-            DialogResult yeniOyun = MessageBox.Show("Kullanıcı çıkışı mı yapmak istersiniz", "Kalori Takip", MessageBoxButtons.YesNo);
+            DialogResult yeniOyun = MessageBox.Show("Çıkış mı yapmak istersiniz?", "Kalori Takip Programı", MessageBoxButtons.YesNo);
             if (yeniOyun == DialogResult.Yes)
             {
-                Application.Restart();
                 Environment.Exit(0);
             }
-            else
-            {
-                Application.Exit();
-            }
+            
         }
 
         private void YardimBtn_Click(object sender, EventArgs e)
