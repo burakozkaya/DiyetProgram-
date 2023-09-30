@@ -513,7 +513,7 @@ namespace DiyetProgramı.PL
                 tempYemek.YemekAdi = YemekAdiEktextBox2.Text;
                 tempYemek.Kalori = Convert.ToDecimal(KalorimikektextBox3.Text);
                 tempYemek.Kategorileri = (YemekKategorileri)katagorilistcomboBox2.SelectedIndex;
-               
+                tempYemek.ResimYolu = secilenResimYolu;
                 yemekManager.UpdateManager(tempYemek);
                 YemekEkleGuncelleCleaner();
             }
