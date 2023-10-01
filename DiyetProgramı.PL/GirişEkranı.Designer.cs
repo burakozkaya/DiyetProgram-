@@ -135,7 +135,6 @@
             BaslikPanel = new Panel();
             EkranIsmiLbl = new Label();
             ProfilPanel = new Panel();
-            ProfilpictureBox = new PictureBox();
             GirisPanel.SuspendLayout();
             KayitOlPanel.SuspendLayout();
             RaporPanel.SuspendLayout();
@@ -149,7 +148,6 @@
             LogoPanel.SuspendLayout();
             BaslikPanel.SuspendLayout();
             ProfilPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)ProfilpictureBox).BeginInit();
             SuspendLayout();
             // 
             // sqlCommand1
@@ -573,7 +571,7 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            label11.Location = new Point(19, 207);
+            label11.Location = new Point(144, 150);
             label11.Name = "label11";
             label11.Size = new Size(71, 37);
             label11.TabIndex = 28;
@@ -583,7 +581,7 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            label12.Location = new Point(16, 242);
+            label12.Location = new Point(144, 192);
             label12.Name = "label12";
             label12.Size = new Size(96, 37);
             label12.TabIndex = 29;
@@ -593,7 +591,7 @@
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            label13.Location = new Point(16, 279);
+            label13.Location = new Point(144, 229);
             label13.Name = "label13";
             label13.Size = new Size(67, 37);
             label13.TabIndex = 30;
@@ -603,7 +601,7 @@
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            label14.Location = new Point(15, 318);
+            label14.Location = new Point(144, 268);
             label14.Name = "label14";
             label14.Size = new Size(69, 37);
             label14.TabIndex = 31;
@@ -613,7 +611,7 @@
             // 
             IsimLbl.AutoSize = true;
             IsimLbl.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            IsimLbl.Location = new Point(131, 200);
+            IsimLbl.Location = new Point(259, 150);
             IsimLbl.Name = "IsimLbl";
             IsimLbl.Size = new Size(175, 37);
             IsimLbl.TabIndex = 36;
@@ -623,7 +621,7 @@
             // 
             SoyadLbl.AutoSize = true;
             SoyadLbl.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            SoyadLbl.Location = new Point(131, 239);
+            SoyadLbl.Location = new Point(259, 189);
             SoyadLbl.Name = "SoyadLbl";
             SoyadLbl.Size = new Size(175, 37);
             SoyadLbl.TabIndex = 37;
@@ -633,7 +631,7 @@
             // 
             BoyLbl.AutoSize = true;
             BoyLbl.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            BoyLbl.Location = new Point(131, 280);
+            BoyLbl.Location = new Point(259, 230);
             BoyLbl.Name = "BoyLbl";
             BoyLbl.Size = new Size(175, 37);
             BoyLbl.TabIndex = 38;
@@ -643,7 +641,7 @@
             // 
             KilooLbl.AutoSize = true;
             KilooLbl.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            KilooLbl.Location = new Point(131, 318);
+            KilooLbl.Location = new Point(259, 268);
             KilooLbl.Name = "KilooLbl";
             KilooLbl.Size = new Size(175, 37);
             KilooLbl.TabIndex = 39;
@@ -1372,7 +1370,6 @@
             // 
             // ProfilPanel
             // 
-            ProfilPanel.Controls.Add(ProfilpictureBox);
             ProfilPanel.Controls.Add(IsimLbl);
             ProfilPanel.Controls.Add(label11);
             ProfilPanel.Controls.Add(label12);
@@ -1388,27 +1385,18 @@
             ProfilPanel.Size = new Size(601, 541);
             ProfilPanel.TabIndex = 57;
             // 
-            // ProfilpictureBox
-            // 
-            ProfilpictureBox.Location = new Point(124, 13);
-            ProfilpictureBox.Margin = new Padding(3, 2, 3, 2);
-            ProfilpictureBox.Name = "ProfilpictureBox";
-            ProfilpictureBox.Size = new Size(185, 182);
-            ProfilpictureBox.TabIndex = 40;
-            ProfilpictureBox.TabStop = false;
-            // 
             // GirişEkranı
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(793, 601);
+            Controls.Add(ProfilPanel);
             Controls.Add(GirisPanel);
             Controls.Add(KayitOlPanel);
             Controls.Add(YemekGuncellePanel);
             Controls.Add(RaporPanel);
             Controls.Add(OgunGuncellePanel);
             Controls.Add(OgunEklePanel);
-            Controls.Add(ProfilPanel);
             Controls.Add(BaslikPanel);
             Controls.Add(MenüPanel);
             Margin = new Padding(3, 2, 3, 2);
@@ -1437,7 +1425,6 @@
             BaslikPanel.PerformLayout();
             ProfilPanel.ResumeLayout(false);
             ProfilPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)ProfilpictureBox).EndInit();
             ResumeLayout(false);
         }
 
@@ -1545,7 +1532,6 @@
         private Label CesitLbl1;
         private Label KiyasLbl1;
         private Label label27;
-        private PictureBox ProfilpictureBox;
         private Button HakkimizdeBtn;
         private Button OgunGetirBtn;
         private Button CikisBtn;
