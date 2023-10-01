@@ -74,5 +74,14 @@ namespace DiyetProgramı.BLL.Concrete
                 return string.Concat(hash.ComputeHash(Encoding.UTF8.GetBytes(sifre)).Select(l => l.ToString("X2")));
             }
         }
+        public override void UpdateManager(Kullanici entity)
+        {
+            entity.KullaniciSifre = sha256_hash(entity.KullaniciSifre);
+            base.UpdateManager(entity);
+        }
+        public override Kullanici GetByIdManager(int id)
+        {
+            return base.GetByIdManager(id);
+        }
     }
 }

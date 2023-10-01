@@ -16,7 +16,7 @@ namespace DiyetProgramı.BLL.Concrete
         {
             _repo = baseRepo;
         }
-        public T GetByIdManager(int id)
+        public virtual T GetByIdManager(int id)
         {
            return _repo.GetById(id);
         }
@@ -31,7 +31,7 @@ namespace DiyetProgramı.BLL.Concrete
             _repo.Insert(entity);
         }
 
-        public void UpdateManager(T entity)
+        public virtual void UpdateManager(T entity)
         {
             _repo.Update(entity);
         }
