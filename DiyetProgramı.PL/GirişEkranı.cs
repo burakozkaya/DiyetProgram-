@@ -96,6 +96,7 @@ namespace DiyetProgramı.PL
                 YemekCesidiBtnnn.Enabled = true;
                 CikisBtn.Visible = true;
                 YardimBtn.Visible = true;
+                EkranIsmiLbl.Text = "Anasayfa";
             }
             else
             {
