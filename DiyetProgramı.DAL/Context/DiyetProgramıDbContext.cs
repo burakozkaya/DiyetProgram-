@@ -24,18 +24,26 @@ namespace DiyetProgramı.DAL.Context
         {
             modelBuilder
                 .Entity<Kullanici>()
-                .Property(x => x.KullaniciSifre)
-                .HasMaxLength(16);
+                .Property(x=>x.KullaniciMail)
+                .HasMaxLength(50); 
             modelBuilder
                 .Entity<Kullanici>()
-                .Property(x=>x.KullaniciMail)
-                .HasMaxLength(50);
+                .Property(x => x.KullaniciAdi)
+                .HasMaxLength(30);
+            modelBuilder
+                .Entity<Kullanici>()
+                .Property(x => x.KullaniciSoyadi)
+                .HasMaxLength(30);
 
 
             modelBuilder
                 .Entity<Yemek>()
                 .Property(x => x.Kalori)
-                .HasPrecision(7, 2); 
+                .HasPrecision(7, 2);
+            modelBuilder
+                .Entity<Yemek>()
+                .Property(x => x.YemekAdi)
+                .HasMaxLength(25);
 
         }
     }

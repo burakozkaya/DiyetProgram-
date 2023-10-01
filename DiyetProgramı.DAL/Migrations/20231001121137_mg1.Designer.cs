@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DiyetProgramı.DAL.Migrations
 {
     [DbContext(typeof(DiyetProgramıDbContext))]
-    [Migration("20230930085148_mg2")]
-    partial class mg2
+    [Migration("20231001121137_mg1")]
+    partial class mg1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,7 +35,8 @@ namespace DiyetProgramı.DAL.Migrations
 
                     b.Property<string>("KullaniciAdi")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<int>("KullaniciBoy")
                         .HasColumnType("int");
@@ -50,12 +51,12 @@ namespace DiyetProgramı.DAL.Migrations
 
                     b.Property<string>("KullaniciSifre")
                         .IsRequired()
-                        .HasMaxLength(16)
-                        .HasColumnType("nvarchar(16)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("KullaniciSoyadi")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<int>("KullaniciYasi")
                         .HasColumnType("int");
@@ -104,8 +105,8 @@ namespace DiyetProgramı.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<decimal>("Kalori")
-                        .HasPrecision(8, 2)
-                        .HasColumnType("decimal(8,2)");
+                        .HasPrecision(7, 2)
+                        .HasColumnType("decimal(7,2)");
 
                     b.Property<int>("Kategorileri")
                         .HasColumnType("int");
@@ -118,7 +119,8 @@ namespace DiyetProgramı.DAL.Migrations
 
                     b.Property<string>("YemekAdi")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.HasKey("Id");
 

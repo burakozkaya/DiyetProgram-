@@ -28,6 +28,7 @@ namespace DiyetProgramı.PL
         private List<Yemek> yemekListesi;
         private List<Ogun> ogunListesi;
         private string secilenResimYolu;
+        private Kullanici kullanici;
         public GirişEkranı()
         {
             InitializeComponent();
@@ -150,7 +151,7 @@ namespace DiyetProgramı.PL
             if (termpString == string.Empty)
             {
                 MessageBox.Show("kayıt olusturuldu");
-                kullaniciManager.InsertManager(new Entities.Concrete.Kullanici()
+                kullanici = new Kullanici()
                 {
                     KullaniciAdi = isim,
                     KullaniciBoy = boy,
@@ -159,7 +160,8 @@ namespace DiyetProgramı.PL
                     KullaniciSifre = kullaniciSifre,
                     KullaniciSoyadi = soyisim,
                     KullaniciYasi = yas,
-                });
+                };
+                kullaniciManager.InsertManager(kullanici);
                 KayitOlPanel.Visible = false;
                 GirisPanel.Visible = true;
 
@@ -173,16 +175,16 @@ namespace DiyetProgramı.PL
         }
         private void panel3_Paint(object sender, PaintEventArgs e)
         {
-            var kullanici2 = kullaniciManager.GetByIdManager(UserId);
+            kullanici = kullaniciManager.GetByIdManager(UserId);
 
-            if (kullanici2 != null)
+            if (kullanici != null)
             {
-                Isimtxtbox.Text = kullanici2.KullaniciAdi;
-                SoyadtxtBox.Text = kullanici2.KullaniciSoyadi;
-                BoyTextBox.Text = kullanici2.KullaniciBoy.ToString();
-                KiloTextBox.Text = kullanici2.KullaniciKilo.ToString();
-                SifreTextBox.Text = kullanici2.KullaniciSifre;
-                MailtxtBox.Text = kullanici2.KullaniciMail;
+                Isimtxtbox.Text = kullanici.KullaniciAdi;
+                SoyadtxtBox.Text = kullanici.KullaniciSoyadi;
+                YastxtBox.Text = kullanici.KullaniciYasi.ToString();
+                boytxtBox.Text = kullanici.KullaniciBoy.ToString();
+                kilotxtBox.Text = kullanici.KullaniciKilo.ToString();
+                SifretxtBox.Text = kullanici.KullaniciSifre;
             }
         }
 
@@ -828,13 +830,37 @@ namespace DiyetProgramı.PL
 
         private void ProfilGuncelleBtn_Click(object sender, EventArgs e)
         {
-            Kullanici kullanici = new Kullanici();
-            string isim = isimTextBox.Text;
-            string soyisim = soyisimTextBox.Text;
-            bool resultYas = int.TryParse(yasTextBox.Text, out var yas);
-            bool resutBoy = int.TryParse(BoyTextBox.Text, out var boy);
-            bool resultKilo = decimal.TryParse(KiloTextBox.Text, out var kilo);
+            string isim = Isimtxtbox.Text;
+            string soyisim = SoyadtxtBox.Text;
+            string sifre = SifretxtBox.Text;
+            bool resultYas = int.TryParse(YastxtBox.Text, out var yas);
+            bool resultBoy = int.TryParse(boytxtBox.Text, out var boy);
+            bool resultKilo = decimal.TryParse(kilotxtBox.Text, out var kilo);
+            var tempString = "";
+            if (!resultYas || !resultBoy || !resultKilo || yas < 1 || boy < 20 || kilo < 4)
+                tempString += "Boy yaş ve kilonun doğru olduğundan emin olunuz\n";
 
+
+
+            if (!kullaniciManager.ValidPassword(sifre))
+                tempString += "Daha güçlü bir şifre giriniz";
+
+
+            if (tempString != String.Empty)
+            {
+                MessageBox.Show(tempString);
+            }
+            else
+            {
+                kullanici.KullaniciAdi = isim;
+                kullanici.KullaniciSoyadi = soyisim;
+                kullanici.KullaniciYasi = yas;
+                kullanici.KullaniciBoy = boy;
+                kullanici.KullaniciKilo = kilo;
+                kullanici.KullaniciSifre = sifre;
+                kullaniciManager.UpdateManager(kullanici);
+                MessageBox.Show("Güncelleme Başarılı");
+            }
         }
     }
 }

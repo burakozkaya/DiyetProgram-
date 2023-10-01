@@ -132,13 +132,13 @@
             EkranIsmiLbl = new Label();
             ProfilPanel = new Panel();
             ProfilGuncelleBtn = new Button();
-            MailtxtBox = new TextBox();
             SifretxtBox = new TextBox();
             kilotxtBox = new TextBox();
+            YastxtBox = new TextBox();
             boytxtBox = new TextBox();
             SoyadtxtBox = new TextBox();
             Isimtxtbox = new TextBox();
-            label29 = new Label();
+            label31 = new Label();
             label28 = new Label();
             GirisPanel.SuspendLayout();
             KayitOlPanel.SuspendLayout();
@@ -166,7 +166,7 @@
             GirisYapBtn.Margin = new Padding(3, 2, 3, 2);
             GirisYapBtn.Name = "GirisYapBtn";
             GirisYapBtn.Size = new Size(82, 22);
-            GirisYapBtn.TabIndex = 0;
+            GirisYapBtn.TabIndex = 3;
             GirisYapBtn.Text = "Giriş Yap";
             GirisYapBtn.UseVisualStyleBackColor = true;
             GirisYapBtn.Click += GirişYapClick;
@@ -251,7 +251,7 @@
             KayitEkraniBtn.Margin = new Padding(3, 2, 3, 2);
             KayitEkraniBtn.Name = "KayitEkraniBtn";
             KayitEkraniBtn.Size = new Size(100, 30);
-            KayitEkraniBtn.TabIndex = 51;
+            KayitEkraniBtn.TabIndex = 43;
             KayitEkraniBtn.Text = "Kayıt Ol";
             KayitEkraniBtn.UseVisualStyleBackColor = true;
             KayitEkraniBtn.Click += KayitOlEkraniClick;
@@ -271,7 +271,7 @@
             kullaniciSifreTekrariTextBox.Margin = new Padding(3, 2, 3, 2);
             kullaniciSifreTekrariTextBox.Name = "kullaniciSifreTekrariTextBox";
             kullaniciSifreTekrariTextBox.Size = new Size(241, 23);
-            kullaniciSifreTekrariTextBox.TabIndex = 49;
+            kullaniciSifreTekrariTextBox.TabIndex = 37;
             // 
             // label7
             // 
@@ -358,7 +358,7 @@
             BoyTextBox.Margin = new Padding(3, 2, 3, 2);
             BoyTextBox.Name = "BoyTextBox";
             BoyTextBox.Size = new Size(241, 23);
-            BoyTextBox.TabIndex = 39;
+            BoyTextBox.TabIndex = 41;
             // 
             // isimTextBox
             // 
@@ -366,7 +366,7 @@
             isimTextBox.Margin = new Padding(3, 2, 3, 2);
             isimTextBox.Name = "isimTextBox";
             isimTextBox.Size = new Size(241, 23);
-            isimTextBox.TabIndex = 43;
+            isimTextBox.TabIndex = 38;
             // 
             // yasTextBox
             // 
@@ -382,7 +382,7 @@
             soyisimTextBox.Margin = new Padding(3, 2, 3, 2);
             soyisimTextBox.Name = "soyisimTextBox";
             soyisimTextBox.Size = new Size(241, 23);
-            soyisimTextBox.TabIndex = 42;
+            soyisimTextBox.TabIndex = 39;
             // 
             // KiloTextBox
             // 
@@ -390,7 +390,7 @@
             KiloTextBox.Margin = new Padding(3, 2, 3, 2);
             KiloTextBox.Name = "KiloTextBox";
             KiloTextBox.Size = new Size(241, 23);
-            KiloTextBox.TabIndex = 41;
+            KiloTextBox.TabIndex = 42;
             // 
             // button11
             // 
@@ -498,7 +498,7 @@
             AylikRadioBtn.Location = new Point(233, 38);
             AylikRadioBtn.Name = "AylikRadioBtn";
             AylikRadioBtn.Size = new Size(51, 19);
-            AylikRadioBtn.TabIndex = 48;
+            AylikRadioBtn.TabIndex = 32;
             AylikRadioBtn.TabStop = true;
             AylikRadioBtn.Text = "Aylık";
             AylikRadioBtn.UseVisualStyleBackColor = true;
@@ -509,7 +509,7 @@
             HaftalikRadioBtn.Location = new Point(156, 38);
             HaftalikRadioBtn.Name = "HaftalikRadioBtn";
             HaftalikRadioBtn.Size = new Size(66, 19);
-            HaftalikRadioBtn.TabIndex = 48;
+            HaftalikRadioBtn.TabIndex = 31;
             HaftalikRadioBtn.TabStop = true;
             HaftalikRadioBtn.Text = "Haftalık";
             HaftalikRadioBtn.UseVisualStyleBackColor = true;
@@ -520,7 +520,7 @@
             RaporlarDateTimePicker.Margin = new Padding(3, 2, 3, 2);
             RaporlarDateTimePicker.Name = "RaporlarDateTimePicker";
             RaporlarDateTimePicker.Size = new Size(132, 23);
-            RaporlarDateTimePicker.TabIndex = 47;
+            RaporlarDateTimePicker.TabIndex = 30;
             // 
             // kiyasRaporOgunListBox
             // 
@@ -548,7 +548,7 @@
             OgunEkleBtn.Margin = new Padding(3, 2, 3, 2);
             OgunEkleBtn.Name = "OgunEkleBtn";
             OgunEkleBtn.Size = new Size(100, 30);
-            OgunEkleBtn.TabIndex = 21;
+            OgunEkleBtn.TabIndex = 50;
             OgunEkleBtn.Text = "Öğün Ekle";
             OgunEkleBtn.UseVisualStyleBackColor = true;
             OgunEkleBtn.Click += OgunEkleBtnClick;
@@ -560,7 +560,7 @@
             YemekComboBox.Margin = new Padding(3, 2, 3, 2);
             YemekComboBox.Name = "YemekComboBox";
             YemekComboBox.Size = new Size(123, 23);
-            YemekComboBox.TabIndex = 25;
+            YemekComboBox.TabIndex = 48;
             YemekComboBox.SelectedIndexChanged += YemekComboBox_SelectedIndexChanged;
             // 
             // OgunConboBox
@@ -570,7 +570,7 @@
             OgunConboBox.Margin = new Padding(3, 2, 3, 2);
             OgunConboBox.Name = "OgunConboBox";
             OgunConboBox.Size = new Size(123, 23);
-            OgunConboBox.TabIndex = 26;
+            OgunConboBox.TabIndex = 47;
             // 
             // label11
             // 
@@ -606,7 +606,7 @@
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            label14.Location = new Point(175, 200);
+            label14.Location = new Point(177, 243);
             label14.Name = "label14";
             label14.Size = new Size(69, 37);
             label14.TabIndex = 31;
@@ -666,7 +666,7 @@
             porsiyonyaztextBox1.Margin = new Padding(3, 2, 3, 2);
             porsiyonyaztextBox1.Name = "porsiyonyaztextBox1";
             porsiyonyaztextBox1.Size = new Size(123, 23);
-            porsiyonyaztextBox1.TabIndex = 44;
+            porsiyonyaztextBox1.TabIndex = 49;
             // 
             // label22
             // 
@@ -732,7 +732,7 @@
             OpenFileDialog.Location = new Point(190, 315);
             OpenFileDialog.Name = "OpenFileDialog";
             OpenFileDialog.Size = new Size(110, 23);
-            OpenFileDialog.TabIndex = 61;
+            OpenFileDialog.TabIndex = 25;
             OpenFileDialog.Text = "Resim Ekle";
             OpenFileDialog.UseVisualStyleBackColor = true;
             OpenFileDialog.Click += OpenFileDialog_Click;
@@ -754,7 +754,7 @@
             YemekSilBtn.Margin = new Padding(3, 2, 3, 2);
             YemekSilBtn.Name = "YemekSilBtn";
             YemekSilBtn.Size = new Size(82, 22);
-            YemekSilBtn.TabIndex = 58;
+            YemekSilBtn.TabIndex = 28;
             YemekSilBtn.Text = "Sil";
             YemekSilBtn.UseVisualStyleBackColor = true;
             YemekSilBtn.Click += YemekSilBtn_Click;
@@ -765,7 +765,7 @@
             YemekGuncelleBtn.Margin = new Padding(3, 2, 3, 2);
             YemekGuncelleBtn.Name = "YemekGuncelleBtn";
             YemekGuncelleBtn.Size = new Size(82, 22);
-            YemekGuncelleBtn.TabIndex = 57;
+            YemekGuncelleBtn.TabIndex = 27;
             YemekGuncelleBtn.Text = "Güncelle";
             YemekGuncelleBtn.UseVisualStyleBackColor = true;
             YemekGuncelleBtn.Click += YemekGuncelleBtn_Click;
@@ -788,7 +788,7 @@
             katagorilistcomboBox2.Margin = new Padding(3, 2, 3, 2);
             katagorilistcomboBox2.Name = "katagorilistcomboBox2";
             katagorilistcomboBox2.Size = new Size(110, 23);
-            katagorilistcomboBox2.TabIndex = 21;
+            katagorilistcomboBox2.TabIndex = 24;
             // 
             // NewYemekEkleBtn
             // 
@@ -796,7 +796,7 @@
             NewYemekEkleBtn.Margin = new Padding(3, 2, 3, 2);
             NewYemekEkleBtn.Name = "NewYemekEkleBtn";
             NewYemekEkleBtn.Size = new Size(82, 22);
-            NewYemekEkleBtn.TabIndex = 21;
+            NewYemekEkleBtn.TabIndex = 26;
             NewYemekEkleBtn.Text = "Ekle";
             NewYemekEkleBtn.UseVisualStyleBackColor = true;
             NewYemekEkleBtn.Click += YemekEkleClick;
@@ -901,7 +901,7 @@
             OgunGuncelleDateTimePicker.Margin = new Padding(3, 2, 3, 2);
             OgunGuncelleDateTimePicker.Name = "OgunGuncelleDateTimePicker";
             OgunGuncelleDateTimePicker.Size = new Size(193, 23);
-            OgunGuncelleDateTimePicker.TabIndex = 53;
+            OgunGuncelleDateTimePicker.TabIndex = 52;
             // 
             // OgunUpdateDeleteYemekCombobox
             // 
@@ -910,7 +910,7 @@
             OgunUpdateDeleteYemekCombobox.Margin = new Padding(3, 2, 3, 2);
             OgunUpdateDeleteYemekCombobox.Name = "OgunUpdateDeleteYemekCombobox";
             OgunUpdateDeleteYemekCombobox.Size = new Size(152, 23);
-            OgunUpdateDeleteYemekCombobox.TabIndex = 52;
+            OgunUpdateDeleteYemekCombobox.TabIndex = 49;
             // 
             // label25
             // 
@@ -927,7 +927,7 @@
             porsiyonYazTextBox.Margin = new Padding(3, 2, 3, 2);
             porsiyonYazTextBox.Name = "porsiyonYazTextBox";
             porsiyonYazTextBox.Size = new Size(152, 23);
-            porsiyonYazTextBox.TabIndex = 49;
+            porsiyonYazTextBox.TabIndex = 48;
             // 
             // label23
             // 
@@ -963,7 +963,7 @@
             Öğün_Sil.Margin = new Padding(3, 2, 3, 2);
             Öğün_Sil.Name = "Öğün_Sil";
             Öğün_Sil.Size = new Size(111, 25);
-            Öğün_Sil.TabIndex = 23;
+            Öğün_Sil.TabIndex = 51;
             Öğün_Sil.Text = "Öğün Sil";
             Öğün_Sil.UseVisualStyleBackColor = true;
             Öğün_Sil.Click += Öğün_Sil_Click;
@@ -986,7 +986,7 @@
             OgunGetirBtn.Margin = new Padding(3, 2, 3, 2);
             OgunGetirBtn.Name = "OgunGetirBtn";
             OgunGetirBtn.Size = new Size(111, 25);
-            OgunGetirBtn.TabIndex = 22;
+            OgunGetirBtn.TabIndex = 53;
             OgunGetirBtn.Text = "Öğün Getir";
             OgunGetirBtn.UseVisualStyleBackColor = true;
             OgunGetirBtn.Click += Öğün_Getir_Click;
@@ -998,7 +998,7 @@
             Ögün_Güncelle.Margin = new Padding(3, 2, 3, 2);
             Ögün_Güncelle.Name = "Ögün_Güncelle";
             Ögün_Güncelle.Size = new Size(111, 25);
-            Ögün_Güncelle.TabIndex = 22;
+            Ögün_Güncelle.TabIndex = 50;
             Ögün_Güncelle.Text = "Öğün Güncelle";
             Ögün_Güncelle.UseVisualStyleBackColor = true;
             Ögün_Güncelle.Click += Ögün_Güncelle_Click;
@@ -1336,16 +1336,16 @@
             // ProfilPanel
             // 
             ProfilPanel.Controls.Add(ProfilGuncelleBtn);
-            ProfilPanel.Controls.Add(MailtxtBox);
             ProfilPanel.Controls.Add(SifretxtBox);
             ProfilPanel.Controls.Add(kilotxtBox);
+            ProfilPanel.Controls.Add(YastxtBox);
             ProfilPanel.Controls.Add(boytxtBox);
             ProfilPanel.Controls.Add(SoyadtxtBox);
             ProfilPanel.Controls.Add(Isimtxtbox);
             ProfilPanel.Controls.Add(label11);
             ProfilPanel.Controls.Add(label12);
+            ProfilPanel.Controls.Add(label31);
             ProfilPanel.Controls.Add(label13);
-            ProfilPanel.Controls.Add(label29);
             ProfilPanel.Controls.Add(label28);
             ProfilPanel.Controls.Add(label14);
             ProfilPanel.Dock = DockStyle.Fill;
@@ -1357,48 +1357,48 @@
             // 
             // ProfilGuncelleBtn
             // 
-            ProfilGuncelleBtn.Location = new Point(238, 344);
+            ProfilGuncelleBtn.Location = new Point(233, 338);
             ProfilGuncelleBtn.Name = "ProfilGuncelleBtn";
             ProfilGuncelleBtn.Size = new Size(75, 23);
-            ProfilGuncelleBtn.TabIndex = 41;
+            ProfilGuncelleBtn.TabIndex = 46;
             ProfilGuncelleBtn.Text = "Güncelle";
             ProfilGuncelleBtn.UseVisualStyleBackColor = true;
             ProfilGuncelleBtn.Click += ProfilGuncelleBtn_Click;
             // 
-            // MailtxtBox
-            // 
-            MailtxtBox.Location = new Point(278, 290);
-            MailtxtBox.Name = "MailtxtBox";
-            MailtxtBox.Size = new Size(100, 23);
-            MailtxtBox.TabIndex = 40;
-            // 
             // SifretxtBox
             // 
-            SifretxtBox.Location = new Point(278, 250);
+            SifretxtBox.Location = new Point(280, 293);
             SifretxtBox.Name = "SifretxtBox";
             SifretxtBox.Size = new Size(100, 23);
-            SifretxtBox.TabIndex = 40;
+            SifretxtBox.TabIndex = 45;
             // 
             // kilotxtBox
             // 
-            kilotxtBox.Location = new Point(278, 214);
+            kilotxtBox.Location = new Point(280, 257);
             kilotxtBox.Name = "kilotxtBox";
             kilotxtBox.Size = new Size(100, 23);
-            kilotxtBox.TabIndex = 40;
+            kilotxtBox.TabIndex = 44;
+            // 
+            // YastxtBox
+            // 
+            YastxtBox.Location = new Point(278, 220);
+            YastxtBox.Name = "YastxtBox";
+            YastxtBox.Size = new Size(100, 23);
+            YastxtBox.TabIndex = 43;
             // 
             // boytxtBox
             // 
             boytxtBox.Location = new Point(278, 179);
             boytxtBox.Name = "boytxtBox";
             boytxtBox.Size = new Size(100, 23);
-            boytxtBox.TabIndex = 40;
+            boytxtBox.TabIndex = 42;
             // 
             // SoyadtxtBox
             // 
             SoyadtxtBox.Location = new Point(278, 142);
             SoyadtxtBox.Name = "SoyadtxtBox";
             SoyadtxtBox.Size = new Size(100, 23);
-            SoyadtxtBox.TabIndex = 40;
+            SoyadtxtBox.TabIndex = 41;
             // 
             // Isimtxtbox
             // 
@@ -1407,21 +1407,21 @@
             Isimtxtbox.Size = new Size(100, 23);
             Isimtxtbox.TabIndex = 40;
             // 
-            // label29
+            // label31
             // 
-            label29.AutoSize = true;
-            label29.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            label29.Location = new Point(175, 281);
-            label29.Name = "label29";
-            label29.Size = new Size(75, 37);
-            label29.TabIndex = 31;
-            label29.Text = "Mail:";
+            label31.AutoSize = true;
+            label31.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
+            label31.Location = new Point(175, 205);
+            label31.Name = "label31";
+            label31.Size = new Size(61, 37);
+            label31.TabIndex = 30;
+            label31.Text = "Yaş:";
             // 
             // label28
             // 
             label28.AutoSize = true;
             label28.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            label28.Location = new Point(175, 238);
+            label28.Location = new Point(177, 281);
             label28.Name = "label28";
             label28.Size = new Size(75, 37);
             label28.TabIndex = 31;
@@ -1432,13 +1432,13 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(793, 601);
-            Controls.Add(ProfilPanel);
             Controls.Add(GirisPanel);
-            Controls.Add(KayitOlPanel);
-            Controls.Add(YemekGuncellePanel);
             Controls.Add(RaporPanel);
-            Controls.Add(OgunGuncellePanel);
+            Controls.Add(YemekGuncellePanel);
             Controls.Add(OgunEklePanel);
+            Controls.Add(OgunGuncellePanel);
+            Controls.Add(ProfilPanel);
+            Controls.Add(KayitOlPanel);
             Controls.Add(BaslikPanel);
             Controls.Add(MenüPanel);
             Margin = new Padding(3, 2, 3, 2);
@@ -1580,9 +1580,9 @@
         private TextBox boytxtBox;
         private TextBox SoyadtxtBox;
         private TextBox Isimtxtbox;
-        private TextBox MailtxtBox;
         private TextBox SifretxtBox;
-        private Label label29;
         private Label label28;
+        private TextBox YastxtBox;
+        private Label label31;
     }
 }
