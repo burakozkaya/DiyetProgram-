@@ -48,11 +48,11 @@
             label4 = new Label();
             label9 = new Label();
             label3 = new Label();
-            boyTextBox = new TextBox();
+            BoyTextBox = new TextBox();
             isimTextBox = new TextBox();
             yasTextBox = new TextBox();
             soyisimTextBox = new TextBox();
-            kiloTextBox = new TextBox();
+            KiloTextBox = new TextBox();
             button11 = new Button();
             KiyasRaporBtn = new Button();
             GunSonuRaporuBtn = new Button();
@@ -74,10 +74,6 @@
             label12 = new Label();
             label13 = new Label();
             label14 = new Label();
-            IsimLbl = new Label();
-            SoyadLbl = new Label();
-            BoyLbl = new Label();
-            KilooLbl = new Label();
             OgunEklePanel = new Panel();
             label26 = new Label();
             pictureBox8 = new PictureBox();
@@ -135,6 +131,15 @@
             BaslikPanel = new Panel();
             EkranIsmiLbl = new Label();
             ProfilPanel = new Panel();
+            ProfilGuncelleBtn = new Button();
+            MailtxtBox = new TextBox();
+            SifretxtBox = new TextBox();
+            kilotxtBox = new TextBox();
+            boytxtBox = new TextBox();
+            SoyadtxtBox = new TextBox();
+            Isimtxtbox = new TextBox();
+            label29 = new Label();
+            label28 = new Label();
             GirisPanel.SuspendLayout();
             KayitOlPanel.SuspendLayout();
             RaporPanel.SuspendLayout();
@@ -228,11 +233,11 @@
             KayitOlPanel.Controls.Add(label4);
             KayitOlPanel.Controls.Add(label9);
             KayitOlPanel.Controls.Add(label3);
-            KayitOlPanel.Controls.Add(boyTextBox);
+            KayitOlPanel.Controls.Add(BoyTextBox);
             KayitOlPanel.Controls.Add(isimTextBox);
             KayitOlPanel.Controls.Add(yasTextBox);
             KayitOlPanel.Controls.Add(soyisimTextBox);
-            KayitOlPanel.Controls.Add(kiloTextBox);
+            KayitOlPanel.Controls.Add(KiloTextBox);
             KayitOlPanel.Dock = DockStyle.Fill;
             KayitOlPanel.Location = new Point(192, 60);
             KayitOlPanel.Margin = new Padding(3, 2, 3, 2);
@@ -347,13 +352,13 @@
             label3.TabIndex = 44;
             label3.Text = "İsim";
             // 
-            // boyTextBox
+            // BoyTextBox
             // 
-            boyTextBox.Location = new Point(243, 262);
-            boyTextBox.Margin = new Padding(3, 2, 3, 2);
-            boyTextBox.Name = "boyTextBox";
-            boyTextBox.Size = new Size(241, 23);
-            boyTextBox.TabIndex = 39;
+            BoyTextBox.Location = new Point(243, 262);
+            BoyTextBox.Margin = new Padding(3, 2, 3, 2);
+            BoyTextBox.Name = "BoyTextBox";
+            BoyTextBox.Size = new Size(241, 23);
+            BoyTextBox.TabIndex = 39;
             // 
             // isimTextBox
             // 
@@ -379,13 +384,13 @@
             soyisimTextBox.Size = new Size(241, 23);
             soyisimTextBox.TabIndex = 42;
             // 
-            // kiloTextBox
+            // KiloTextBox
             // 
-            kiloTextBox.Location = new Point(243, 288);
-            kiloTextBox.Margin = new Padding(3, 2, 3, 2);
-            kiloTextBox.Name = "kiloTextBox";
-            kiloTextBox.Size = new Size(241, 23);
-            kiloTextBox.TabIndex = 41;
+            KiloTextBox.Location = new Point(243, 288);
+            KiloTextBox.Margin = new Padding(3, 2, 3, 2);
+            KiloTextBox.Name = "KiloTextBox";
+            KiloTextBox.Size = new Size(241, 23);
+            KiloTextBox.TabIndex = 41;
             // 
             // button11
             // 
@@ -571,7 +576,7 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            label11.Location = new Point(144, 150);
+            label11.Location = new Point(175, 85);
             label11.Name = "label11";
             label11.Size = new Size(71, 37);
             label11.TabIndex = 28;
@@ -581,7 +586,7 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            label12.Location = new Point(144, 192);
+            label12.Location = new Point(175, 127);
             label12.Name = "label12";
             label12.Size = new Size(96, 37);
             label12.TabIndex = 29;
@@ -591,7 +596,7 @@
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            label13.Location = new Point(144, 229);
+            label13.Location = new Point(175, 164);
             label13.Name = "label13";
             label13.Size = new Size(67, 37);
             label13.TabIndex = 30;
@@ -601,51 +606,11 @@
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            label14.Location = new Point(144, 268);
+            label14.Location = new Point(175, 200);
             label14.Name = "label14";
             label14.Size = new Size(69, 37);
             label14.TabIndex = 31;
             label14.Text = "Kilo:";
-            // 
-            // IsimLbl
-            // 
-            IsimLbl.AutoSize = true;
-            IsimLbl.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            IsimLbl.Location = new Point(259, 150);
-            IsimLbl.Name = "IsimLbl";
-            IsimLbl.Size = new Size(175, 37);
-            IsimLbl.TabIndex = 36;
-            IsimLbl.Text = "Profil Bilgileri";
-            // 
-            // SoyadLbl
-            // 
-            SoyadLbl.AutoSize = true;
-            SoyadLbl.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            SoyadLbl.Location = new Point(259, 189);
-            SoyadLbl.Name = "SoyadLbl";
-            SoyadLbl.Size = new Size(175, 37);
-            SoyadLbl.TabIndex = 37;
-            SoyadLbl.Text = "Profil Bilgileri";
-            // 
-            // BoyLbl
-            // 
-            BoyLbl.AutoSize = true;
-            BoyLbl.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            BoyLbl.Location = new Point(259, 230);
-            BoyLbl.Name = "BoyLbl";
-            BoyLbl.Size = new Size(175, 37);
-            BoyLbl.TabIndex = 38;
-            BoyLbl.Text = "Profil Bilgileri";
-            // 
-            // KilooLbl
-            // 
-            KilooLbl.AutoSize = true;
-            KilooLbl.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            KilooLbl.Location = new Point(259, 268);
-            KilooLbl.Name = "KilooLbl";
-            KilooLbl.Size = new Size(175, 37);
-            KilooLbl.TabIndex = 39;
-            KilooLbl.Text = "Profil Bilgileri";
             // 
             // OgunEklePanel
             // 
@@ -1370,20 +1335,97 @@
             // 
             // ProfilPanel
             // 
-            ProfilPanel.Controls.Add(IsimLbl);
+            ProfilPanel.Controls.Add(ProfilGuncelleBtn);
+            ProfilPanel.Controls.Add(MailtxtBox);
+            ProfilPanel.Controls.Add(SifretxtBox);
+            ProfilPanel.Controls.Add(kilotxtBox);
+            ProfilPanel.Controls.Add(boytxtBox);
+            ProfilPanel.Controls.Add(SoyadtxtBox);
+            ProfilPanel.Controls.Add(Isimtxtbox);
             ProfilPanel.Controls.Add(label11);
             ProfilPanel.Controls.Add(label12);
             ProfilPanel.Controls.Add(label13);
+            ProfilPanel.Controls.Add(label29);
+            ProfilPanel.Controls.Add(label28);
             ProfilPanel.Controls.Add(label14);
-            ProfilPanel.Controls.Add(SoyadLbl);
-            ProfilPanel.Controls.Add(BoyLbl);
-            ProfilPanel.Controls.Add(KilooLbl);
             ProfilPanel.Dock = DockStyle.Fill;
             ProfilPanel.Location = new Point(192, 60);
             ProfilPanel.Margin = new Padding(3, 2, 3, 2);
             ProfilPanel.Name = "ProfilPanel";
             ProfilPanel.Size = new Size(601, 541);
             ProfilPanel.TabIndex = 57;
+            // 
+            // ProfilGuncelleBtn
+            // 
+            ProfilGuncelleBtn.Location = new Point(238, 344);
+            ProfilGuncelleBtn.Name = "ProfilGuncelleBtn";
+            ProfilGuncelleBtn.Size = new Size(75, 23);
+            ProfilGuncelleBtn.TabIndex = 41;
+            ProfilGuncelleBtn.Text = "Güncelle";
+            ProfilGuncelleBtn.UseVisualStyleBackColor = true;
+            ProfilGuncelleBtn.Click += ProfilGuncelleBtn_Click;
+            // 
+            // MailtxtBox
+            // 
+            MailtxtBox.Location = new Point(278, 290);
+            MailtxtBox.Name = "MailtxtBox";
+            MailtxtBox.Size = new Size(100, 23);
+            MailtxtBox.TabIndex = 40;
+            // 
+            // SifretxtBox
+            // 
+            SifretxtBox.Location = new Point(278, 250);
+            SifretxtBox.Name = "SifretxtBox";
+            SifretxtBox.Size = new Size(100, 23);
+            SifretxtBox.TabIndex = 40;
+            // 
+            // kilotxtBox
+            // 
+            kilotxtBox.Location = new Point(278, 214);
+            kilotxtBox.Name = "kilotxtBox";
+            kilotxtBox.Size = new Size(100, 23);
+            kilotxtBox.TabIndex = 40;
+            // 
+            // boytxtBox
+            // 
+            boytxtBox.Location = new Point(278, 179);
+            boytxtBox.Name = "boytxtBox";
+            boytxtBox.Size = new Size(100, 23);
+            boytxtBox.TabIndex = 40;
+            // 
+            // SoyadtxtBox
+            // 
+            SoyadtxtBox.Location = new Point(278, 142);
+            SoyadtxtBox.Name = "SoyadtxtBox";
+            SoyadtxtBox.Size = new Size(100, 23);
+            SoyadtxtBox.TabIndex = 40;
+            // 
+            // Isimtxtbox
+            // 
+            Isimtxtbox.Location = new Point(280, 99);
+            Isimtxtbox.Name = "Isimtxtbox";
+            Isimtxtbox.Size = new Size(100, 23);
+            Isimtxtbox.TabIndex = 40;
+            // 
+            // label29
+            // 
+            label29.AutoSize = true;
+            label29.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
+            label29.Location = new Point(175, 281);
+            label29.Name = "label29";
+            label29.Size = new Size(75, 37);
+            label29.TabIndex = 31;
+            label29.Text = "Mail:";
+            // 
+            // label28
+            // 
+            label28.AutoSize = true;
+            label28.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
+            label28.Location = new Point(175, 238);
+            label28.Name = "label28";
+            label28.Size = new Size(75, 37);
+            label28.TabIndex = 31;
+            label28.Text = "Şifre:";
             // 
             // GirişEkranı
             // 
@@ -1448,9 +1490,9 @@
         private Label label3;
         private TextBox isimTextBox;
         private TextBox soyisimTextBox;
-        private TextBox kiloTextBox;
+        private TextBox KiloTextBox;
         private TextBox yasTextBox;
-        private TextBox boyTextBox;
+        private TextBox BoyTextBox;
         private Label label9;
         private Label label10;
         private TextBox kullaniciSifreTextBox;
@@ -1466,10 +1508,6 @@
         private Label label12;
         private Label label13;
         private Label label14;
-        private Label IsimLbl;
-        private Label SoyadLbl;
-        private Label BoyLbl;
-        private Label KilooLbl;
         private Panel OgunEklePanel;
         private Panel YemekGuncellePanel;
         private Label label16;
@@ -1537,5 +1575,14 @@
         private Button CikisBtn;
         private Button YardimBtn;
         private Label label15;
+        private Button ProfilGuncelleBtn;
+        private TextBox kilotxtBox;
+        private TextBox boytxtBox;
+        private TextBox SoyadtxtBox;
+        private TextBox Isimtxtbox;
+        private TextBox MailtxtBox;
+        private TextBox SifretxtBox;
+        private Label label29;
+        private Label label28;
     }
 }

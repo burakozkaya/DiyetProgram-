@@ -123,8 +123,8 @@ namespace DiyetProgramı.PL
             string isim = isimTextBox.Text;
             string soyisim = soyisimTextBox.Text;
             bool resultYas = int.TryParse(yasTextBox.Text, out var yas);
-            bool resutBoy = int.TryParse(boyTextBox.Text, out var boy);
-            bool resultKilo = decimal.TryParse(kiloTextBox.Text, out var kilo);
+            bool resutBoy = int.TryParse(BoyTextBox.Text, out var boy);
+            bool resultKilo = decimal.TryParse(KiloTextBox.Text, out var kilo);
 
             var termpString = string.Empty;
             if (!kullaniciManager.ValidUser(kullaniciMail) || !kullaniciManager.ValidMail(kullaniciMail))
@@ -177,10 +177,12 @@ namespace DiyetProgramı.PL
 
             if (kullanici2 != null)
             {
-                IsimLbl.Text = kullanici2.KullaniciAdi;
-                SoyadLbl.Text = kullanici2.KullaniciSoyadi;
-                BoyLbl.Text = kullanici2.KullaniciBoy.ToString();
-                KilooLbl.Text = kullanici2.KullaniciKilo.ToString();
+                Isimtxtbox.Text = kullanici2.KullaniciAdi;
+                SoyadtxtBox.Text = kullanici2.KullaniciSoyadi;
+                BoyTextBox.Text = kullanici2.KullaniciBoy.ToString();
+                KiloTextBox.Text = kullanici2.KullaniciKilo.ToString();
+                SifreTextBox.Text = kullanici2.KullaniciSifre;
+                MailtxtBox.Text = kullanici2.KullaniciMail;
             }
         }
 
@@ -822,6 +824,17 @@ namespace DiyetProgramı.PL
         private void HakkimizdeBtn_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Hakkımızda\r\n\r\nBiz, \"Diyet Programı\" ekibi olarak size hizmet vermek için buradayız. İşte ekibimizden kısa bir tanıtım:\r\n\r\nProje Lideri: Burak Özkaya\r\nYazılım Geliştirici: Burak Özkaya,Sergen Aktaş,Ekrem Salih Ünlü\r\n\r\nBizler, bu projeyi bir araya gelerek hayata geçirdik. Projenin her aşamasında birlikte çalışarak, projenin nasıl şekilleneceği ve hangi katmanlardan oluşacağı konusunda ortak kararlar aldık. Burak DAL'ı yazdı, Sergen PL'i oluşturdu ve Ekrem BL'i oluşturdu. Sizin için en iyi kalori takip deneyimini sunabilmek için çaba sarf ediyoruz.\r\n\r\nTeşekkür ederiz,\r\n\"Kalori Takip Programı\" Ekibi");
+        }
+
+        private void ProfilGuncelleBtn_Click(object sender, EventArgs e)
+        {
+            Kullanici kullanici = new Kullanici();
+            string isim = isimTextBox.Text;
+            string soyisim = soyisimTextBox.Text;
+            bool resultYas = int.TryParse(yasTextBox.Text, out var yas);
+            bool resutBoy = int.TryParse(BoyTextBox.Text, out var boy);
+            bool resultKilo = decimal.TryParse(KiloTextBox.Text, out var kilo);
+
         }
     }
 }
