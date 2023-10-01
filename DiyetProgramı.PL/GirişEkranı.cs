@@ -42,6 +42,7 @@ namespace DiyetProgramı.PL
             CikisBtn.Visible = false;
             YardimBtn.Visible = false;
             this.Text = "Kalori Takip Programı";
+            EkranIsmiLbl.Text = "Giriş Ekranı";
         }
 
         private void GirişEkranı_Load(object sender, EventArgs e)
@@ -133,7 +134,7 @@ namespace DiyetProgramı.PL
             {
                 termpString += "Lütfen tüm alanları doldurun.\r\n";
             }
-            if (!resultYas || !resutBoy || !resultKilo ||yas < 1 || boy <20 || kilo < 4)
+            if (!resultYas || !resutBoy || !resultKilo || yas < 1 || boy < 20 || kilo < 4)
             {
                 termpString += "yaş,boy veya kilo değişken tanımlama hatası.\r\n";
             }
@@ -232,9 +233,9 @@ namespace DiyetProgramı.PL
             {
                 string formattedYenilenKalori = ogun.YenilenKalori.ToString("N2");
 
-               
+
                 OgunIsmi ogunIsmi = (OgunIsmi)Enum.ToObject(typeof(OgunIsmi), ogun.OgunIsmi);
-                
+
                 OgunUpdateDeleteListBox.Items.Add(Enum.GetName(typeof(OgunIsmi), ogunIsmi) + " - " + ogun.Yemek.YemekAdi + " - " + formattedYenilenKalori);
             }
 
@@ -605,6 +606,9 @@ namespace DiyetProgramı.PL
             KayitOlPanel.Visible = false;
             GirisPanel.Visible = true;
 
+            EkranIsmiLbl.Text = "Giriş Yap";
+
+
         }
 
         private void kayıtbtnn_Click(object sender, EventArgs e)
@@ -616,6 +620,7 @@ namespace DiyetProgramı.PL
             RaporPanel.Visible = false;
             KayitOlPanel.Visible = true;
             GirisPanel.Visible = false;
+            EkranIsmiLbl.Text = "Kayıt Ol";
         }
 
         private void Homebtnnn_Click(object sender, EventArgs e)
@@ -629,10 +634,12 @@ namespace DiyetProgramı.PL
             GirisPanel.Visible = false;
             YemekComboBox.Items.Clear();
             yemekListesi.ForEach(x => YemekComboBox.Items.Add(x.YemekAdi));
+            EkranIsmiLbl.Text = "Anasayfa";
         }
 
         private void YemekBtnnn_Click(object sender, EventArgs e)
         {
+            EkranIsmiLbl.Text = "Yemek Ayarları";
             OgunEklePanel.Visible = false;
             ProfilPanel.Visible = false;
             YemekGuncellePanel.Visible = true;
@@ -659,6 +666,7 @@ namespace DiyetProgramı.PL
 
         private void OgunBtnnn_Click(object sender, EventArgs e)
         {
+            EkranIsmiLbl.Text = "Öğün Ayarları";
             OgunEklePanel.Visible = false;
             ProfilPanel.Visible = false;
             YemekGuncellePanel.Visible = false;
@@ -671,12 +679,12 @@ namespace DiyetProgramı.PL
             porsiyonYazTextBox.Text = string.Empty;
             OgunUpdateDeleteYemekCombobox.SelectedIndex = -1;
             OgunUpdateDeleteYemekCombobox.Items.Clear();
-            yemekListesi.ForEach(x=>OgunUpdateDeleteYemekCombobox.Items.Add(x.YemekAdi));
+            yemekListesi.ForEach(x => OgunUpdateDeleteYemekCombobox.Items.Add(x.YemekAdi));
         }
 
         private void ProfilBtnnn_Click(object sender, EventArgs e)
         {
-
+            EkranIsmiLbl.Text = "Profil Bilgileri";
             OgunEklePanel.Visible = false;
             ProfilPanel.Visible = true;
             YemekGuncellePanel.Visible = false;
@@ -688,6 +696,7 @@ namespace DiyetProgramı.PL
 
         private void GunSonRaporBtn_Click(object sender, EventArgs e)
         {
+            EkranIsmiLbl.Text = "Gün Sonu Raporları";
             GunSonuKiyasRaporListBox.Items.Clear();
             OgunEklePanel.Visible = false;
             ProfilPanel.Visible = false;
@@ -714,6 +723,7 @@ namespace DiyetProgramı.PL
 
         private void KıyasRaporBtnnn_Click(object sender, EventArgs e)
         {
+            EkranIsmiLbl.Text = "Kıyas Raporları";
             OgunEklePanel.Visible = false;
             ProfilPanel.Visible = false;
             YemekGuncellePanel.Visible = false;
@@ -745,6 +755,7 @@ namespace DiyetProgramı.PL
 
         private void YemekCesidiBtnnn_Click(object sender, EventArgs e)
         {
+            EkranIsmiLbl.Text = "Yemek Çeşidi Raporları";
             kiyasRaporOgunListBox.Items.Clear();
             GunSonuKiyasRaporListBox.Items.Clear();
             OgunEklePanel.Visible = false;
@@ -777,7 +788,7 @@ namespace DiyetProgramı.PL
             {
                 Environment.Exit(0);
             }
-            
+
         }
 
         private void YardimBtn_Click(object sender, EventArgs e)
