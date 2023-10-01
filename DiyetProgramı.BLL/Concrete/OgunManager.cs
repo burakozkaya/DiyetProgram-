@@ -78,5 +78,6 @@ namespace DiyetProgramı.BLL.Concrete
         {
             return _repo.GünSonuRapor(dateTime);
         }
+
     }
 }

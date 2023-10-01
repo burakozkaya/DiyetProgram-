@@ -26,6 +26,8 @@ namespace DiyetProgramı.DAL.Concrete
         public List<YemekRaporu> YemekRapor()
         {
             return _dbSet
+                .Include(x => x.Ogunler)
+                .Where(x => x.Ogunler.Any(ogun => ogun.YemekId == x.Id))
                 .Select(yemek => new YemekRaporu
                 {
                     YemekAdi = yemek.YemekAdi,
@@ -45,31 +47,24 @@ namespace DiyetProgramı.DAL.Concrete
                         .Where(ogun => ogun.OgunIsmi == OgunIsmi.yatsi)
                         .Sum(ogun => ogun.YemekPorsiyon)
                 })
+                .OrderByDescending(x => x.Aksam + x.Ikindi + x.Oglen + x.Sabah + x.Yatsi)
                 .ToList();
         }
-        public List<Yemek> EnCokYenenYemek()
+        public List<EnCokYemekRapor> EnCokYenenYemek()
         {
-            var yemeklerx = new List<Yemek>();
-            var yemeklerDb = _dbSet.
-                Include(x => x.Ogunler)
-                .ToList();
+            var yemekRaporu = new List<EnCokYemekRapor>();
+            var yemeklerDbx = _dbContext.Ogunler.Include(x => x.Yemek).Where(x => x.Yemek.KullaniciId == _kullaniciId).ToList(); 
 
-            var yemekler = yemeklerDb
-                .Where(x => x.KullaniciId == _kullaniciId)
-                .GroupBy(x => x.YemekAdi)
-                .Select(x => new
-                {
-                    id = x.Key
-                })
-                .OrderByDescending(x => x.id)
-                .Take(10)
-                .ToList();
-
-            foreach (var yemek in yemeklerDb)
+            var count = yemeklerDbx.GroupBy(x=>x.Yemek.YemekAdi).Select(x=>new EnCokYemekRapor()
             {
-                yemeklerx.Add(yemeklerDb.SingleOrDefault(x => x.Id == yemek.Id));
-            }
-            return yemeklerx;
+                YemekAdi = x.Key,
+                KacPorsiyon = x.Sum(x=>x.YemekPorsiyon),
+                AlinanKalori = x.Sum(x=>x.YenilenKalori)
+            }).OrderByDescending(x=>x.KacPorsiyon).Take(5).ToList();
+
+
+            count.OrderByDescending(x => x.KacPorsiyon);
+            return count;
         }
 
         public List<Yemek> GünSonuRapor(DateTime dateTime)

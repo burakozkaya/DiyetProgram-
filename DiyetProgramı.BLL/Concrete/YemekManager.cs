@@ -24,7 +24,7 @@ namespace DiyetProgramı.BLL.Concrete
             return _repo.GetAll();
         }
 
-        public List<Yemek> EnCokYenenYemek()
+        public List<EnCokYemekRapor> EnCokYenenYemek()
         {
             return _repo.EnCokYenenYemek();
         }
@@ -75,5 +75,6 @@ namespace DiyetProgramı.BLL.Concrete
             }
             return _yemeks.Average(x => x.Ogunler.Average(x => x.YenilenKalori));
         }
+
     }
 }

@@ -10,9 +10,6 @@ namespace DiyetProgramı.DAL.Concrete
 {
     public class KullaniciRepo : BaseRepo<Kullanici>
     {
-        public KullaniciRepo(int kullaniciId) : base(kullaniciId)
-        {
-        }
 
         public KullaniciRepo() : base()
         {
