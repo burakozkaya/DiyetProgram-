@@ -3,6 +3,7 @@ using DiyetProgramı.DAL.Concrete;
 using DiyetProgramı.Entities.Abstract;
 using DiyetProgramı.Entities.Concrete;
 using DiyetProgramı.Entities.Enum;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -43,7 +44,7 @@ namespace DiyetProgramı.PL
             CikisBtn.Visible = false;
             YardimBtn.Visible = false;
             this.Text = "Kalori Takip Programı";
-            EkranIsmiLbl.Text = "Giriş Ekranı";
+            EkranIsmiLbl.Text = "Giriş Yap";
         }
 
         private void GirişEkranı_Load(object sender, EventArgs e)
@@ -310,15 +311,28 @@ namespace DiyetProgramı.PL
         private void OgunUpdateDeleteListBoxSelectedIndexChanged(object sender, EventArgs e)
         {
             int selectedIndex = OgunUpdateDeleteListBox.SelectedIndex;
+            Ogun tempOgun;
             if (selectedIndex >= 0 && selectedIndex < ogunListesi.Count)
             {
-                var tempOgun = ogunListesi[selectedIndex];
+                tempOgun = ogunListesi[selectedIndex];
                 OgunTextBoxUpdate(tempOgun);
+                if (!string.IsNullOrEmpty(tempOgun.Yemek.ResimYolu))
+                {
+                    using (Image resim = Image.FromFile(tempOgun.Yemek.ResimYolu))
+                    {
+                        pictureBox14.Image = new Bitmap(resim);
+                    }
+                }
+                else
+                {
+                    pictureBox14.Image = Properties.Resources.Yemek;
+                }
             }
             else
             {
                 MessageBox.Show("Lütfen bir öğün seçin.");
             }
+
         }
 
         private void OgunTextBoxUpdate(Ogun tempOgun)

@@ -852,7 +852,7 @@
             // 
             // pictureBox14
             // 
-            pictureBox14.Image = Properties.Resources.istockphoto_1141120666_612x612;
+            pictureBox14.Image = Properties.Resources.Yemek;
             pictureBox14.Location = new Point(94, 103);
             pictureBox14.Name = "pictureBox14";
             pictureBox14.Size = new Size(224, 147);
