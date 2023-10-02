@@ -34,6 +34,10 @@ namespace DiyetProgramı.DAL.Context
                 .Entity<Kullanici>()
                 .Property(x => x.KullaniciSoyadi)
                 .HasMaxLength(30);
+            modelBuilder
+                .Entity<Kullanici>()
+                .Property(x => x.KullaniciKilo)
+                .HasPrecision(6, 2);
 
 
             modelBuilder
@@ -44,6 +48,10 @@ namespace DiyetProgramı.DAL.Context
                 .Entity<Yemek>()
                 .Property(x => x.YemekAdi)
                 .HasMaxLength(25);
+            modelBuilder
+                .Entity<Ogun>()
+                .Property(x => x.YemekPorsiyon)
+                .HasPrecision(4, 2);
 
         }
     }

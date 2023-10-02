@@ -173,6 +173,7 @@
             // 
             KullaniciAdiTextBox.Location = new Point(221, 139);
             KullaniciAdiTextBox.Margin = new Padding(3, 2, 3, 2);
+            KullaniciAdiTextBox.MaxLength = 49;
             KullaniciAdiTextBox.Name = "KullaniciAdiTextBox";
             KullaniciAdiTextBox.Size = new Size(241, 23);
             KullaniciAdiTextBox.TabIndex = 1;
@@ -285,6 +286,7 @@
             // 
             kullaniciMailTextBox.Location = new Point(243, 112);
             kullaniciMailTextBox.Margin = new Padding(3, 2, 3, 2);
+            kullaniciMailTextBox.MaxLength = 49;
             kullaniciMailTextBox.Name = "kullaniciMailTextBox";
             kullaniciMailTextBox.Size = new Size(241, 23);
             kullaniciMailTextBox.TabIndex = 35;
@@ -355,6 +357,7 @@
             // 
             BoyTextBox.Location = new Point(243, 262);
             BoyTextBox.Margin = new Padding(3, 2, 3, 2);
+            BoyTextBox.MaxLength = 4;
             BoyTextBox.Name = "BoyTextBox";
             BoyTextBox.Size = new Size(241, 23);
             BoyTextBox.TabIndex = 41;
@@ -363,6 +366,7 @@
             // 
             isimTextBox.Location = new Point(243, 189);
             isimTextBox.Margin = new Padding(3, 2, 3, 2);
+            isimTextBox.MaxLength = 29;
             isimTextBox.Name = "isimTextBox";
             isimTextBox.Size = new Size(241, 23);
             isimTextBox.TabIndex = 38;
@@ -371,6 +375,7 @@
             // 
             yasTextBox.Location = new Point(243, 237);
             yasTextBox.Margin = new Padding(3, 2, 3, 2);
+            yasTextBox.MaxLength = 3;
             yasTextBox.Name = "yasTextBox";
             yasTextBox.Size = new Size(241, 23);
             yasTextBox.TabIndex = 40;
@@ -379,6 +384,7 @@
             // 
             soyisimTextBox.Location = new Point(243, 213);
             soyisimTextBox.Margin = new Padding(3, 2, 3, 2);
+            soyisimTextBox.MaxLength = 29;
             soyisimTextBox.Name = "soyisimTextBox";
             soyisimTextBox.Size = new Size(241, 23);
             soyisimTextBox.TabIndex = 39;
@@ -387,6 +393,7 @@
             // 
             KiloTextBox.Location = new Point(243, 288);
             KiloTextBox.Margin = new Padding(3, 2, 3, 2);
+            KiloTextBox.MaxLength = 4;
             KiloTextBox.Name = "KiloTextBox";
             KiloTextBox.Size = new Size(241, 23);
             KiloTextBox.TabIndex = 42;
@@ -663,6 +670,7 @@
             // 
             porsiyonyaztextBox1.Location = new Point(380, 298);
             porsiyonyaztextBox1.Margin = new Padding(3, 2, 3, 2);
+            porsiyonyaztextBox1.MaxLength = 3;
             porsiyonyaztextBox1.Name = "porsiyonyaztextBox1";
             porsiyonyaztextBox1.Size = new Size(123, 23);
             porsiyonyaztextBox1.TabIndex = 49;
@@ -804,6 +812,7 @@
             // 
             YemekAdiEktextBox2.Location = new Point(190, 235);
             YemekAdiEktextBox2.Margin = new Padding(3, 2, 3, 2);
+            YemekAdiEktextBox2.MaxLength = 24;
             YemekAdiEktextBox2.Name = "YemekAdiEktextBox2";
             YemekAdiEktextBox2.Size = new Size(110, 23);
             YemekAdiEktextBox2.TabIndex = 22;
@@ -812,6 +821,7 @@
             // 
             KalorimikektextBox3.Location = new Point(190, 260);
             KalorimikektextBox3.Margin = new Padding(3, 2, 3, 2);
+            KalorimikektextBox3.MaxLength = 6;
             KalorimikektextBox3.Name = "KalorimikektextBox3";
             KalorimikektextBox3.Size = new Size(110, 23);
             KalorimikektextBox3.TabIndex = 23;
@@ -924,6 +934,7 @@
             // 
             porsiyonYazTextBox.Location = new Point(104, 262);
             porsiyonYazTextBox.Margin = new Padding(3, 2, 3, 2);
+            porsiyonYazTextBox.MaxLength = 3;
             porsiyonYazTextBox.Name = "porsiyonYazTextBox";
             porsiyonYazTextBox.Size = new Size(152, 23);
             porsiyonYazTextBox.TabIndex = 48;
@@ -1372,6 +1383,7 @@
             // YastxtBox
             // 
             YastxtBox.Location = new Point(278, 220);
+            YastxtBox.MaxLength = 3;
             YastxtBox.Name = "YastxtBox";
             YastxtBox.Size = new Size(100, 23);
             YastxtBox.TabIndex = 43;
@@ -1379,6 +1391,7 @@
             // boytxtBox
             // 
             boytxtBox.Location = new Point(278, 179);
+            boytxtBox.MaxLength = 6;
             boytxtBox.Name = "boytxtBox";
             boytxtBox.Size = new Size(100, 23);
             boytxtBox.TabIndex = 42;
@@ -1386,6 +1399,7 @@
             // SoyadtxtBox
             // 
             SoyadtxtBox.Location = new Point(278, 142);
+            SoyadtxtBox.MaxLength = 29;
             SoyadtxtBox.Name = "SoyadtxtBox";
             SoyadtxtBox.Size = new Size(100, 23);
             SoyadtxtBox.TabIndex = 41;
@@ -1393,6 +1407,7 @@
             // Isimtxtbox
             // 
             Isimtxtbox.Location = new Point(280, 99);
+            Isimtxtbox.MaxLength = 29;
             Isimtxtbox.Name = "Isimtxtbox";
             Isimtxtbox.Size = new Size(100, 23);
             Isimtxtbox.TabIndex = 40;
