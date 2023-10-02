@@ -821,7 +821,7 @@
             // 
             KalorimikektextBox3.Location = new Point(190, 260);
             KalorimikektextBox3.Margin = new Padding(3, 2, 3, 2);
-            KalorimikektextBox3.MaxLength = 6;
+            KalorimikektextBox3.MaxLength = 4;
             KalorimikektextBox3.Name = "KalorimikektextBox3";
             KalorimikektextBox3.Size = new Size(110, 23);
             KalorimikektextBox3.TabIndex = 23;
