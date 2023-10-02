@@ -119,9 +119,9 @@ namespace DiyetProgramı.PL
         {
             KayitOlPanel.BringToFront();
 
-            string kullaniciMail = kullaniciMailTextBox.Text;
-            string kullaniciSifre = kullaniciSifreTextBox.Text;
-            string kullaniciSifreTekrari = kullaniciSifreTekrariTextBox.Text;
+            string kullaniciMail = kullaniciMailTextBox.Text.Trim();
+            string kullaniciSifre = kullaniciSifreTextBox.Text.Trim();
+            string kullaniciSifreTekrari = kullaniciSifreTekrariTextBox.Text.Trim();
             string isim = isimTextBox.Text;
             string soyisim = soyisimTextBox.Text;
             bool resultYas = int.TryParse(yasTextBox.Text, out var yas);
@@ -315,16 +315,23 @@ namespace DiyetProgramı.PL
             {
                 tempOgun = ogunListesi[selectedIndex];
                 OgunTextBoxUpdate(tempOgun);
-                if (!string.IsNullOrEmpty(tempOgun.Yemek.ResimYolu))
+                try
                 {
-                    using (Image resim = Image.FromFile(tempOgun.Yemek.ResimYolu))
+                    if (!string.IsNullOrEmpty(tempOgun.Yemek.ResimYolu))
                     {
-                        pictureBox14.Image = new Bitmap(resim);
+                        using (Image resim = Image.FromFile(tempOgun.Yemek.ResimYolu))
+                        {
+                            pictureBox14.Image = new Bitmap(resim);
+                        }
+                    }
+                    else
+                    {
+                        pictureBox14.Image = Properties.Resources.Yemek;
                     }
                 }
-                else
+                catch (Exception exception)
                 {
-                    pictureBox14.Image = Properties.Resources.Yemek;
+                    Console.WriteLine("Fotoğraf bulunamadi");
                 }
             }
             else
@@ -580,17 +587,24 @@ namespace DiyetProgramı.PL
                 YemekAdiEktextBox2.Text = selectedYemek.YemekAdi;
                 string resimYolu = selectedYemek.ResimYolu;
 
-                if (!string.IsNullOrEmpty(resimYolu))
+                try
                 {
-                    // Resmi yükle
-                    using (Image resim = Image.FromFile(resimYolu))
+                    if (!string.IsNullOrEmpty(resimYolu))
                     {
-                        pictureBox10.Image = new Bitmap(resim);
+                        // Resmi yükle
+                        using (Image resim = Image.FromFile(resimYolu))
+                        {
+                            pictureBox10.Image = new Bitmap(resim);
+                        }
+                    }
+                    else
+                    {
+                        pictureBox10.Image = Properties.Resources.Yemek;
                     }
                 }
-                else
+                catch (Exception exception)
                 {
-                    pictureBox10.Image = Properties.Resources.Yemek;
+                    Console.WriteLine("Fotoğraf bulunamadı.");
                 }
             }
         }
@@ -612,17 +626,24 @@ namespace DiyetProgramı.PL
 
         private void YemekComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (YemekComboBox.SelectedIndex == -1)
-            { pictureBox8.Image = Properties.Resources.Yemek; return; }
-            var tempYemek = yemekListesi[YemekComboBox.SelectedIndex];
-            if (string.IsNullOrEmpty(tempYemek.ResimYolu))
-                pictureBox8.Image = Properties.Resources.Yemek;
-            else
+            try
             {
-                using (Image resim = Image.FromFile(tempYemek.ResimYolu))
+                if (YemekComboBox.SelectedIndex == -1)
+                { pictureBox8.Image = Properties.Resources.Yemek; return; }
+                var tempYemek = yemekListesi[YemekComboBox.SelectedIndex];
+                if (string.IsNullOrEmpty(tempYemek.ResimYolu))
+                    pictureBox8.Image = Properties.Resources.Yemek;
+                else
                 {
-                    pictureBox8.Image = new Bitmap(resim);
+                    using (Image resim = Image.FromFile(tempYemek.ResimYolu))
+                    {
+                        pictureBox8.Image = new Bitmap(resim);
+                    }
                 }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine("Fotoğraf bulunamadı.");
             }
 
         }
