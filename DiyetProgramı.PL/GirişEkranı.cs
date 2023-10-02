@@ -678,7 +678,7 @@ namespace DiyetProgramı.PL
             RaporPanel.Visible = false;
             KayitOlPanel.Visible = false;
             GirisPanel.Visible = false;
-
+            pictureBox10.Image = Properties.Resources.Yemek;
             katagorilistcomboBox2.SelectedIndex = -1;
             MevcutYemekListBox.Items.Clear();
             katagorilistcomboBox2.Items.Clear();
@@ -709,6 +709,7 @@ namespace DiyetProgramı.PL
             OgunUpdateDeleteOgunCombobox.SelectedIndex = -1;
             porsiyonYazTextBox.Text = string.Empty;
             OgunUpdateDeleteYemekCombobox.SelectedIndex = -1;
+            pictureBox14.Image = Properties.Resources.Yemek;
             OgunUpdateDeleteYemekCombobox.Items.Clear();
             yemekListesi.ForEach(x => OgunUpdateDeleteYemekCombobox.Items.Add(x.YemekAdi));
         }

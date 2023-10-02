@@ -885,7 +885,7 @@
             // 
             // pictureBox14
             // 
-            pictureBox14.Image = Properties.Resources.istockphoto_1141120666_612x612;
+            pictureBox14.Image = Properties.Resources.Yemek;
             pictureBox14.Location = new Point(82, 77);
             pictureBox14.Margin = new Padding(3, 2, 3, 2);
             pictureBox14.Name = "pictureBox14";
@@ -1304,11 +1304,11 @@
             label30.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label30.AutoSize = true;
             label30.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            label30.Location = new Point(71, 20);
+            label30.Location = new Point(25, 19);
             label30.Name = "label30";
-            label30.Size = new Size(37, 25);
+            label30.Size = new Size(140, 25);
             label30.TabIndex = 1;
-            label30.Text = "HL";
+            label30.Text = "Sağlıklı Yaşam";
             // 
             // BaslikPanel
             // 
