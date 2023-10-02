@@ -185,7 +185,6 @@ namespace DiyetProgramı.PL
                 YastxtBox.Text = kullanici.KullaniciYasi.ToString();
                 boytxtBox.Text = kullanici.KullaniciBoy.ToString();
                 kilotxtBox.Text = kullanici.KullaniciKilo.ToString();
-                SifretxtBox.Text = kullanici.KullaniciSifre;
             }
         }
 
@@ -846,19 +845,12 @@ namespace DiyetProgramı.PL
         {
             string isim = Isimtxtbox.Text;
             string soyisim = SoyadtxtBox.Text;
-            string sifre = SifretxtBox.Text;
             bool resultYas = int.TryParse(YastxtBox.Text, out var yas);
             bool resultBoy = int.TryParse(boytxtBox.Text, out var boy);
             bool resultKilo = decimal.TryParse(kilotxtBox.Text, out var kilo);
             var tempString = "";
             if (!resultYas || !resultBoy || !resultKilo || yas < 1 || boy < 20 || kilo < 4)
                 tempString += "Boy yaş ve kilonun doğru olduğundan emin olunuz\n";
-
-
-
-            if (!kullaniciManager.ValidPassword(sifre))
-                tempString += "Daha güçlü bir şifre giriniz";
-
 
             if (tempString != String.Empty)
             {
@@ -871,7 +863,6 @@ namespace DiyetProgramı.PL
                 kullanici.KullaniciYasi = yas;
                 kullanici.KullaniciBoy = boy;
                 kullanici.KullaniciKilo = kilo;
-                kullanici.KullaniciSifre = sifre;
                 kullaniciManager.UpdateManager(kullanici);
                 MessageBox.Show("Güncelleme Başarılı");
             }
