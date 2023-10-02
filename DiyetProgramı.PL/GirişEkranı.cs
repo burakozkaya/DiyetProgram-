@@ -737,6 +737,14 @@ namespace DiyetProgramı.PL
 
         private void ProfilBtnnn_Click(object sender, EventArgs e)
         {
+            if (kullanici != null)
+            {
+                Isimtxtbox.Text = kullanici.KullaniciAdi;
+                SoyadtxtBox.Text = kullanici.KullaniciSoyadi;
+                YastxtBox.Text = kullanici.KullaniciYasi.ToString();
+                boytxtBox.Text = kullanici.KullaniciBoy.ToString();
+                kilotxtBox.Text = kullanici.KullaniciKilo.ToString();
+            }
             EkranIsmiLbl.Text = "Profil Bilgileri";
             OgunEklePanel.Visible = false;
             ProfilPanel.Visible = true;
